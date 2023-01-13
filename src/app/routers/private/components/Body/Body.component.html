@@ -1,0 +1,30 @@
+
+
+  
+  <div  class="body1" [ngClass]="getBodyClass()">
+    <div class=" relative  w-full h-2rem  top-0 right-0 border-round">
+      <div class="  absolute top-0 right-0  text-right mt-2
+       font-bold flex align-items-right justify-content-right 
+      border-round">
+
+      <span style="color: black">
+
+        <i class="pi pi-user"></i>
+
+        USUARIO EN SESION : 
+      </span>
+      <span class="text-black ml-2">
+         {{nombre | uppercase}} 
+      </span>
+     
+    </div>
+  </div>
+  <!-- <app-menu-horizontal></app-menu-horizontal> -->
+      
+              <router-outlet></router-outlet>
+   
+
+
+      
+</div>
+ 

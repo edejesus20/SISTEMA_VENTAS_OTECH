@@ -1,0 +1,501 @@
+<form [formGroup]="form" >
+<!-- <p-dialog [(visible)]="!motrar" [modal]="true"
+[style]="{'width': '80%','border-radius':'15px'}" 
+contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:overflow-x-hidden  container0"
+[closable]="false" [closeOnEscape]="false" [resizable]="false" zindex="10000"   [showHeader]="false"> -->
+
+<!-- modo movil -->
+<ng-template [ngIf]="!sizeDisplay">
+<div class="grid myClass">
+  <div class="col-12 md:col-6 p-5 color2">
+
+    <div class="text-center block"  @fadeInOut>
+      <label for="" style="font-size:20px;font-family: 'Century Gothic';font-weight: bold;"><h1>INICIO DE SESION</h1>
+        </label>
+    </div>
+
+    <div class="form-container" style="margin-top:100px">
+
+      
+    <div class="capa-exterior1">
+      <div class="capa-interior1">
+
+      <span class="p-6">
+        <div class="grid pl-6 mt-4">
+          <div class="col-12 pl-6 pr-6 pt-6 pb-4">
+            <h3>Usuario</h3>
+            <span class="p-float-label mt-2">
+                <input id="float-input" class="p-inputtext-sm"
+                type="text" pInputText style="width: 90%;"
+                pInputText placeholder="Usuario"
+                  formControlName="username" 
+                  > 
+                <!-- <label for="float-input">Username</label> -->
+            </span>
+          </div>
+
+          <div class="col-12 pl-6 pr-6 pt-2">
+            <h3>Contraseña</h3>
+            <span class="p-float-label mt-2">
+                <input id="float-input" class="p-inputtext-sm"
+                type="password" pInputText placeholder="Contraseña" 
+                  formControlName="password" style="width: 90%;"> 
+                <!-- <label for="float-input">Username</label> -->
+            </span>
+          </div>
+
+          <div class="col-12 pl-2 pr-6 pt-2">
+            <span style="display: flex;justify-content: center;align-items: center;margin-top: 20px;">
+              <ngx-recaptcha2
+              #captchaElem
+              siteKey="6LeJTEAhAAAAAJtoTBpZ9gXuWIfpDeHIrcU8qJ0l"
+              [useGlobalDomain]="false"
+              size="normal"
+              
+              hl="es"
+              theme="light"
+              type="image"
+              name="captcha"
+              formControlName="captcha"
+            ></ngx-recaptcha2>
+            </span>
+            
+          </div>
+
+          <div class="col-12 pl-2 pr-6 pt-2 text-center">
+            <button type="button"  [disabled]="!form.valid" (click)="onSubmit()" 
+            *ngIf="!motrar" style="background-color: #041e69;"
+             class="p-element p-button p-component pl-6 pr-6 mt-4" 
+              tabindex="0"><span class="p-button-label">Login</span>
+            </button>
+            <!-- <span>Don’t have an account?<a>Sign-up here</a></span> -->
+          </div>
+
+          <div class="col-12 pl-2 pr-6 pt-4 ">
+            <div class="text-center flex justify-content-center align-items-center"  @fadeInOut>
+              <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-content: space-between;
+                font-size: 1.8rem;
+                text-align: center;
+                margin-top: 20px;width: 70%;" >
+              <a
+                href="https://www.facebook.com/OTECH-software-systems-105690275567721/"
+                target="_blank"
+                class="facebook"
+                style="font-size: 35px; color:white;"
+              >
+                <i class="pi pi-facebook" style="font-size: 35px;"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/otechsoftware/"
+                target="_blank"
+                class="instagram"
+                style="font-size: 35px; color: #ff00d0;"
+              >
+                <i class="pi pi-instagram" style="font-size: 35px;"></i>
+              </a>
+              <a
+                href="https://wa.me/3005337282"
+                target="_blank"
+                class="linkedin"
+                style="font-size: 35px; color: rgb(0, 207, 62);"
+              >
+                <i class="pi pi-whatsapp" style="font-size: 35px;"></i>
+              </a>
+            </div>
+            </div>
+         
+          </div>
+    
+        </div>
+      </span>
+    </div>
+    </div>
+  </div>
+
+ 
+
+   
+
+  </div>
+  <div class="col-12 md:col-6  p-5 color1">
+
+    <div class="capa-exterior">
+      <div class="capa-interior">
+        <img [src]="imageOtech" alt="Image" class="mt-2" width="400px">
+
+        <div class="mt-3" style="display: block">
+          <footer style="text-align: center;" >
+            <strong style="color: gray; font-size: 0.8rem;">
+              Copyright © 2022 OTECH SOFTWARE & SYSTEMS All right reserveds
+            </strong>
+          </footer>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+
+</div>
+</ng-template>
+
+<ng-template [ngIf]="sizeDisplay">
+  <div class="grid myClass mt-2">
+    <div class="col-12 p-5 color2">
+      <div class="logo-container0 "
+      style="display: flex;justify-content: center;align-items: center;align-content: center;"
+       @rotate>
+      <div class="text-center block"  @fadeInOut>
+        <label for="" style="font-size:20px;font-family: 'Century Gothic';font-weight: bold;">
+          <img [src]="imageOtech2" alt="Image" class="mt-2" width="auto">
+          <!-- <h1>INICIO DE SESION</h1> -->
+          </label>
+      </div>
+    </div>
+  
+      <div class="form-container" style="margin-top:100px">
+  
+        
+      <div class="capa-exterior1">
+        <div class="capa-interior1">
+  
+        <span class="p-6">
+          <div class="grid pl-6 mt-4">
+            <div class="col-12 pl-6 pr-6 pt-6 pb-4">
+              <h3>Usuario</h3>
+              <span class="p-float-label mt-2">
+                  <input id="float-input" class="p-inputtext-sm"
+                  type="text" pInputText style="width: 90%;"
+                  pInputText placeholder="Usuario"
+                    formControlName="username" 
+                    > 
+                  <!-- <label for="float-input">Username</label> -->
+              </span>
+            </div>
+  
+            <div class="col-12 pl-6 pr-6 pt-2">
+              <h3>Contraseña</h3>
+              <span class="p-float-label mt-2">
+                  <input id="float-input" class="p-inputtext-sm"
+                  type="password" pInputText placeholder="Contraseña" 
+                    formControlName="password" style="width: 90%;"> 
+                  <!-- <label for="float-input">Username</label> -->
+              </span>
+            </div>
+  
+            <div class="col-12 pl-2 pr-6 pt-2">
+              <span style="display: flex;justify-content: center;align-items: center;margin-top: 20px;">
+                <ngx-recaptcha2
+                #captchaElem
+                siteKey="6LeJTEAhAAAAAJtoTBpZ9gXuWIfpDeHIrcU8qJ0l"
+                [useGlobalDomain]="false"
+                size="normal"
+                
+                hl="es"
+                theme="light"
+                type="image"
+                name="captcha"
+                formControlName="captcha"
+              ></ngx-recaptcha2>
+              </span>
+              
+            </div>
+  
+            <div class="col-12 pl-2 pr-6 pt-2 text-center">
+              <button type="button"  [disabled]="!form.valid" (click)="onSubmit()" 
+              *ngIf="!motrar" style="background-color: #041e69;"
+               class="p-element p-button p-component pl-6 pr-6 mt-4" 
+                tabindex="0"><span class="p-button-label">INICIO DE SESION</span>
+              </button>
+              <!-- <span>Don’t have an account?<a>Sign-up here</a></span> -->
+            </div>
+  
+            <div class="col-12 pl-2 pr-6 pt-4 ">
+              <div class="text-center flex justify-content-center align-items-center"  @fadeInOut>
+                <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-content: space-between;
+                  font-size: 1.8rem;
+                  text-align: center;
+                  margin-top: 20px;width: 70%;" >
+                <a
+                  href="https://www.facebook.com/OTECH-software-systems-105690275567721/"
+                  target="_blank"
+                  class="facebook"
+                  style="font-size: 35px; color:white;"
+                >
+                  <i class="pi pi-facebook" style="font-size: 35px;"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/otechsoftware/"
+                  target="_blank"
+                  class="instagram"
+                  style="font-size: 35px; color: #ff00d0;"
+                >
+                  <i class="pi pi-instagram" style="font-size: 35px;"></i>
+                </a>
+                <a
+                  href="https://wa.me/3005337282"
+                  target="_blank"
+                  class="linkedin"
+                  style="font-size: 35px; color: rgb(0, 207, 62);"
+                >
+                  <i class="pi pi-whatsapp" style="font-size: 35px;"></i>
+                </a>
+              </div>
+              </div>
+           
+            </div>
+      
+          </div>
+        </span>
+      </div>
+      </div>
+    </div>
+  
+   
+  
+     
+  
+    </div>
+  </div>
+
+</ng-template>
+<!-- <ng-template [ngIf]="sizeDisplay">
+  <div class="grid myClass3 ">
+    <div class="col-12 p-5">
+      <div class="container">
+        <div class="login-panel p-fluid">
+          <div class="flex flex-column">
+            <div class=" mb-6 text-center">
+              <div class="logo-container0 " @rotate>
+                <button  pButton pRipple type="button" style="background:#263238 "
+                class="logo p-button-raised p-button-success p-button-text" 
+                >
+                <div class="logo-text" @fadeInOut >Rio Prieto</div>
+              </button>
+              
+              </div>
+            </div>
+      
+            <div class=" flex 
+            justify-content-center align-content-center 
+            align-items-center">
+              <div class="form-container -mt-5">
+                <div class="logo-text1 ml-6 mb-4" @fadeInOut >Inicio de Sesion</div>
+                <div class="p-grid p-fluid ">
+                  <div class="p-col-8 p-md-4" style="margin-top: 10px;">
+                  <div class="p-inputgroup" style="background-color:transparent">
+                    <span class="p-input-icon-left">
+                      <i class="pi pi-user"></i>
+                      <input type="text" pInputText placeholder="Usuario"
+                      formControlName="username" class="p-inputtext-sm input1" 
+                       />
+                  </span>
+                  </div>
+                  </div>
+                  <div class="p-col-8 p-md-4" style="margin-top: 10px;">
+                  <div class="p-inputgroup" style="background-color:transparent">
+                    <span class="p-input-icon-left mt-3">
+                      <i class="pi pi-key"></i>
+                      <input type="password" pInputText placeholder="Contraseña" 
+                      formControlName="password"class="p-inputtext-sm input1"
+                       />
+                  </span>
+                  </div>
+                  </div>
+                  <div class="p-col-12 p-md-4" style="margin-top: 10px;">
+                  <ngx-recaptcha2
+                    #captchaElem
+                    siteKey="6LeJTEAhAAAAAJtoTBpZ9gXuWIfpDeHIrcU8qJ0l"
+                    [useGlobalDomain]="false"
+                    size="normal"
+                    hl="es"
+                    theme="light"
+                    type="image"
+                    name="captcha"
+                    formControlName="captcha"
+                  ></ngx-recaptcha2>
+                </div>
+                  </div>
+             
+                  <div class="button-container mt-4">
+                    <button type="button"  [disabled]="!form.valid" (click)="onSubmit()" 
+                    *ngIf="!motrar"
+                    label="Login" class="p-element p-button p-component" 
+                      tabindex="0"><span class="p-button-label">Login</span>
+                    </button>
+                  </div>
+              </div>
+            
+            </div>
+  
+  
+  
+            
+          </div>
+        </div>
+   
+        
+        <div class="mt-3" style="display: block">
+          <footer style="text-align: center;" >
+            <strong style="color: gray; font-size: 0.8rem;">
+              Copyright © 2022 OTECH SOFTWARE & SYSTEMS v1.0. All right reserveds
+            </strong>
+          </footer>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</ng-template> -->
+<!-- modo web -->
+<!-- <ng-template [ngIf]="!sizeDisplay">
+
+  <div class="grid grid-nogutter surface-section text-800 animate__animated animate__backInLeft
+  myClass3
+  " >
+
+    <div class="col-12 sm:col-9 md:col-9 lg:col-7 xl:col-6 
+     text-center md:text-center align-items-center ">
+     <div class="container">
+      <section class="mr-1 md:mt-4 md:mb-3">
+        <div class=" mb-6 text-center ml-4">
+          <div class="logo-container  " @rotate>
+            <button  pButton pRipple type="button" style="background:#263238 "
+            class="logo p-button-raised p-button-success p-button-text" 
+            >
+            <div class="logo-text" @fadeInOut >Rio Prieto</div>
+          </button>
+            
+         
+          
+          </div>
+        </div>
+        
+        <div class=" flex 
+            justify-content-center align-content-center 
+            align-items-center">
+              <div class="form-container -mt-5">
+          <div class="logo-text1  mb-4" @fadeInOut >Inicio de Sesion</div>
+          <div class="p-grid p-fluid">
+          
+            <div class="p-col-12 p-md-4" style="margin-top: 10px;">
+              <div class="p-inputgroup" style="background-color:transparent">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-user"></i>
+                  <input type="text" pInputText placeholder="Usuario"
+                  formControlName="username" class="p-inputtext-sm input1" 
+                   />
+              </span>
+              </div>
+              </div>
+              <div class="p-col-12 p-md-4" style="margin-top: 10px;">
+              <div class="p-inputgroup" style="background-color:transparent">
+                <span class="p-input-icon-left mt-3">
+                  <i class="pi pi-key"></i>
+                  <input type="password" pInputText placeholder="Contraseña" 
+                  formControlName="password"class="p-inputtext-sm input1"
+                   />
+              </span>
+              </div>
+              </div>
+              <div class="p-col-12 p-md-4" style="margin-top: 10px;">
+              <ngx-recaptcha2
+                #captchaElem
+                siteKey="6LeJTEAhAAAAAJtoTBpZ9gXuWIfpDeHIrcU8qJ0l"
+                [useGlobalDomain]="false"
+                size="normal"
+                hl="es"
+                theme="light"
+                type="image"
+                name="captcha"
+                formControlName="captcha"
+              ></ngx-recaptcha2>
+            </div>
+
+         
+
+            </div>
+
+      </div>
+    </div>
+              
+         
+      
+          <div class="button-container mt-4">
+            <button type="button"  [disabled]="!form.valid" (click)="onSubmit()" 
+            *ngIf="!motrar"
+            label="Login" class="p-element p-button p-component" 
+              tabindex="0"><span class="p-button-label">Login</span>
+            </button>
+          </div>
+          <div class="mt-3" style="display: block">
+            <footer style="text-align: center;overflow: hidden;" >
+              <strong style="color: gray; font-size: 0.8rem;font-family:'French Script MT V'!important;">
+                Copyright © 2022 OTECH SOFTWARE & SYSTEMS v1.0. All right reserveds
+              </strong>
+            </footer>
+          </div>
+          
+      </section>
+     </div>
+     
+    </div>
+ 
+    <div class="col-12 sm:col-3 md:col-3 lg:col-5 xl:col-6  ">
+     
+      <img [src]="image" alt="Image" class="md:ml-auto block " width="400px"
+      style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);">
+  </div>
+  </div>
+
+
+</ng-template> -->
+
+
+
+<!-- </p-dialog> -->
+</form>
+<ng-template [ngIf]="motrar" >
+  <div class="loader1" [ngClass]="{'loader3 ': clase=='loader3'}" 
+  id="loader1">
+    <div class="loadingio-spinner-spin-qylm0l60a1 " >
+      <div class="ldio-euaoqwc5np6">
+      <div>
+          <div>
+  
+          </div>
+      </div>
+      <div>
+          <div>
+  
+          </div>
+      </div><div>
+          <div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+      </div>
+  </div>
+  </div>
+</ng-template>
+
+<!-- <script>
+  window.addEventListener('load', function() {
+    this.document.getElementById("loader1").classList.toggle("loader3")
+  })
+</script> -->
+
+<p-toast></p-toast>
+
+
+
+
+
+
+

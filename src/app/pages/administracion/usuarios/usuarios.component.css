@@ -1,0 +1,88 @@
+/* .p-password input {
+  width: 15rem
+} */
+.logo-text{
+    /* margin-left: 3rem; */
+    font-size:20px;
+    padding:5px;
+    font-weight: 700;
+    color: #22C55E;
+}
+
+ngx-barcode6 .barcode svg{
+    max-width:100px;
+    max-height: 50px;
+}
+
+.barcode svg{
+    max-width:100px;
+    max-height: 50px;
+}
+
+.container-1{
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    border:none;
+  }
+
+
+  .container-1 input#search{
+    width: 300px;
+    height: 50px;
+    /* background: #2b303b; */
+    border:none;
+
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .container-1 .icon{
+    position: absolute;
+    top: 50%;
+    /* background: linear-gradient(180deg , rgba(106,209,41,0.7959558823529411) 0%, #486438 100%); */
+    border:none;
+
+    margin-left: 17px;
+    margin-top: 17px;
+    z-index: 1;
+    color: #4f5b66;
+  }
+  .container-1 input#search::-webkit-input-placeholder {
+
+    color: #65737e;
+ }
+  
+ .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #65737e;  
+ }
+  
+ .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #65737e;  
+ }
+  
+ .container-1 input#search:-ms-input-placeholder {  
+    color: #65737e;  
+ }
+
+ /* .container-1 input#search:hover, .container-1 input#search:focus, .container-1 input#search:active{
+    outline:none;
+    background: #ffffff;
+  } */
+
+
+  .bottomdelete{
+   width: auto;
+   padding-top: 35px;
+   
+   font-size: 10px;
+   min-width: auto;
+ }
+ .bottomdelete .mat-icon{
+   margin-top:7px;
+ }

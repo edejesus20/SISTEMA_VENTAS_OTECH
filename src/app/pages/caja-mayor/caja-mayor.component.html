@@ -1,0 +1,1448 @@
+<ng-template [ngIf]="!noestasPermitido">
+
+
+<div style="max-width:150rem" class="ml-2"> 
+    <br> <br>
+  <div class="px-4 py-5 md:px-4 lg:px-4 surface-section">
+      <div class="flex flex-column lg:flex-row lg:align-items-center 
+      lg:justify-content-between relative" 
+      style="top:-20px">
+        <div>
+          <div class=" mr-3 surface-card shadow-2 flex align-items-center justify-content-center p-2" 
+                style="width: auto; height: auto; max-width:600px; border-radius: 10px;">
+                <div class="logo-text" @fadeInOut >Registro de Cajas Mayores</div>
+                <!-- <img src="assets/almacenamiento.jpg" alt="Image" width="100" height="70"> -->
+            </div>
+            <div class="text-600 font-medium">
+            </div>
+        </div>
+        <div class="mt-3 lg:mt-0">
+            <ng-template [ngIf]="tipo_user === 'ADMINISTRADOR GENERAL' || tipo_user == 'CEO'">
+<!-- <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" (click)="openNew()"
+            class="p-element p-ripple p-button-outlined mr-2 p-button p-component">
+            <span class="p-button-icon p-button-icon-left pi pi-plus-circle" aria-hidden="true"></span>
+            <span class="p-button-label">Registrar Sede</span>
+            <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+            </button> -->
+            <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle"
+             *ngIf="estadoCaja == false"
+             (click)="AbrirtDialog = true"
+            class="p-element p-ripple  mr-2 p-button p-component p-button-success">
+            <span class="p-button-icon p-button-icon-left pi pi-plus-circle " aria-hidden="true"></span>
+            <span class="p-button-label font-family">Abrir Caja</span>
+            <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+            </button>
+            <!-- <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" *ngIf="estadoCaja == true"
+            (click)="CerrarDialog = true"
+            class="p-element p-ripple  mr-2 p-button p-component p-button-danger">
+            <span class="p-button-icon p-button-icon-left pi pi-plus-circle " aria-hidden="true"></span>
+            <span class="p-button-label font-family">Cerrar Caja</span>
+            <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+            </button> -->
+            <button pbutton="" pripple="" label="Follow" icon="pi pi-credit-card " *ngIf="estadoCaja"
+            (click)="nuevoMovimiento()"
+            class="p-element p-ripple  mr-2 p-button p-component p-button-info">
+            <span class="p-button-icon p-button-icon-left pi pi-credit-card  " aria-hidden="true"></span>
+            <span class="p-button-label font-family">Registrar Movimientos</span>
+            <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+            </button>
+            <button pbutton="" pripple="" label="Follow" icon="pi pi-dollar"
+            (click)="CerrarDialogTransferir = true" *ngIf="estadoCajaMenor==true"
+            style="background:#898989;border-radius: 20px;
+            box-shadow: 0.063rem 0 1.25rem 0 #8690a3;padding:13px"
+            class="p-element p-ripple  mr-2 p-button p-component animate__animated animate__flipInY">
+            <span class="p-button-icon p-button-icon-left pi pi-dollar " aria-hidden="true"></span>
+            <span class="p-button-label font-family">Transferir a Caja Menor</span>
+            <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+            </button>
+            </ng-template>
+            
+          
+        </div>
+      </div>
+
+      <!-- <div class="surface-card shadow-2 border-round flex  flex-column md:flex-row">
+      
+        <div class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-orange-500 text-xl mr-2"></i>
+                <span class="text-500 font-medium">Caja con mas Ventas</span>
+            </div>
+          
+            <div class="flex align-items-center">
+                <i class="pi pi-arrow-up text-green-500 text-xl mr-2"></i>
+                <span class="text-green-500 font-medium">+20   
+                  <span class="block text-600 font-medium ">NNNNNNNNNN</span></span>
+            </div>
+        </div>
+        <div class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-blue-500 text-xl mr-2"></i>
+                <span class="text-500 font-medium">Caja con mas Compras</span>
+            </div>
+            <div class="flex align-items-center">
+                <i class="pi pi-arrow-up text-green-500 text-xl mr-2"></i>
+                <span class="text-green-500 font-medium">+10   
+                  <span class="block text-600 font-medium ">NNNNNNNNNN</span></span>
+            </div>
+        </div>
+        <div class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-orange-500 text-xl mr-2"></i>
+                <span class="text-500 font-medium">Total Cajas al Mes</span>
+            </div>
+            <div class="flex align-items-center">
+                <i class="pi pi-arrow-up text-green-500 text-xl mr-2"></i>
+                <span class="text-green-500 font-medium">+55</span>
+            </div>
+        </div>
+       
+    </div> -->
+    <br>
+    <hr> 
+   
+    <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+
+        <div class="card shadow-2 p-3 border-round mb-3" style="background:#898989;">
+            <div class="flex justify-content-between ">
+                <div class="flex align-items-center justify-content-center 
+                bg-blue-100 border-round" style="width:3.5rem;height:3.5rem">
+                    <i class="pi pi-inbox text-green-500" style="font-size: 3rem"></i>
+                </div>
+                <div style="text-align:center">
+                    <span class="block font-medium" *ngIf="!estadoCaja"
+                    style="color:white;font-size: 1.5rem;"> Caja Mayor Cerrada</span>
+                    <span class="block font-medium " *ngIf="estadoCaja"
+                    style="color:white;font-size: 1.5rem;"> Caja Mayor Abierta</span>
+                    <div class="text-900 font-medium mt-2">Estado de Caja</div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="grid">
+
+            <div class="col-12 md:col-4 lg:col-4">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.saldo_inicial | currency:'':'':'0.2-2'}}</span>
+                            <div class="text-900 font-medium ">Dinero Base</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-money-bill text-blue-500 text-xl"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-12 md:col-4 lg:col-4">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.saldo_actual_efectivo | currency:'':'':'0.2-2'}}</span>
+                            <div class="text-900 font-medium ">Saldo en Caja</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-credit-card text-blue-500 text-xl"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-12 md:col-4 lg:col-4">
+                <div class="surface-card shadow-2 p-3 border-round">
+                    <div class="flex justify-content-between mb-3">
+                        <div>
+                            <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.total_movimientos | currency:'':'':'0.2-2'}}</span>
+                            <div class="text-900 font-medium ">Total en Movimientos</div>
+                        </div>
+                        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                            <i class="pi pi-chart-bar text-orange-500 text-xl"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            
+            </div>
+         
+            <!-- ventas -->
+            <div class="grid">
+
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.total_ventas_credito | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Credito</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.total_ventas_efectivo | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Efectivo</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.total_ventas_tarjeta | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Tarjetas</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{UltimaCajamenor?.total_ventas_transferencia | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Transferencia</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- salidas y gastos -->
+            <div class="grid">
+                <div class="col-12 md:col-4 lg:col-4">
+                    <div class="card shadow-2 p-3 border-round" style="background:#b1afaff5;">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{UltimaCajamenor?.total_salidas_tarjeta | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Salidas con Tarjetas</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-red-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-minus-circle text-orange-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-4 lg:col-4">
+                    <div class="card shadow-2 p-3 border-round" style="background:#b1afaff5;">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{UltimaCajamenor?.total_salidas_transferencia | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Salidas con Transferencia</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-red-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-minus-circle text-orange-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                 <div class="col-12 md:col-4 lg:col-4">
+                    <div class="card shadow-2 p-3 border-round" style="background:#b1afaff5;">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{UltimaCajamenor?.total_gastos | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Gastos en Efectivo</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-red-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-minus-circle text-orange-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+        </div>
+            <!-- ingresos -->
+            <div class="grid">
+
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round" style="background:#5D6D7E">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block  text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{UltimaCajamenor?.total_ingresos_efectivo | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ingresos Efectivo</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-wallet text-blue-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round" style="background:#5D6D7E">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block  text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{UltimaCajamenor?.total_ingresos_tarjeta | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ingresos Tarjetas</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-wallet text-blue-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round" style="background:#5D6D7E">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block  text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{UltimaCajamenor?.total_ingresos_transferencia | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ingresos Transferencia</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-wallet text-blue-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <div class="card shadow-2 p-3 border-round" style="background:#b1afaff5;">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block  text-900 font-bold font-medium mb-3 text-xl" style="color:white">$ {{perdidaGanancia | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ingresos - Gastos</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-green-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-chart-line text-orange-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-content-center align-items-center mb-3 mt-3">   
+                <i class="pi pi-box text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                <span class="block text-900  mb-2 text-xl font-bold font-family">Ventas de Todas las Cajas menores</span>
+            </div>
+            <div class="flex justify-content-center align-items-center mb-3 mt-3"> 
+            <span class="text-500"> Rango de Fecha : desde el {{TotalVentadPago?.fecha_inicial | date}} hasta el {{TotalVentadPago?.fecha_final | date}} </span>
+                </div>
+               <!-- ventas -->
+               <div class="grid">
+
+                <div class="col-12 md:col-4 lg:col-4">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold mb-3 text-xl">$ {{TotalVentadPago?.data?.[1]?.costos_totales | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Credito</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-12 md:col-4 lg:col-4">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{TotalVentadPago?.data?.[0]?.costos_totales | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Efectivo</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-12 md:col-4 lg:col-4">
+                    <div class="card shadow-2 p-3 border-round bg-green-200">
+                        <div class="flex justify-content-between mb-3">
+                            <div>
+                                <span class="block text-900 font-bold font-medium mb-3 text-xl">$ {{TotalVentadPago?.data?.[2]?.costos_totales | currency:'':'':'0.2-2'}}</span>
+                                <div class="text-900 font-medium ">Ventas Transferencia</div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center bg-yellow-100 border-round" style="width:2.5rem;height:2.5rem">
+                                <i class="pi pi-dollar text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;display:flex;justify-content:space-between;align-items:center">
+                <div class="text-900 font-medium mt-2">Fecha de Apertura : 
+            <span class="text-green-500"> {{UltimaCajamenor?.fecha_apertura | date}}</span></div>
+
+            <a  style="cursor: pointer;" class="text-blue-500" (click)="ReportCierreDialog=true"> Mas Detalles</a>
+            </div>
+    </div>
+    <!-- <br>
+    <div class="grid">
+      <div class="col-12 sm:col-7 md:col-7">
+          <div style="width:100%" class="mt-3">
+              <span class="p-input-icon-left" style="width: 100%;" >
+                  <i class="pi pi-search"></i>
+                  <input type="text" pInputText placeholder="Buscador..." 
+                  class="font-family" style="min-width: 100%"
+                  (input)="Buscar($event, dt1)" />
+              </span>
+          </div>
+      </div>
+      <div class="col-12 sm:col-5 md:col-5">
+  
+          <div class="flex align-items-center">
+              <div class="mb-3 ml-3 mt-3">
+      
+              <button pbutton="" pripple="" icon="pi pi-file"  (click)="dt1.exportCSV()"
+              pTooltip="CSV" tooltipPosition="bottom"
+              class="p-ripple p-element p-button-rounded  mr-2 p-button-info p-button 
+              p-component p-button-icon-only"><span class="p-ink"></span>
+              <span class="p-button-icon pi pi-file" aria-hidden="true"></span>
+              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel()"
+              pTooltip="XLS" tooltipPosition="bottom"
+              class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+              p-component p-button-icon-only"><span class="p-ink"></span>
+              <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
+              pTooltip="PDF" tooltipPosition="bottom"
+              class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+              p-component p-button-icon-only"><span class="p-ink"></span>
+              <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
+              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              </div>
+              <p-splitButton label="Acciones" [model]="items"
+              styleClass="font-family p-button-raised p-button-rounded p-button-outlined 
+              p-button-secondary  mr-2 mb-2 ">
+              </p-splitButton>
+      
+          </div>
+      </div>
+    </div>
+    <br>
+
+    <p-table #dt1 [value]="cajas"
+    selectionMode="multiple" [(selection)]="selectedProducts" 
+    id="todo"
+    dataKey="id" 
+    [rows]="5" [showCurrentPageReport]="true" 
+    [rowsPerPageOptions]="[5,10,25,50]" 
+    [loading]="loading" 
+    styleClass="p-datatable-customers" [rowHover]="true"
+    responsiveLayout="scroll" 
+    [style]="{'width':'100%','display':'grid'}"
+    [paginator]="true" 
+    currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+    [filterDelay]="0" 
+
+    [columns]="cols"
+    [globalFilterFields]="['usuario_apertura.username','fecha_apertura','saldo_inicial',
+    'saldo_actual_efectivo','sede.nombre','status']">
+    <ng-template pTemplate="header">
+        <tr class="font-family">
+            <th pSortableColumn="usuario_apertura.username">
+                <div class="flex justify-content-between align-items-center">
+                    Usuario de Apertura
+                    <p-sortIcon field="usuario_apertura.username"></p-sortIcon>
+                </div>
+            </th>
+            <th pSortableColumn="fecha_apertura">
+                <div class="flex justify-content-between align-items-center">
+                    Fecha Apertura
+                    <p-sortIcon field="fecha_apertura"></p-sortIcon>
+                </div>
+            </th>
+            <th pSortableColumn="saldo_inicial">
+                <div class="flex justify-content-between align-items-center">
+                    Saldo inicial
+                    <p-sortIcon field="saldo_inicial"></p-sortIcon>
+                </div>
+            </th>
+            <th pSortableColumn="saldo_actual_efectivo">
+                <div class="flex justify-content-between align-items-center">
+                    Saldo Actual Efectivo
+                    <p-sortIcon field="saldo_actual_efectivo"></p-sortIcon>
+                </div>
+            </th>
+           
+            <th pSortableColumn="sede">
+                <div class="flex justify-content-between align-items-center">
+                    Sede
+                    <p-sortIcon field="sede"></p-sortIcon>
+                </div>
+            </th>
+           
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+        <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+            <td>
+                {{customer?.usuario_apertura.username | titlecase}}
+            </td>
+            <td>
+                {{customer?.fecha_apertura | date}}
+            </td>
+            
+            <td>
+                ${{customer?.saldo_inicial | currency:'':'':'0.2-2'}}
+            </td>
+            <td>
+                ${{customer?.saldo_actual_efectivo | currency:'':'':'0.2-2'}}
+            </td>
+            
+            <td>
+                {{customer?.sede?.nombre }}
+            </td>
+           
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" style="text-align: center;">
+        <tr class="font-family">
+            <td colspan="8">No hay registros encontrados</td>
+        </tr>
+    </ng-template>
+</p-table> -->
+
+  </div>
+</div>
+<!-- abrir Caja Mayor -->
+<p-dialog [(visible)]="AbrirtDialog" 
+[style]="{'height': 'auto','width': '50%'}"  
+[resizable]="false" zindex="10000" 
+[closable]="false" [closeOnEscape]="false" 
+[maximizable]="true" appendTo="body"
+[showHeader]="false"
+[modal]="true" styleClass="p-fluid border-round">
+ <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+     <div class="font-medium text-2xl text-900 font-family">
+         <i class="pi pi-tags text-blue-500 text-xl bg-blue-100 border-round p-2" ></i>
+         Abrir Caja
+     </div>
+ </div>
+ <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+         <div class="grid font-family">
+             <div class="col-12 md:col-12 sm:col-12">
+                 <div class="field">
+                     <label for="name">Saldo inicial</label>
+                     <p-inputNumber [(ngModel)]="abrirCaja.saldo_inicial"
+                     name="saldo_inicial" [required]="true"  class="p-inputtext-sm font-family" 
+                     [showButtons]="false" mode="decimal" [minFractionDigits]="2" 
+                      autofocus >
+                     </p-inputNumber>
+
+                     <!-- <input type="text" pInputText id="name" class="font-family"
+                      required autofocus /> -->
+                 </div>
+             </div>
+         </div>
+         <ng-template [ngIf]="motrar == false">
+
+         <div style="text-align: center;display:flex;justify-content:center;margin-top: 10px; " class="font-family"
+         >
+             <button pButton pRipple label="Cancelar" icon="pi pi-times" style="width: auto;"
+             class="p-button-text mr-4 font-family" 
+             (click)="volver()">
+         </button>
+             <button pButton pRipple 
+             label="Guardar" icon="pi pi-check" style="width: auto;" class="p-button-success font-family" 
+             [disabled]="abrirCaja.saldo_inicial =='' " (click)="Dialog1=true"></button>
+         </div>
+        </ng-template>
+
+        <ng-template [ngIf]="motrar == true">
+          <br>
+          <br>
+          <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+          <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+            <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+      
+          <!-- </div> -->
+        
+        </ng-template>
+ </div>  
+<!-- </ng-template> -->
+</p-dialog>
+<!-- movimientos Caja Mayor -->
+<p-dialog [(visible)]="movimientosDialog" 
+[style]="{'height': 'auto','width': '80%'}"  
+[resizable]="false" zindex="10000" 
+[closable]="false" [closeOnEscape]="false" 
+[maximizable]="true" appendTo="body"
+[showHeader]="false"
+[modal]="true" styleClass="p-fluid border-round">
+    <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+        <div class="font-medium text-2xl text-900 font-family">
+            <i class="pi pi-credit-card text-blue-500 text-xl bg-blue-100 border-round p-2" ></i>
+            Registro de Movimientos
+        </div>
+    </div>
+    <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+       <form [formGroup]="form" novalidate>
+            <div class="grid font-family">
+
+
+               <div class="col-12 sm:col-6">
+
+                   <div class="field mr-3" style="display:block;">
+                       <label for="name"><span style="color:red">( * )</span> Fecha</label>
+                       <div class="flex font-family">
+                           <div style="width:100%">
+                         <input type="date" pInputText id="fecha" style="width:100%"
+                         name="fecha" formControlName="fecha" required autofocus />
+                         <small class="p-error" 
+                         *ngIf="submitted && !form.value.fecha">Fecha de Compra is required.</small>
+                           </div>
+                       </div>
+                     </div>
+               </div>
+                <div class="col-12 col-12 sm:col-6">
+                     <div class="field font-family">
+                       <label for="name"><span style="color:red">( * )</span> Seleccione Forma de Pago</label>
+                       <div class="flex font-family">
+                           <div style="width:100%">
+                             <p-dropdown class="visorg500-select-filter " 
+                             [options]="tipo_de_pago" [filter]="true"
+                             [showClear]="true"
+                             name="tipo_pago" formControlName="tipo_pago"  
+                                 label="Seleccione Forma de Pago" 
+                                 [style]="{'width':'100%','margin-bottom':'10px'}"
+                                 optionvalue="value"  optionLabel="value" filterBy="value"
+                                 [required]="true" placeholder="Seleccione Forma de Pago" 
+                                 title="Forma de Pago" class="font-family">
+                                 <ng-template let-option pTemplate="item">
+                                 <span class="font-family">{{option.value | titlecase}} </span>
+                             </ng-template>
+                             </p-dropdown>
+                           </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+            <div class="grid">
+               <div class="col-12 sm:col-6">
+                   <div class="field font-family">
+                       <label for="name"><span style="color:red">( * )</span> Seleccione Tipo Movimiento</label>
+                       <div class="flex font-family">
+                           <div style="width:100%">
+                             <p-dropdown class="visorg500-select-filter " 
+                             [options]="tipo_de_movimiento" [filter]="true"
+                             [showClear]="true"
+                             name="tipo_movimiento" formControlName="tipo_movimiento"  
+                                 label="Seleccione Tipo Movimiento" 
+                                 [style]="{'width':'100%','margin-bottom':'10px'}"
+                                 optionvalue="value"  optionLabel="value" filterBy="value"
+                                 [required]="true" placeholder="Seleccione Tipo Movimiento" 
+                                 title="Tipo Movimiento" class="font-family">
+                                 <ng-template let-option pTemplate="item">
+                                 <span class="font-family">{{option.value | titlecase}} </span>
+                             </ng-template>
+                             </p-dropdown>
+                           </div>
+                         </div>
+                     </div>
+                   <!-- <div class="field mr-3" style="display:block;">
+                       <label for="name"><span style="color:red">( * )</span> Seleccione Proveedor</label>
+                       <div class="flex font-family">
+                           <div style="width:100%">
+                                   <p-dropdown class="visorg500-select-filter " 
+                                   [options]="proveedores" [filter]="true"
+                                   formControlName="proveedor" name="proveedor"
+                                   class="p-inputtext-sm" 
+                                   label="Seleccione Proveedor" 
+                                   [style]="{'width':'100%'}"
+                                   [showClear]="true"
+                                   optionvalue="id"  optionLabel="status" filterBy="status"
+                                   placeholder="Seleccione Proveedor" title="Proveedor">
+                                   <ng-template let-option pTemplate="item">
+                                       <span >{{option.status | titlecase}}</span>
+                                   </ng-template>
+                                   </p-dropdown>
+                           </div>
+                       </div>
+                   </div> -->
+               </div>
+               <div class="col-12 sm:col-6">
+                   <div class="field">
+                       <label for="name"><span style="color:red">( * )</span> Valor</label>
+                       <p-inputNumber  mode="decimal"  [minFractionDigits]="2"   id="name"
+                       formControlName="valor" name="valor" [required]="true" autofocus >
+                       </p-inputNumber>
+                       <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_venta" required autofocus /> -->
+                       <small class="p-error" *ngIf="submitted && !form.value.valor"> Valor is required.</small>
+                   </div>
+               </div>
+            </div>
+            <div class="grid">
+               <div class="col-12">
+                   
+                   <div class="field">
+                       <label for="name"><span style="color:red">( * )</span> Descripción</label>
+                   <textarea rows="3" cols="30" [style]="{'border-radius':'10px'}"
+                    pInputTextarea [autoResize]="true" name="descripcion"
+                     formControlName="descripcion" placeholder="ESCRIBIR LA DESCRIPCIÖN"  ></textarea>
+               </div>
+           </div>
+            </div>
+            <ng-template [ngIf]="motrar == false">
+
+            <div style="text-align: center;display:flex;justify-content:center;margin-top: 10px; " 
+            class="font-family"
+            >
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" style="width: auto;"
+                class="p-button-text mr-4 font-family" 
+                (click)="volver()">
+            </button>
+                <button pButton pRipple 
+                label="Registrar Movimiento" icon="pi pi-check" style="width: auto;" class="p-button-success font-family" 
+                [disabled]="!form.valid " (click)="DialogMovimiento=true"></button>
+            </div>
+        </ng-template>
+
+        <ng-template [ngIf]="motrar == true">
+          <br>
+          <br>
+          <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+          <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+            <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+      
+          <!-- </div> -->
+        
+        </ng-template>
+       </form>
+    </div>  
+<!-- </ng-template> -->
+</p-dialog>
+<!-- cerrar caja mayor -->
+<!-- <p-dialog [(visible)]="CerrarDialog" 
+[style]="{'height': 'auto','width': '50%'}"  
+[resizable]="false" zindex="10000" 
+[closable]="false" [closeOnEscape]="false" 
+[maximizable]="true" appendTo="body"
+[showHeader]="false"
+[modal]="true" styleClass="p-fluid border-round">
+ <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+     <div class="font-medium text-2xl text-900 font-family">
+         <i class="pi pi-times-circle text-blue-500 text-xl bg-blue-100 border-round p-2" ></i>
+         Cerrar Caja
+     </div>
+ </div>
+ <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+         <div class="grid font-family">
+             <div class="col-12 md:col-12 sm:col-12">
+                 <div class="field">
+                     <label for="name">Saldo final</label>
+                     <p-inputNumber [(ngModel)]="cerrarCaja.saldo_final_ingresado"
+                     name="saldo_final_ingresado" [required]="true"  class="p-inputtext-sm font-family" 
+                     [showButtons]="false" mode="decimal"  [minFractionDigits]="2"
+                      autofocus >
+                     </p-inputNumber>
+
+                 </div>
+             </div>
+         </div>
+
+         <div style="text-align: center;display:flex;justify-content:center;margin-top: 10px; " 
+         class="font-family"
+         >
+             <button pButton pRipple label="Cancelar" icon="pi pi-times" style="width: auto;"
+             class="p-button-text mr-4 font-family" 
+             (click)="volver()">
+         </button>
+             <button pButton pRipple 
+             label="Guardar" icon="pi pi-check" style="width: auto;" class="p-button-success font-family" 
+             [disabled]="cerrarCaja.saldo_final_ingresado =='' " (click)="Dialog=true"></button>
+         </div>
+ </div>  
+</p-dialog> -->
+
+<p-dialog [(visible)]="CerrarDialogTransferir" 
+[style]="{'height': 'auto','width': '50%'}"  
+[resizable]="false" zindex="10000" 
+[closable]="false" [closeOnEscape]="false" 
+[maximizable]="true" appendTo="body"
+[showHeader]="false"
+[modal]="true" styleClass="p-fluid border-round">
+ <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+     <div class="font-medium text-2xl text-900 font-family">
+         <i class="pi pi-times-circle text-blue-500 text-xl bg-blue-100 border-round p-2" ></i>
+         Transferencia a Caja menor
+     </div>
+ </div>
+ <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+         <div class="grid font-family">
+             <div class="col-12 md:col-12 sm:col-12">
+                 <div class="field">
+                     <label for="name">Saldo a Enviar</label>
+                     <p-inputNumber [(ngModel)]="transferirCaja.saldo_enviado"
+                     name="saldo_enviado" [required]="true"  class="p-inputtext-sm font-family" 
+                     [showButtons]="false" mode="decimal"  [minFractionDigits]="2"
+                      autofocus >
+                     </p-inputNumber>
+
+                     <!-- <input type="text" pInputText id="name" class="font-family"
+                     [(ngModel)]="cerrarCaja.saldo_enviado" required autofocus /> -->
+                 </div>
+             </div>
+         </div>
+         <ng-template [ngIf]="motrar == false">
+
+         <div style="text-align: center;display:flex;justify-content:center;margin-top: 10px; " 
+         class="font-family"
+         >
+             <button pButton pRipple label="Cancelar" icon="pi pi-times" style="width: auto;"
+             class="p-button-text mr-4 font-family" 
+             (click)="volver()">
+         </button>
+             <button pButton pRipple 
+             label="Guardar" icon="pi pi-check" style="width: auto;" class="p-button-success font-family" 
+             [disabled]="transferirCaja.saldo_enviado =='' " (click)="Dialog2=true"></button>
+         </div>
+
+        </ng-template>
+
+        <ng-template [ngIf]="motrar == true">
+          <br>
+          <br>
+          <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+          <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+            <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+      
+          <!-- </div> -->
+        
+        </ng-template>
+ </div>  
+<!-- </ng-template> -->
+</p-dialog>
+<!-- ventanas de confirmacion -->
+<p-dialog [(visible)]="Dialog1" [maximizable]="true" appendTo="body"
+[style]="{'height': 'auto','width': '40%'}"[resizable]="false" zindex="10000"
+[showHeader]="false" [closeOnEscape]="false" [closable]="false"
+[modal]="true" >
+<br>
+<div class="flex flex-column mt-3 font-family" style="flex: 1">
+    <div class="text-center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+        <h4>Esta seguro de Abrir Caja ?</h4>
+        <p>Si para continuar</p>
+    </div>
+</div>
+
+<ng-template pTemplate="footer" class="titleCard" >
+<ng-template [ngIf]="motrar == false">
+
+  <div style="text-align: center;">
+    <button pButton pRipple label="Si" icon="pi pi-check" 
+    class="p-button-success p-button-raised p-button-rounded font-family" (click)="AbrirCaja()"></button>
+    <button pButton pRipple label="No"  style="color: rgb(31, 45, 64);" 
+    class=" p-button-text font-family" icon="pi pi-times"  (click)="Dialog1 = false"  ></button>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="motrar == true">
+  <br>
+  <br>
+  <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+  <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+    <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+  <!-- </div> -->
+
+</ng-template>
+</ng-template>
+</p-dialog>
+
+
+<p-dialog [(visible)]="Dialog2" [maximizable]="true" appendTo="body"
+[style]="{'height': 'auto','width': '40%'}"[resizable]="false" zindex="10000"
+[showHeader]="false" [closeOnEscape]="false" [closable]="false"
+[modal]="true" >
+<br>
+<div class="flex flex-column mt-3 font-family" style="flex: 1">
+    <div class="text-center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+        <h4>Esta seguro de Transferir a Caja Menor?</h4>
+        <p>Si para continuar</p>
+    </div>
+</div>
+
+<ng-template pTemplate="footer" class="titleCard" >
+<ng-template [ngIf]="motrar == false">
+
+  <div style="text-align: center;">
+    <button pButton pRipple label="Si" icon="pi pi-check" 
+    class="p-button-success p-button-raised p-button-rounded font-family" (click)="TransferirCajaMenor()"></button>
+    <button pButton pRipple label="No"  style="color: rgb(31, 45, 64);" 
+    class=" p-button-text font-family" icon="pi pi-times"  (click)="Dialog2 = false"  ></button>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="motrar == true">
+  <br>
+  <br>
+  <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+  <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+    <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+  <!-- </div> -->
+
+</ng-template>
+</ng-template>
+</p-dialog>
+<!-- modal de confirmacion de registro de movimientos -->
+<p-dialog [(visible)]="DialogMovimiento" [maximizable]="true" appendTo="body"
+[style]="{'height': 'auto','width': '40%'}"[resizable]="false" zindex="10000"
+[showHeader]="false" [closeOnEscape]="false" [closable]="false"
+[modal]="true" >
+<br>
+<div class="flex flex-column mt-3 font-family" style="flex: 1">
+    <div class="text-center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+        <h4>Esta seguro de Registrar el Movimiento con un valor de ${{form.value.valor | currency:'':'':'0.2-2'}} ?</h4>
+        <p>Si para continuar</p>
+    </div>
+</div>
+
+<ng-template pTemplate="footer" class="titleCard" >
+<ng-template [ngIf]="motrar == false">
+
+  <div style="text-align: center;">
+    
+    <button pButton pRipple label="Si" icon="pi pi-check" 
+    class="p-button-success p-button-raised p-button-rounded font-family" (click)="registrarMovimiento()"></button>
+    <button pButton pRipple label="No"  style="color: rgb(31, 45, 64);" 
+    class=" p-button-text font-family" icon="pi pi-times"  (click)="DialogMovimiento = false"  ></button>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="motrar == true">
+  <br>
+  <br>
+  <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+  <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+    <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+  <!-- </div> -->
+
+</ng-template>
+</ng-template>
+</p-dialog>
+
+
+ <!-- detalles de caja - reporte -->
+ <p-dialog [(visible)]="ReportCierreDialog" 
+ [style]="{'height': 'auto','width': '75%'}"  
+ [resizable]="false" zindex="10000" 
+ [closable]="false" [closeOnEscape]="false" 
+ [maximizable]="true" appendTo="body"
+ [showHeader]="false"
+ [modal]="true" styleClass="p-fluid border-round">
+ <div class="flex flex-row justify-content-between align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+     <div class="font-medium text-2xl text-900 font-family">
+         <i class="pi pi-file text-blue-500  border-round p-2" style="font-size: 2rem"></i>
+       Reporte de Caja Mayor
+     </div>
+     <div class="mt-3 lg:mt-0 flex">
+ 
+         <!-- <div pButton class=" border-1 surface-border surface-card border-round mr-3">
+             <i class="pi pi-check-circle text-green-500 text-2xl 
+             md:text-4xl mb-2 md:mb-0 mr-0 md:mr-3"></i>
+             <div>
+                 <div class="text-900 font-medium mb-1">Estado de Caja</div>
+                 <span class="text-600 text-sm hidden md:block">
+                     <ng-template [ngIf]="cajaDetalle?.estado == true">
+                         Caja Abierta
+                     </ng-template>
+                     <ng-template [ngIf]="cajaDetalle?.estado == false">
+                         Caja Cerrada
+                     </ng-template>
+                     
+                 </span>
+             </div>
+             </div> -->
+             <button pbutton="" pripple="" label="Follow" *ngIf="mostrarDetalles "
+             icon="pi pi-print"(click)="gerenratePdf2()" 
+             class=" p-element p-ripple p-button-info mr-2 p-button p-component">
+                 <span class="p-button-icon p-button-icon-left pi pi-print" aria-hidden="true"></span>
+                 <span class="p-button-label font-family">Imprimir</span>
+                 <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+             </button>
+        <button pbutton="" pripple="" icon="pi pi-times"  style="font-size:10px;width:70px"
+        (click)="ReportCierreDialog=false"
+        class=" p-ripple p-element p-button-rounded p-button-success p-button 
+        p-component p-button-icon-only mr-2"><span class="p-ink"></span>
+        <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
+        <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+        </button>
+    </div>
+ </div>
+ <p-card>
+    
+     <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+         <div id="cabecera">
+             <div class="flex justify-content-center align-items-center mb-2 ">   
+                 <i class="pi pi-box text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+             <span class="block text-900  mb-2 text-xl font-bold font-family">Datos de Caja Mayor</span>
+             </div>
+             <div class="grid mt-2">
+                 <div class="col-12 sm:col-4">
+                     <div class="surface-card shadow-2 p-3 border-round">
+                         <div class="flex justify-content-center ">
+                             <div>
+                                 <i class="pi pi-building text-blue-500 text-xl mr-3"></i>
+                                 <span class="text-black font-bold font-family mb-1 text-xl">{{UltimaCajamenor?.sede?.nombre | titlecase}}</span>
+                                 <div class="block bg-blue-100 border-round mt-2 text-center" >
+                         
+                                     <div class="text-900 font-bold p-2 font-family" style="font-size:17px"> Sede</div>
+                                 </div>
+                             </div>
+                         </div>
+                        
+                         
+                         
+                     </div>
+                 </div>
+                 <div class="col-12 sm:col-4">
+                     <div class="surface-card shadow-2 p-3 border-round">
+                         <div class="flex justify-content-center ">
+                             <div>
+                                 <i class="pi pi-calendar-plus text-blue-500 text-xl mr-3"></i>
+                                 <span class="text-black font-bold font-family mb-1 text-xl">{{UltimaCajamenor?.fecha_apertura | date:'d/M/yy, h:mm a'}}</span>
+                                 <div class="block bg-blue-100 border-round mt-2 text-center" >
+                         
+                                     <div class="p-2 font-family" style="font-weight: bold;font-size:17px;color:seagreen"> Fecha de Apertura </div>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                     </div>
+                 </div>
+                 <div class="col-12 sm:col-4">
+                     <div class="surface-card shadow-2 p-3 border-round">
+                         <div class="flex justify-content-center ">
+                             <div>
+                                 <i class="pi pi-users text-blue-500 text-xl mr-3"></i>
+                                 <span class="text-black font-bold font-family mb-1 text-xl">{{usuario_apertura | titlecase}}</span>
+                                 <div class="block bg-blue-100 border-round mt-2 text-center" >
+                         
+                                     <div class="p-2 font-family" style="font-weight: bold;font-size:17px;color:rgba(241, 63, 63, 0.795)"> Usuario de Apertura </div>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                     </div>
+                 </div>
+             </div>
+             <br>
+             <form [formGroup]="form2" novalidate>
+
+                <div class="surface-ground p-4">
+                    <div class="flex justify-content-center align-items-center">
+          
+                            <div class="field col-8 p-4">
+                                <label for="range">Seleccione Rango de Fecha</label>
+                                <p-calendar formControlName="fecha"  [required]="true"
+                               (click)="mostrarDetalles=false"
+                                selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                            </div>
+        
+                    </div>
+                  
+                        <div class="flex justify-content-center align-items-center">
+                    
+                            <span class="block text-900  text-xl font-medium font-family">
+                                <button pButton pRipple 
+                                    label="Consultar" icon="pi pi-search" style="width: auto;" 
+                                    class="p-button-success font-family mt-2" 
+                                    [disabled]="!form2.valid " 
+                                    (click)="DetallesdeCaja(UltimaCajamenor)"></button>
+                            </span>
+                    </div>
+                    
+
+                 </div>
+             </form>
+             <ng-template [ngIf]="mostrarDetalles">
+
+                <br>
+                <hr style="margin-top: 15px;margin-bottom: 15px">
+                <div style="border:1px solid gray; border-radius:5px;padding: 15px">
+             
+                            <div class="flex justify-content-center align-items-center mb-2 ">   
+                                <i class="pi pi-briefcase text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                                <span class="block text-900  mb-2 text-xl font-bold font-family">Gastos y Compras de Caja</span>
+                            </div>
+            
+                    <p-panel header="Detalles" [toggleable]="true" [collapsed]="true">
+                  
+                        <div class="flex justify-content-center align-items-center mb-2 ">   
+                            <i class="pi pi-chart-bar text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Gastos</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <div class="table-wrapper" >
+                            <p-table [value]="pagosCaja" 
+                            id="pd4"
+                            dataKey="id4" 
+                            [filterDelay]="0" 
+                            [rows]="3" [showCurrentPageReport]="true" 
+                            responsiveLayout="scroll" 
+                            [paginator]="true" 
+                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                            [rowsPerPageOptions]="[3,9,18,36]" > 
+                                <ng-template pTemplate="header">
+                                <tr class="font-family" >
+                                    <th pSortableColumn="fecha">Fecha</th>
+
+                                    <th pSortableColumn="descripcion">Concepto</th>
+                                    <th pSortableColumn="tipo_pago">Forma de Pago</th>
+                                    <th pSortableColumn="valor">Valor</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-item let-expanded="expanded">
+                                <tr class="font-family" [pSelectableRow]="rowData">
+                                    <td >{{item?.fecha | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+
+                                    <td >{{item?.descripcion}}</td>
+                                    <td >{{item?.tipo_pago | titlecase}}</td>
+                                    <td >${{item?.valor | currency:'':'':'0.2-2'}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                <tr class="font-family" style="text-align: center;">
+                                    <td colspan="8">No hay registros encontrados</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="footer">
+                            <tr>
+                                <td ></td>
+                                <td ></td>
+                                <td >TOTAL</td>
+            
+                                <td >${{totalpagos | currency:'':'':'0.2-2'}}</td>
+                                
+                            </tr>
+                        </ng-template>
+                            </p-table>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="flex justify-content-center align-items-center mb-2 ">   
+                            <i class="pi pi-cart-plus text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Compras Realizadas</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <div class="table-wrapper" >
+                            <p-table [value]="comprasCaja" 
+                            id="pd4"
+                            dataKey="id4" 
+                            [filterDelay]="0" 
+                            [rows]="3" [showCurrentPageReport]="true" 
+                            responsiveLayout="scroll" 
+                            [paginator]="true" 
+                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                            [rowsPerPageOptions]="[3,9,18,36]" > 
+                                <ng-template pTemplate="header">
+                                <tr class="font-family" >
+                                    <th pSortableColumn="fecha">Fecha</th>
+
+                                    <th pSortableColumn="descripcion">Concepto</th>
+                                    <th pSortableColumn="tipo_pago">Forma de Pago</th>
+                                    <th pSortableColumn="valor">Valor</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-item let-expanded="expanded">
+                                <tr class="font-family" [pSelectableRow]="rowData">
+                                    <td >{{item?.fecha | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+
+                                    <td >{{item?.descripcion}}</td>
+                                    <td >{{item?.tipo_pago | titlecase}}</td>
+                                    <td >${{item?.valor | currency:'':'':'0.2-2'}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                <tr class="font-family" style="text-align: center;">
+                                    <td colspan="8">No hay registros encontrados</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="footer">
+                            <tr>
+                                <td ></td>
+                                <td ></td>
+                                <td >TOTAL</td>
+            
+                                <td >${{totalCompras | currency:'':'':'0.2-2'}}</td>
+                                
+                            </tr>
+                        </ng-template>
+                            </p-table>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="flex justify-content-center align-items-center mb-2 ">   
+                            <i class="pi pi-cart-plus text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Abonos de Compras</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <div class="table-wrapper" >
+                            <p-table [value]="AbonoscomprasCaja" 
+                            id="pd4"
+                            dataKey="id4" 
+                            [filterDelay]="0" 
+                            [rows]="3" [showCurrentPageReport]="true" 
+                            responsiveLayout="scroll" 
+                            [paginator]="true" 
+                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                            [rowsPerPageOptions]="[3,9,18,36]" > 
+                                <ng-template pTemplate="header">
+                                <tr class="font-family" >
+                                    <th pSortableColumn="fecha">Fecha</th>
+                                   <th pSortableColumn="descripcion">Concepto</th>
+
+                                    <th pSortableColumn="tipo_pago">Forma de Pago</th>
+                                    <th pSortableColumn="valor">Valor</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-item let-expanded="expanded">
+                                <tr class="font-family" [pSelectableRow]="rowData">
+                                    <td >{{item?.fecha | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                                    <td >{{item?.descripcion | titlecase}}</td>
+                                    <td >{{item?.tipo_pago | titlecase}}</td>
+                                    <td >${{item?.valor | currency:'':'':'0.2-2'}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                <tr class="font-family" style="text-align: center;">
+                                    <td colspan="8">No hay registros encontrados</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="footer">
+                            <tr>
+                                <td ></td>
+                                <td ></td>
+                                <td >TOTAL</td>
+            
+                                <td >${{totalAbonosCompras | currency:'':'':'0.2-2'}}</td>
+                                
+                            </tr>
+                        </ng-template>
+                            </p-table>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+                <br>
+                <div style="border:1px solid gray; border-radius:5px;padding: 15px">
+             
+                    <div class="flex justify-content-center align-items-center mb-2 ">   
+                        <i class="pi pi-chart-line text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Total de Ingresos y Abonos</span>
+                    </div>
+                    <p-panel header="Detalles" [toggleable]="true" [collapsed]="true">
+
+                        <div class="flex justify-content-center align-items-center mb-2 ">   
+                            <i class="pi pi-credit-card text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Traslados de Caja Menor</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <div class="table-wrapper" >
+                                <p-table [value]="TrasladoDineroCaja" 
+                                id="pd4"
+                                dataKey="id4" 
+                                [filterDelay]="0" 
+                                [rows]="3" [showCurrentPageReport]="true" 
+                                responsiveLayout="scroll" 
+                                [paginator]="true" 
+                                currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                [rowsPerPageOptions]="[3,9,18,36]" > 
+                                    <ng-template pTemplate="header">
+                                    <tr class="font-family" >
+                                    <th pSortableColumn="fecha">Fecha</th>
+
+                                        <!-- <th pSortableColumn="nombre">Concepto</th> -->
+                                        <th pSortableColumn="tipo_pago">Forma de Pago</th>
+                                        <th pSortableColumn="valor">Valor</th>
+                                        <!-- <th pSortableColumn="descripcion">Descripción</th> -->
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-item let-expanded="expanded">
+                                    <tr class="font-family" [pSelectableRow]="rowData">
+                                    <td >{{item?.fecha | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+
+                                        <!-- <td >{{item?.nombre}}</td> -->
+                                        <td >{{item?.tipo_pago | titlecase}}</td>
+                                        <td >${{item?.valor | currency:'':'':'0.2-2'}}</td>
+                                        <!-- <td >{{item?.descripcion | titlecase}}</td> -->
+                                        
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                    <tr class="font-family" style="text-align: center;">
+                                        <td colspan="8">No hay registros encontrados</td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="footer">
+                                <tr>
+                                    <td ></td>
+                                    <!-- <td ></td> -->
+                                    <td >TOTAL</td>
+                
+                                    <td >${{totalTrasladoDinero | currency:'':'':'0.2-2'}}</td>
+                                   
+                                    
+                                </tr>
+                            </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex justify-content-center align-items-center mb-2 ">   
+                            <i class="pi pi-ticket text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Abonos Ventas Registrados</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <div class="table-wrapper" >
+                            <p-table [value]="AbonosCaja" 
+                            id="pd4"
+                            dataKey="id4" 
+                            [filterDelay]="0" 
+                            [rows]="3" [showCurrentPageReport]="true" 
+                            responsiveLayout="scroll" 
+                            [paginator]="true" 
+                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                            [rowsPerPageOptions]="[3,9,18,36]" > 
+                            <ng-template pTemplate="header">
+                               <tr class="font-family" >
+                                <th pSortableColumn="fecha">Fecha</th>
+
+                                   <th pSortableColumn="descripcion">Concepto</th>
+                                   <th pSortableColumn="tipo_pago">Forma de Pago</th>
+                                   <th pSortableColumn="valor">Valor</th>
+                                   <!-- <th pSortableColumn="descripcion">Descripción</th> -->
+                               </tr>
+                           </ng-template>
+                           <ng-template pTemplate="body" let-rowData let-item let-expanded="expanded">
+                               <tr class="font-family" [pSelectableRow]="rowData">
+                                <td >{{item?.fecha | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+
+                                   <td >{{item?.descripcion}}</td>
+                                   <td >{{item?.tipo_pago | titlecase}}</td>
+                                   <td >${{item?.valor | currency:'':'':'0.2-2'}}</td>
+                                   <!-- <td >{{item?.descripcion | titlecase}}</td> -->
+                                   
+                               </tr>
+                           </ng-template>
+                           <ng-template pTemplate="emptymessage" style="text-align: center;">
+                               <tr class="font-family" style="text-align: center;">
+                                   <td colspan="8">No hay registros encontrados</td>
+                               </tr>
+                           </ng-template>
+                 
+                            <ng-template pTemplate="footer">
+                            <tr>
+                                <td ></td>
+                                <td ></td>
+                                <td >TOTAL</td>
+        
+                                <td >${{totalAbonos | currency:'':'':'0.2-2'}}</td>
+                               
+                                
+                            </tr>
+                        </ng-template>
+                            </p-table>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex justify-content-center align-items-center mb-2 ">   
+                            <i class="pi pi-credit-card text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                        <span class="block text-900  mb-2 text-xl font-bold font-family">Otros Ingresos</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <div class="table-wrapper" >
+                                <p-table [value]="IngresosCaja" 
+                                id="pd4"
+                                dataKey="id4" 
+                                [filterDelay]="0" 
+                                [rows]="3" [showCurrentPageReport]="true" 
+                                responsiveLayout="scroll" 
+                                [paginator]="true" 
+                                currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                [rowsPerPageOptions]="[3,9,18,36]" > 
+                                    <ng-template pTemplate="header">
+                                    <tr class="font-family" >
+                                <th pSortableColumn="fecha">Fecha</th>
+
+                                        <th pSortableColumn="nombre">Concepto</th>
+                                        <th pSortableColumn="tipo_pago">Forma de Pago</th>
+                                        <th pSortableColumn="valor">Valor</th>
+                                        <th pSortableColumn="descripcion">Descripción</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-item let-expanded="expanded">
+                                    <tr class="font-family" [pSelectableRow]="rowData">
+                                    <td >{{item?.fecha | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+
+                                        <td >{{item?.nombre}}</td>
+                                        <td >{{item?.tipo_pago | titlecase}}</td>
+                                        <td >${{item?.valor | currency:'':'':'0.2-2'}}</td>
+                                        <td >{{item?.descripcion | titlecase}}</td>
+                                        
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                    <tr class="font-family" style="text-align: center;">
+                                        <td colspan="8">No hay registros encontrados</td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="footer">
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td >TOTAL</td>
+                
+                                    <td >${{totalIngresos | currency:'':'':'0.2-2'}}</td>
+                                    <td ></td>
+                                    
+                                </tr>
+                            </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+        
+                <br>
+             </ng-template>
+         </div>
+
+     </div>
+ </p-card>
+ </p-dialog>
+
+</ng-template>
+
+<ng-template [ngIf]="noestasPermitido">
+  <img [src]="noAutorizado" alt="" srcset="" style="width:100%">
+</ng-template>

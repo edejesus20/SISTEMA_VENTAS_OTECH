@@ -1,0 +1,1766 @@
+<ng-template [ngIf]="mostrarDialogo == false">
+  <div style="max-width: 160rem;" class="ml-1">
+    <br />
+    <div class="px-4 py-5 md:px-4 lg:px-4 surface-section">
+      <!-- crear nuevo -->
+      <div
+        class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between relative"
+        style="top: -20px;"
+      >
+        <div>
+          <div
+            class="mr-3 surface-card shadow-2 flex align-items-center justify-content-center p-2"
+            style="
+              width: auto;
+              height: auto;
+              max-width: 600px;
+              border-radius: 10px;
+            "
+          >
+            <div class="logo-text font-family" @fadeInOut>
+              Registro de Productos
+            </div>
+            <!-- <img src="assets/almacenamiento.jpg" alt="Image" width="100" height="70"> -->
+          </div>
+          <!-- <div class="text-900 text-3xl font-medium mb-3">Company Name</div> -->
+          <div class="text-600 font-medium">
+            <!-- <span>c</span> -->
+          </div>
+        </div>
+        <div class="mt-3 lg:mt-0">
+          <button
+            pbutton=""
+            pripple=""
+            label="Follow"
+            *ngIf="(this.tipo_user == 'ADMINISTRADOR GENERAL' 
+            || tipo_user == 'CEO' || tipo_user == 'ADMINISTRADOR') && MostrarCrear"
+            icon="pi pi-plus-circle"
+            (click)="openNew()"
+            class="p-element p-ripple mr-2 p-button p-component"
+          >
+            <span
+              class="p-button-icon p-button-icon-left pi pi-plus-circle"
+              aria-hidden="true"
+            ></span>
+            <span class="p-button-label font-family">Registrar Producto</span>
+            <span
+              class="p-ink"
+              style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"
+            ></span>
+          </button>
+        </div>
+      </div>
+      <!-- consultas -->
+      <!-- <div class="surface-card shadow-2 border-round flex  flex-column md:flex-row">
+            <div class="border-bottom-1 md:border-right-1 
+            md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-blue-500 text-xl mr-2">
+
+                </i><span class="text-500 font-medium font-family">Agotados</span>
+            </div>
+            <div class="flex align-items-center"><i class="pi pi-arrow-down text-pink-500 text-xl mr-2"></i>
+                <span class="text-pink-500 font-medium font-family">-25</span>
+            </div>
+        </div>
+        <div class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-orange-500 text-xl mr-2"></i>
+                <span class="text-500 font-medium font-family">Vendidos al detal</span>
+            </div>
+            <div class="flex align-items-center">
+                <i class="pi pi-arrow-up text-green-500 text-xl mr-2"></i>
+                <span class="text-green-500 font-medium font-family">+15</span>
+            </div>
+        </div>
+        <div class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-blue-500 text-xl mr-2"></i>
+                <span class="text-500 font-medium font-family">Vendidos al por mayor</span>
+            </div>
+            <div class="flex align-items-center">
+                <i class="pi pi-arrow-up text-green-500 text-xl mr-2"></i>
+                <span class="text-green-500 font-medium font-family">+5</span>
+            </div>
+        </div>
+        <div class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+            <div class="flex align-items-center mb-3">
+                <i class="pi pi-shopping-cart text-orange-500 text-xl mr-2"></i>
+                <span class="text-500 font-medium font-family">Vendidos al menudiao</span>
+            </div>
+            <div class="flex align-items-center">
+                <i class="pi pi-arrow-up text-green-500 text-xl mr-2"></i>
+                <span class="text-green-500 font-medium font-family">+55</span>
+            </div>
+        </div>
+           
+        </div> -->
+      <br />
+      <hr />
+
+      <br />
+
+      <div class="grid">
+        <div class="col-12 sm:col-5 md:col-5">
+          <div style="width: 100%;" class="mt-3">
+            <span class="p-input-icon-left" style="width: 100%;">
+              <i class="pi pi-search"></i>
+              <input
+                type="text"
+                pInputText
+                placeholder="Buscador..."
+                id="codigo"
+                class="font-family"
+                style="min-width: 100%;"
+                [(ngModel)]="valorbuscado"
+                (input)="buscarServicio($event)"
+                (keydown)="buscarServicio($event)"
+              />
+              <!-- (keydown)="Codigo($event)" -->
+            </span>
+          </div>
+        </div>
+        <div class="col-12 sm:col-4 md:col-4">
+          <div class="flex align-items-center">
+            <div class="mb-3 ml-3 mt-3">
+              <button
+                pbutton=""
+                pripple=""
+                icon="pi pi-file"
+                (click)="dt1.exportCSV()"
+                pTooltip="CSV"
+                tooltipPosition="bottom"
+                class="p-ripple p-element p-button-rounded mr-2 p-button-info p-button p-component p-button-icon-only"
+              >
+                <span class="p-ink"></span>
+                <span
+                  class="p-button-icon pi pi-file"
+                  aria-hidden="true"
+                ></span>
+                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <button
+              *ngIf="productosexcel.length && productosexcel.length > 0"
+                pbutton=""
+                pripple=""
+                icon="pi  pi-file-excel"
+                (click)="exportExcel()"
+                pTooltip="XLS"
+                tooltipPosition="bottom"
+                class="p-ripple p-element p-button-rounded mr-2 p-button-success p-button p-component p-button-icon-only"
+              >
+                <span class="p-ink"></span>
+                <span
+                  class="p-button-icon pi pi-file-excel"
+                  aria-hidden="true"
+                ></span>
+                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <button
+              *ngIf="productosexcel.length && productosexcel.length > 0"
+                pbutton=""
+                pripple=""
+                icon="pi  pi pi-file-pdf"
+                (click)="gerenratePdf()"
+                pTooltip="PDF"
+                tooltipPosition="bottom"
+                class="p-ripple p-element p-button-rounded mr-2 p-button-warning p-button p-component p-button-icon-only"
+              >
+                <span class="p-ink"></span>
+                <span
+                  class="p-button-icon pi pi pi-file-pdf"
+                  aria-hidden="true"
+                ></span>
+                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <!-- <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt1.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button> -->
+            </div>
+            <p-splitButton
+              label="Acciones"
+              [model]="items"
+              *ngIf="this.tipo_user == 'ADMINISTRADOR GENERAL' || tipo_user == 'CEO' || tipo_user == 'ADMINISTRADOR'"
+              styleClass="font-family p-button-raised p-button-rounded p-button-outlined 
+            p-button-secondary  mr-2 mb-2 "
+            ></p-splitButton>
+          </div>
+        </div>
+        <div class="col12 sm:col-3" *ngIf="this.tipo_user == 'ADMINISTRADOR GENERAL' || tipo_user == 'CEO' || tipo_user == 'ADMINISTRADOR'">
+          
+          <button pbutton="" pripple="" label="Follow" icon="pi pi-dollar"
+          *ngIf="productosexcel.length && productosexcel.length > 0"
+
+          style="background:#005ae2;border-radius: 5px; width:100%;
+          box-shadow: 0.063rem 0 1.25rem 0 #8690a3;padding:10px"
+          class="p-element p-ripple ml-2  mr-2 mt-3
+          p-button p-component animate__animated animate__flipInY">
+          <!-- <span class="p-button-icon p-button-icon-left pi pi-dollar " aria-hidden="true"></span> -->
+          <span class="p-button-label font-family">Total Inversion : {{inversionTotal | currency:'':'':'0.2-2'}}</span>
+          <!-- <span class="p-ink" ></span> -->
+          </button>
+        </div>
+      </div>
+
+      <p-table
+        #dt1
+        [value]="productos"
+        selectionMode="multiple"
+        [(selection)]="selectedProducts"
+        id="todo"
+        dataKey="id"
+        [loading]="loading"
+        styleClass="p-datatable-customers"
+        [rowHover]="true"
+        responsiveLayout="scroll"
+        [style]="{ width: '100%', display: 'grid' }"
+        [paginator]="false"
+        [filterDelay]="0"
+        [columns]="cols"
+        [globalFilterFields]="[
+          'nombre',
+          'tipo_producto.nombre',
+          'precio_venta',
+          'precio_por_mayor',
+          'codigo_barra',
+          'sede_nombre',
+          'estado',
+          'status',
+          'precio_detal',
+          'costo','inversion'
+        ]"
+      >
+        <ng-template pTemplate="header">
+          <tr class="font-family">
+            <!-- <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th> -->
+            <th pSortableColumn="nombre">
+              <div class="flex justify-content-between align-items-center">
+                Nombre
+                <p-sortIcon field="nombre"></p-sortIcon>
+                <!-- <p-columnFilter type="text" field="nombre" display="menu" class="ml-auto">
+
+                    </p-columnFilter> -->
+              </div>
+            </th>
+            <th pSortableColumn="tipo_producto.nombre">
+              <div class="flex justify-content-between align-items-center">
+                Tipo Producto
+                <p-sortIcon field="tipo_producto.nombre"></p-sortIcon>
+                <!-- <p-columnFilter type="text" field="tipo_producto" display="menu" class="ml-auto"></p-columnFilter> -->
+              </div>
+            </th>
+            <!-- <th pSortableColumn="precio_venta">
+                <div class="flex justify-content-between align-items-center">
+                    Agent
+                    <p-sortIcon field="precio_venta"></p-sortIcon>
+
+                    <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" class="ml-auto">
+                        <ng-template pTemplate="header">
+                            <div class="px-3 pt-3 pb-0">
+                                <span class="font-bold">Agent Picker</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
+                                <ng-template let-option pTemplate="item">
+                                    <div class="p-multiselect-representative-option">
+                                        <img [alt]="option.label" src="assets/showcase/images/demo/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
+                                        <span class="ml-1">{{option.name}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-multiSelect>
+                        </ng-template>
+                    </p-columnFilter>
+                </div>
+            </th> -->
+            <th pSortableColumn="precio_venta">
+              <div class="flex justify-content-between align-items-center">
+                Precio Manero
+                <p-sortIcon field="precio_venta"></p-sortIcon>
+                <!-- <p-columnFilter type="precio_venta" field="precio_venta" 
+                    display="menu" class="ml-auto"></p-columnFilter> -->
+              </div>
+            </th>
+            <th pSortableColumn="precio_detal">
+              <div class="flex justify-content-between align-items-center">
+                Precio Detal
+                <p-sortIcon field="precio_detal"></p-sortIcon>
+              </div>
+            </th>
+            <th pSortableColumn="precio_por_mayor">
+              <div class="flex justify-content-between align-items-center">
+                Precio al por Mayor
+                <p-sortIcon field="precio_por_mayor"></p-sortIcon>
+                <!-- <p-columnFilter type="numeric" field="precio_por_mayor" display="menu" currency="USD" class="ml-auto"></p-columnFilter> -->
+              </div>
+            </th>
+            <th pSortableColumn="costo" *ngIf="Acciones == 0">
+              <div class="flex justify-content-between align-items-center">
+                Costo
+                <p-sortIcon field="costo"></p-sortIcon>
+              </div>
+            </th>
+            <th pSortableColumn="codigo_barra">
+              <div class="flex justify-content-between align-items-center">
+                Codigo Barra
+                <p-sortIcon field="codigo_barra"></p-sortIcon>
+                <!-- <p-columnFilter field="codigo_barra" matchMode="between" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" class="ml-auto"> -->
+                <!-- <ng-template pTemplate="filter" let-filter="filterCallback">
+                            <p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)" styleClass="m-3"></p-slider>
+                            <div class="flex align-items-center justify-content-between px-2">
+                                <span>{{activityValues[0]}}</span>
+                                <span>{{activityValues[1]}}</span>
+                            </div>
+                        </ng-template> -->
+                <!-- </p-columnFilter> -->
+              </div>
+            </th>
+            <ng-template [ngIf]="Acciones == 1">
+              <th style="width: 5rem;">Editar</th>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 2">
+              <th style="width: 5rem;">Eliminar</th>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 3">
+              <th style="width: 5rem;" pSortableColumn="status">Estados</th>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 4">
+              <th style="width: 5rem;">Disponibilidad</th>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 5">
+              <th pSortableColumn="inversion"
+              style="width: 5rem;">Inversion<p-sortIcon field="inversion"></p-sortIcon></th>
+            </ng-template>
+            
+          </tr>
+        </ng-template>
+        <ng-template
+          pTemplate="body"
+          let-customer
+          let-rowData
+          let-expanded="expanded"
+        >
+          <tr class="p-selectable-row font-family" [pSelectableRow]="rowData">
+            <td>
+              {{ customer?.nombre | titlecase }}
+            </td>
+            <td>
+              {{ customer?.tipo_producto?.nombre | titlecase }}
+            </td>
+            <td>${{ customer?.precio_venta | currency: '':'':'0.2-2' }}</td>
+            <td>${{ customer?.precio_detal | currency: '':'':'0.2-2' }}</td>
+            <td>${{ customer?.precio_por_mayor | currency: '':'':'0.2-2' }}</td>
+            <td *ngIf="Acciones == 0">
+              ${{ customer?.costo | currency: '':'':'0.2-2' }}
+            </td>
+            <td style="height: 50px;">
+              <div style="text-align: center;">
+                <ngx-barcode6
+                  [bc-format]="'MSI'"
+                  [bc-height]="35"
+                  [bc-width]="1"
+                  [bc-font-size]="12"
+                  [bc-value]="customer?.codigo_barra"
+                  [bc-display-value]="true"
+                ></ngx-barcode6>
+              </div>
+            </td>
+            <ng-template [ngIf]="Acciones == 1">
+              <td style="text-align: center;">
+                <button
+                  pButton
+                  type="button"
+                  (click)="editProduct(customer)"
+                  class="p-ripple p-button-rounded p-button p-button-warning"
+                  icon="pi pi-pencil
+                "
+                ></button>
+              </td>
+            </ng-template>
+
+            
+            <ng-template [ngIf]="Acciones == 5">
+              <td>
+                  <span class="text-500 font-bold">
+                    ${{ customer?.inversion  | currency: '':'':'0.2-2' }}
+                  </span>
+              </td>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 4">
+              <td>
+                <ng-template
+                  [ngIf]="
+                    customer?.inventario?.stock <=
+                    customer?.inventario?.cantidad_minima
+                  "
+                >
+                  <span class="text-red-500 font-medium">
+                    {{ customer?.inventario?.stock }}
+                  </span>
+                </ng-template>
+                <ng-template
+                  [ngIf]="
+                    customer?.inventario?.stock >
+                    customer?.inventario?.cantidad_minima
+                  "
+                >
+                  <span class="text-green-500 font-medium">
+                    {{ customer?.inventario?.stock }}
+                  </span>
+                </ng-template>
+              </td>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 2">
+              <td style="text-align: center;">
+                <button
+                  pButton
+                  type="button"
+                  (click)="deleteProduct(customer)"
+                  class="p-ripple p-button-rounded p-button p-button-danger"
+                  icon="pi pi-trash"
+                ></button>
+              </td>
+            </ng-template>
+            <ng-template [ngIf]="Acciones == 3">
+              <td style="text-align: center;">
+                <button
+                  pButton
+                  class="p-button-rounded p-button-success"
+                  disabled
+                  *ngIf="customer?.estado == true"
+                  style="padding: 5px; border-radius: 2px;"
+                >
+                  <span [class]="'customer-badge status-' + customer?.estado">
+                    {{ customer.status }}
+                    <!-- Activado -->
+                  </span>
+                </button>
+                <button
+                  pButton
+                  class="p-button-rounded p-button-danger"
+                  *ngIf="customer?.estado == false"
+                  style="padding: 5px; border-radius: 2px;"
+                  (click)="activar(customer)"
+                >
+                  <span [class]="'customer-badge status-' + customer?.estado">
+                    {{ customer.status }}
+
+                    <!-- Desactivado -->
+                  </span>
+                </button>
+              </td>
+            </ng-template>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" style="text-align: center;">
+          <tr class="font-family">
+            <td colspan="8">No hay registros encontrados</td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+          <tr class="font-family">
+            <td colspan="8">
+              <p-paginator
+                [rows]="10"
+                [totalRecords]="paginacion.count"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} Registros"
+                [pageLinkSize]="5"
+                (onPageChange)="onPageChange($event)"
+              ></p-paginator>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <!-- editar y crear productos -->
+  <p-dialog
+    [(visible)]="productDialog"
+    [style]="{ height: 'auto', width: '70%' }"
+    [resizable]="false"
+    zindex="10000"
+    [closable]="false"
+    [closeOnEscape]="false"
+    [maximizable]="true"
+    appendTo="body"
+    [showHeader]="false"
+    [modal]="true"
+    styleClass="p-fluid border-round"
+  >
+    <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5">
+      <div class="font-medium text-2xl text-900 font-family">
+        <i
+          class="pi pi-tags text-blue-500 text-xl bg-blue-100 border-round p-2"
+          *ngIf="nombre != 'Modificar'"
+        ></i>
+        <i
+          class="pi pi-pencil text-orange-500 text-xl bg-blue-100 border-round p-2"
+          *ngIf="nombre == 'Modificar'"
+        ></i>
+        {{ nombre }} Producto
+      </div>
+    </div>
+    <div style="border: 1px solid gray; border-radius: 5px; padding: 25px;">
+      <div class="grid font-family">
+        <div class="col-12 md:col-6 sm:col-6">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Nombre
+            </label>
+            <input
+              type="text"
+              pInputText
+              id="name"
+              [(ngModel)]="producto.nombre"
+              required
+              autofocus
+            />
+            <small class="p-error" *ngIf="submitted && !producto.nombre">
+              Nombre is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 sm:col-6">
+          <div class="field font-family">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Seleccione el Tipo de Productos
+            </label>
+            <div class="flex font-family">
+              <div style="width: 100%;">
+                <p-dropdown
+                  class="visorg500-select-filter"
+                  [options]="tipoProductos"
+                  [filter]="true"
+                  name="tipo_producto"
+                  [(ngModel)]="producto.tipo_producto"
+                  label="Seleccione el Tipo de Productos"
+                  [style]="{ width: '100%', 'margin-bottom': '10px' }"
+                  optionvalue="id"
+                  optionLabel="nombre"
+                  filterBy="nombre"
+                  [required]="true"
+                  placeholder="Seleccione el Tipo de Productos"
+                  title="TIPO DE PRODUCTO"
+                  class="font-family"
+                >
+                  <ng-template let-option pTemplate="item">
+                    <span class="font-family">
+                      {{ option.nombre | titlecase }}
+                    </span>
+                  </ng-template>
+                </p-dropdown>
+              </div>
+
+              <span class="bottomdelete" style="margin-top: -35px;">
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-plus"
+                  style="margin-left: 7px;"
+                  class="p-button-rounded p-button-outlined"
+                  (click)="addTipoproducto($event)"
+                ></button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid font-family">
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Precio Manero
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.precio_venta"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_venta" required autofocus /> -->
+            <small class="p-error" *ngIf="submitted && !producto.precio_venta">
+              Precio Manero is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Precio Detal
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.precio_detal"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+
+            <small class="p-error" *ngIf="submitted && !producto.precio_detal">
+              Precio Detal is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Precio por Mayor
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.precio_por_mayor"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_por_mayor" required autofocus /> -->
+            <small
+              class="p-error"
+              *ngIf="submitted && !producto.precio_por_mayor"
+            >
+              Precio por Mayor is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid font-family" *ngIf="nombre != 'Modificar'">
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Stock Actual
+            </label>
+            <p-inputNumber
+              inputId="integeronly"
+              id="name"
+              [(ngModel)]="producto.stock_actual"
+              [required]="false"
+              autofocus
+            ></p-inputNumber>
+
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.stock_actual" required autofocus /> -->
+            <!-- <small class="p-error" *ngIf="submitted && !producto.stock_actual">Stock Actual is required.</small> -->
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Cantidad Minima
+            </label>
+            <p-inputNumber
+              inputId="integeronly"
+              id="name"
+              [min]="1"
+              [(ngModel)]="producto.cantidad_minima"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.cantidad_minima" required autofocus /> -->
+            <small
+              class="p-error"
+              *ngIf="submitted && !producto.cantidad_minima"
+            >
+              Cantidad Minima is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Costo
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.costo"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <small class="p-error" *ngIf="submitted && !producto.costo">
+              Costo is required.
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="grid font-family" *ngIf="nombre == 'Modificar'">
+        <div class="col-12 md:col-6 sm:col-6">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Costo
+            </label>
+
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.costo"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <small class="p-error" *ngIf="submitted && !producto.costo">
+              Costo is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 sm:col-6">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Codigo de Barra
+            </label>
+
+            <input
+              type="text"
+              pInputText
+              id="codigo_barra"
+              [(ngModel)]="producto.codigo_barra"
+              required
+              autofocus
+            />
+            <small class="p-error" *ngIf="submitted && !producto.codigo_barra">
+              Codigo de Barra is required.
+            </small>
+          </div>
+        </div>
+      </div>
+      <ng-template [ngIf]="motrar == false">
+      <div
+        style="
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+        "
+      >
+        <button
+          pButton
+          pRipple
+          label="Cancelar"
+          icon="pi pi-times"
+          style="width: auto;"
+          class="p-button-text mr-4 font-family"
+          (click)="productDialog = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          *ngIf="nombre != 'Modificar'"
+          label="Guardar"
+          icon="pi pi-check"
+          style="width: auto;"
+          class="p-button-success font-family"
+          [disabled]="
+            !producto.nombre ||
+            !producto.tipo_producto ||
+            !producto.precio_venta ||
+            !producto.precio_detal ||
+            !producto.costo ||
+            !producto.cantidad_minima ||
+            !producto.precio_por_mayor
+          "
+          (click)="Dialog1 = true"
+        ></button>
+        <button
+          pButton
+          pRipple
+          *ngIf="nombre == 'Modificar'"
+          label="Editar"
+          icon="pi pi-check"
+          style="width: auto;"
+          class="p-button-success font-family"
+          [disabled]="
+            !producto.nombre ||
+            !producto.tipo_producto ||
+            !producto.precio_venta ||
+            !producto.precio_detal ||
+            !producto.costo ||
+            !producto.precio_por_mayor
+          "
+          (click)="Dialog1 = true"
+        ></button>
+      </div>
+      </ng-template>
+
+      
+  <ng-template [ngIf]="motrar == true">
+    <br>
+    <br>
+    <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+    <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+      <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+    <!-- </div> -->
+  
+  </ng-template>
+    </div>
+    <!-- </ng-template> -->
+  </p-dialog>
+
+  <p-confirmDialog
+    acceptLabel="Si"
+    rejectLabel="No"
+    [transitionOptions]="'3ms'"
+    styleClass="font-family"
+    [closeOnEscape]="false"
+    [closable]="false"
+    appendTo="body"
+    [style]="{ 'font-family': 'Century Gothic' }"
+    acceptButtonStyleClass="p-button-success font-family"
+    rejectButtonStyleClass="p-button-text font-family"
+  ></p-confirmDialog>
+
+  <!-- <p-toast></p-toast> -->
+
+  <!-- guardar editar -->
+
+  <p-dialog
+  [(visible)]="productDialogNuevo"
+  [style]="{ height: 'auto', width: '70%' }"
+  [resizable]="false"
+  zindex="10000"
+  [closable]="false"
+  [closeOnEscape]="false"
+  [maximizable]="true"
+  appendTo="body"
+  [showHeader]="false"
+  [modal]="true"
+  styleClass="p-fluid border-round"
+>
+  <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5">
+    <div class="font-medium text-2xl text-900 font-family">
+      <i
+        class="pi pi-tags text-blue-500 text-xl bg-blue-100 border-round p-2"
+        *ngIf="nombre != 'Modificar'"
+      ></i>
+      <i
+        class="pi pi-pencil text-orange-500 text-xl bg-blue-100 border-round p-2"
+        *ngIf="nombre == 'Modificar'"
+      ></i>
+      {{ nombre }} Producto
+    </div>
+  </div>
+  <div style="border: 1px solid gray; border-radius: 5px; padding: 25px;">
+
+    <ng-template [ngIf]="!productoNuevo">
+
+      <div style="border: 1px solid gray; border-radius: 5px; padding: 25px;">
+
+        <div class="flex flex-column mt-3 font-family" style="flex: 1;min-width: 500px">
+          <div class="text-center">
+              <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+              <h4>¿¿ Producto Existente en Otra sede ??</h4>
+          
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="col-12 sm:col-8">
+            <div class="field font-family">
+              <label for="name">
+                <span style="color: red;">( * )</span>
+                Seleccione el Producto
+              </label>
+              <div class="flex font-family">
+                <div style="width: 100%;">
+                  <p-dropdown
+                    class="visorg500-select-filter"
+                    [options]="productosSedes"
+                    [filter]="true"
+                    appendTo="body"
+                    name="producto"
+                    [(ngModel)]="productoSelect"
+                    label="Seleccione el Producto"
+                    [style]="{ width: '100%', 'margin-bottom': '10px' }"
+                    optionvalue="id"
+                    optionLabel="nombre"
+                    filterBy="nombre"
+                    [showClear]="true"
+                    [required]="true"
+                    placeholder="Seleccione el Producto"
+                    title="PRODUCTO"
+                    class="font-family" (onChange)="seleccionarProducto($event)"
+                  >
+                    <ng-template let-option pTemplate="item">
+                      <span class="font-family">
+                        {{ option.nombre | titlecase }}
+                      </span>
+                    </ng-template>
+                  </p-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 sm:col-4">
+            <button
+            pbutton=""
+            pripple=""
+            label="Follow"
+            *ngIf="!productoNuevo"
+            icon="pi pi-plus-circle"
+            (click)="EntrarproductoNuevo()"
+            class="p-element p-ripple mr-2 mt-4 p-button p-component">
+            <span
+              class="p-button-icon p-button-icon-left pi pi-plus-circle"
+              aria-hidden="true"
+            ></span>
+            <span class="p-button-label font-family">Nuevo Producto</span>
+            <span
+              class="p-ink"
+              style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"
+            ></span>
+          </button>
+          </div>
+        </div>
+      
+
+        <ng-template [ngIf]="!productoNuevo && productoSeleccionado">
+
+          <div class="grid font-family">
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Precio Manero
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.precio_venta"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_venta" required autofocus /> -->
+                <small class="p-error" *ngIf="submitted && !producto.precio_venta">
+                  Precio Manero is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Precio Detal
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.precio_detal"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+      
+                <small class="p-error" *ngIf="submitted && !producto.precio_detal">
+                  Precio Detal is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Precio por Mayor
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.precio_por_mayor"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_por_mayor" required autofocus /> -->
+                <small
+                  class="p-error"
+                  *ngIf="submitted && !producto.precio_por_mayor"
+                >
+                  Precio por Mayor is required.
+                </small>
+              </div>
+            </div>
+          </div>
+      
+          <div class="grid font-family" >
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Stock Actual
+                </label>
+                <p-inputNumber
+                  inputId="integeronly"
+                  id="name"
+                  [(ngModel)]="producto.stock_actual"
+                  [required]="false"
+                  autofocus
+                ></p-inputNumber>
+      
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.stock_actual" required autofocus /> -->
+                <!-- <small class="p-error" *ngIf="submitted && !producto.stock_actual">Stock Actual is required.</small> -->
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Cantidad Minima
+                </label>
+                <p-inputNumber
+                  inputId="integeronly"
+                  id="name"
+                  [min]="1"
+                  [(ngModel)]="producto.cantidad_minima"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+      
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.cantidad_minima" required autofocus /> -->
+                <small
+                  class="p-error"
+                  *ngIf="submitted && !producto.cantidad_minima"
+                >
+                  Cantidad Minima is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Costo
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.costo"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <small class="p-error" *ngIf="submitted && !producto.costo">
+                  Costo is required.
+                </small>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="grid font-family" *ngIf="nombre == 'Modificar'">
+            <div class="col-12 md:col-6 sm:col-6">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Costo
+                </label>
+      
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.costo"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <small class="p-error" *ngIf="submitted && !producto.costo">
+                  Costo is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-6 sm:col-6">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Codigo de Barra
+                </label>
+      
+                <input
+                  type="text"
+                  pInputText
+                  id="codigo_barra"
+                  [(ngModel)]="producto.codigo_barra"
+                  required
+                  autofocus
+                />
+                <small class="p-error" *ngIf="submitted && !producto.codigo_barra">
+                  Codigo de Barra is required.
+                </small>
+              </div>
+            </div>
+          </div> -->
+        </ng-template>
+    </div>
+
+    </ng-template>
+
+    <ng-template [ngIf]="productoNuevo">
+
+      <div class="flex justify-content-center align-items-center  font-family mb-2">
+        <div class="text-center">
+            <button
+            pbutton=""
+            pripple=""
+            label="Follow"
+            *ngIf="productoNuevo"
+            icon="pi pi-replay"
+            (click)="VolverproductoNuevo()"
+            class="p-element p-ripple p-button p-component mb-2">
+            <span  class="p-button-icon p-button-icon-left pi pi-replay"
+              aria-hidden="true" ></span>
+            <span class="p-button-label font-family">Volver a Producto existente</span>
+            <span
+              class="p-ink"
+              style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"
+            ></span>
+          </button>
+      </div>
+    </div>
+      <div style="border: 1px solid gray; border-radius: 5px; padding: 25px;">
+
+     
+
+          <div class="grid font-family">
+            <div class="col-12 md:col-6 sm:col-6">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  pInputText
+                  id="name"
+                  [(ngModel)]="producto.nombre"
+                  required
+                  autofocus
+                />
+                <small class="p-error" *ngIf="submitted && !producto.nombre">
+                  Nombre is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-6 sm:col-6">
+              <div class="field font-family">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Seleccione el Tipo de Productos
+                </label>
+                <div class="flex font-family">
+                  <div style="width: 100%;">
+                    <p-dropdown
+                      class="visorg500-select-filter"
+                      [options]="tipoProductos"
+                      [filter]="true"
+                      name="tipo_producto"
+                      [(ngModel)]="producto.tipo_producto"
+                      label="Seleccione el Tipo de Productos"
+                      [style]="{ width: '100%', 'margin-bottom': '10px' }"
+                      optionvalue="id"
+                      optionLabel="nombre"
+                      filterBy="nombre"
+                      [required]="true"
+                      placeholder="Seleccione el Tipo de Productos"
+                      title="TIPO DE PRODUCTO"
+                      class="font-family"
+                    >
+                      <ng-template let-option pTemplate="item">
+                        <span class="font-family">
+                          {{ option.nombre | titlecase }}
+                        </span>
+                      </ng-template>
+                    </p-dropdown>
+                  </div>
+      
+                  <span class="bottomdelete" style="margin-top: -35px;">
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-plus"
+                      style="margin-left: 7px;"
+                      class="p-button-rounded p-button-outlined"
+                      (click)="addTipoproducto($event)"
+                    ></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid font-family">
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Precio Manero
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.precio_venta"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_venta" required autofocus /> -->
+                <small class="p-error" *ngIf="submitted && !producto.precio_venta">
+                  Precio Manero is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Precio Detal
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.precio_detal"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+      
+                <small class="p-error" *ngIf="submitted && !producto.precio_detal">
+                  Precio Detal is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Precio por Mayor
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.precio_por_mayor"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_por_mayor" required autofocus /> -->
+                <small
+                  class="p-error"
+                  *ngIf="submitted && !producto.precio_por_mayor"
+                >
+                  Precio por Mayor is required.
+                </small>
+              </div>
+            </div>
+          </div>
+      
+          <div class="grid font-family" *ngIf="nombre != 'Modificar'">
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Stock Actual
+                </label>
+                <p-inputNumber
+                  inputId="integeronly"
+                  id="name"
+                  [(ngModel)]="producto.stock_actual"
+                  [required]="false"
+                  autofocus
+                ></p-inputNumber>
+      
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.stock_actual" required autofocus /> -->
+                <!-- <small class="p-error" *ngIf="submitted && !producto.stock_actual">Stock Actual is required.</small> -->
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Cantidad Minima
+                </label>
+                <p-inputNumber
+                  inputId="integeronly"
+                  id="name"
+                  [min]="1"
+                  [(ngModel)]="producto.cantidad_minima"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+      
+                <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.cantidad_minima" required autofocus /> -->
+                <small
+                  class="p-error"
+                  *ngIf="submitted && !producto.cantidad_minima"
+                >
+                  Cantidad Minima is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-4 sm:col-4">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Costo
+                </label>
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.costo"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <small class="p-error" *ngIf="submitted && !producto.costo">
+                  Costo is required.
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="grid font-family" *ngIf="nombre == 'Modificar'">
+            <div class="col-12 md:col-6 sm:col-6">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Costo
+                </label>
+      
+                <p-inputNumber
+                  mode="decimal"
+                  [minFractionDigits]="2"
+                  id="name"
+                  [(ngModel)]="producto.costo"
+                  [required]="true"
+                  autofocus
+                ></p-inputNumber>
+                <small class="p-error" *ngIf="submitted && !producto.costo">
+                  Costo is required.
+                </small>
+              </div>
+            </div>
+            <div class="col-12 md:col-6 sm:col-6">
+              <div class="field">
+                <label for="name">
+                  <span style="color: red;">( * )</span>
+                  Codigo de Barra
+                </label>
+      
+                <input
+                  type="text"
+                  pInputText
+                  id="codigo_barra"
+                  [(ngModel)]="producto.codigo_barra"
+                  required
+                  autofocus
+                />
+                <small class="p-error" *ngIf="submitted && !producto.codigo_barra">
+                  Codigo de Barra is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      
+    </ng-template>
+    
+    
+
+
+
+    <ng-template [ngIf]="motrar == false">
+    <div
+      style="
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      "
+    >
+      <button
+        pButton
+        pRipple
+        label="Cancelar"
+        icon="pi pi-times"
+        style="width: auto;"
+        class="p-button-text mr-4 font-family"
+        (click)="productDialogNuevo = false"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Guardar"
+        icon="pi pi-check"
+        style="width: auto;"
+        class="p-button-success font-family"
+        [disabled]="
+          !producto.nombre ||
+          !producto.tipo_producto ||
+          !producto.precio_venta ||
+          !producto.precio_detal ||
+          !producto.costo ||
+          !producto.cantidad_minima ||
+          !producto.precio_por_mayor
+        "
+        (click)="Dialog1 = true"
+      ></button>
+    </div>
+    </ng-template>
+
+    
+<ng-template [ngIf]="motrar == true">
+  <br>
+  <br>
+  <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+  <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+    <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+  <!-- </div> -->
+
+</ng-template>
+  </div>
+  <!-- </ng-template> -->
+</p-dialog>
+
+  <p-dialog
+    [(visible)]="Dialog1"
+    [maximizable]="true"
+    appendTo="body"
+    [style]="{ height: 'auto', width: '40%' }"
+    [resizable]="false"
+    zindex="10000"
+    [showHeader]="false"
+    [closeOnEscape]="false"
+    [closable]="false"
+    [modal]="true"
+  >
+    <br />
+    <div class="flex flex-column mt-3 font-family" style="flex: 1;">
+      <div class="text-center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem;"></i>
+        <h4>Esta seguro de Guardar ?</h4>
+        <p>Si para continuar</p>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer" class="titleCard">
+      <ng-template [ngIf]="motrar == false">
+     
+      <div style="text-align: center;">
+        <button
+          pButton
+          pRipple
+          label="Si"
+          icon="pi pi-check"
+          class="p-button-success p-button-raised p-button-rounded font-family"
+          (click)="saveProduct()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="No"
+          style="color: rgb(31, 45, 64);"
+          class="p-button-text font-family"
+          icon="pi pi-times"
+          (click)="Dialog1 = false"
+        ></button>
+      </div>
+    </ng-template>
+
+      <ng-template [ngIf]="motrar == true">
+        <br>
+        <br>
+        <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+        <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+          <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+    
+        <!-- </div> -->
+      
+      </ng-template>
+    </ng-template>
+  </p-dialog>
+</ng-template>
+
+<ng-template [ngIf]="mostrarDialogo == true">
+  <div class="p-fluid font-family">
+    <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5">
+      <div class="font-medium text-2xl text-900 font-family">
+        <i
+          class="pi pi-tags text-blue-500 text-xl bg-blue-100 border-round p-2"
+          *ngIf="nombre != 'Modificar'"
+        ></i>
+        <i
+          class="pi pi-pencil text-orange-500 text-xl bg-blue-100 border-round p-2"
+          *ngIf="nombre == 'Modificar'"
+        ></i>
+        {{ nombre }} Producto
+      </div>
+    </div>
+    <!-- <ng-template pTemplate="content"> -->
+    <div style="border: 1px solid gray; border-radius: 5px; padding: 25px;">
+      <div class="grid font-family">
+        <div class="col-12 md:col-6 sm:col-6">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Nombre
+            </label>
+            <input
+              type="text"
+              pInputText
+              id="name"
+              [(ngModel)]="producto.nombre"
+              required
+              autofocus
+            />
+            <small class="p-error" *ngIf="submitted && !producto.nombre">
+              Nombre is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 sm:col-6">
+          <div class="field font-family">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Seleccione el Tipo de Productos
+            </label>
+            <div class="flex font-family">
+              <div style="width: 100%;">
+                <p-dropdown
+                  class="visorg500-select-filter"
+                  [options]="tipoProductos"
+                  [filter]="true"
+                  name="tipo_producto"
+                  [(ngModel)]="producto.tipo_producto"
+                  label="Seleccione el Tipo de Productos"
+                  [style]="{ width: '100%', 'margin-bottom': '10px' }"
+                  optionvalue="id"
+                  optionLabel="nombre"
+                  filterBy="nombre"
+                  [required]="true"
+                  placeholder="Seleccione el Tipo de Productos"
+                  title="TIPO DE PRODUCTO"
+                  class="font-family"
+                >
+                  <ng-template let-option pTemplate="item">
+                    <span class="font-family">
+                      {{ option.nombre | titlecase }}
+                    </span>
+                  </ng-template>
+                </p-dropdown>
+              </div>
+
+              <span class="bottomdelete" style="margin-top: -35px;">
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-plus"
+                  style="margin-left: 7px;"
+                  class="p-button-rounded p-button-outlined"
+                  (click)="addTipoproducto($event)"
+                ></button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid font-family">
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Precio Manero
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.precio_venta"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_venta" required autofocus /> -->
+            <small class="p-error" *ngIf="submitted && !producto.precio_venta">
+              Precio Manero is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Precio Detal
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              locale="en-IN"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.precio_detal"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+
+            <small class="p-error" *ngIf="submitted && !producto.precio_detal">
+              Precio Detal is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Precio por Mayor
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.precio_por_mayor"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.precio_por_mayor" required autofocus /> -->
+            <small
+              class="p-error"
+              *ngIf="submitted && !producto.precio_por_mayor"
+            >
+              Precio por Mayor is required.
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="grid font-family" *ngIf="nombre != 'Modificar'">
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Stock Actual
+            </label>
+            <p-inputNumber
+              inputId="integeronly"
+              id="name"
+              [(ngModel)]="producto.stock_actual"
+              [required]="false"
+              autofocus
+            ></p-inputNumber>
+
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.stock_actual" required autofocus /> -->
+            <!-- <small class="p-error" *ngIf="submitted && !producto.stock_actual">Stock Actual is required.</small> -->
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Cantidad Minima
+            </label>
+            <p-inputNumber
+              inputId="integeronly"
+              id="name"
+              [(ngModel)]="producto.cantidad_minima"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+
+            <!-- <input type="text" pInputText id="name" [(ngModel)]="producto.cantidad_minima" required autofocus /> -->
+            <small
+              class="p-error"
+              *ngIf="submitted && !producto.cantidad_minima"
+            >
+              Cantidad Minima is required.
+            </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-4 sm:col-4">
+          <div class="field">
+            <label for="name">
+              <span style="color: red;">( * )</span>
+              Costo
+            </label>
+            <p-inputNumber
+              mode="decimal"
+              [minFractionDigits]="2"
+              id="name"
+              [(ngModel)]="producto.costo"
+              [required]="true"
+              autofocus
+            ></p-inputNumber>
+            <small class="p-error" *ngIf="submitted && !producto.costo">
+              Costo is required.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template [ngIf]="motrar == false">
+
+    <div
+      style="
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      "
+    >
+      <button
+        pButton
+        pRipple
+        label="Cancelar"
+        icon="pi pi-times"
+        class="p-button-text font-family mr-3"
+        style="width: auto;"
+        (click)="cancelar()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        *ngIf="nombre != 'Modificar'"
+        label="Guardar"
+        icon="pi pi-check"
+        style="width: auto;"
+        class="p-button-success font-family"
+        [disabled]="
+          !producto.nombre ||
+          !producto.tipo_producto ||
+          !producto.precio_venta ||
+          !producto.precio_detal ||
+          !producto.costo ||
+          !producto.cantidad_minima ||
+          !producto.precio_por_mayor
+        "
+        (click)="saveProduct()"
+      ></button>
+    </div>
+  </ng-template>
+
+    <ng-template [ngIf]="motrar == true">
+      <br>
+      <br>
+      <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+      <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+        <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+  
+      <!-- </div> -->
+    
+    </ng-template>
+  </div>
+</ng-template>

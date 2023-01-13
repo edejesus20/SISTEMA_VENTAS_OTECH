@@ -1,0 +1,25 @@
+
+
+
+      <div class="grid">
+        <ng-template [ngIf]="sedeId != 0">
+
+        <div class="col-fixed" style="width:auto;margin:0px">
+          <app-menu (onToggleSideNav)="onToggleSideNav($event)"></app-menu>
+        </div>
+        <div class="col" style="width:auto;margin:0px"> 
+
+        
+          
+          <app-Body [collapsed]="isSedeNavCollased" [screenwidth]="screenwidth"></app-Body>  
+       
+        </div>
+      </ng-template>
+    </div>
+    <p-toast></p-toast>
+    <!-- <p-confirmPopup></p-confirmPopup> -->
+
+   <!-- <div class="min-h-screen   m-w-screen surface-ground">
+      <app-menu (onToggleSideNav)="onToggleSideNav($event)"></app-menu>
+      <app-Body [collapsed]="isSedeNavCollased" [screenwidth]="screenwidth" [screenwidth2]="screenwidth"></app-Body>  
+    </div> -->

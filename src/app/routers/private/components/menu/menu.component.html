@@ -1,0 +1,124 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
+  <div class="logo-container">
+    <button  pButton pRipple type="button" @rotate
+    class="logo p-button-raised p-button-success p-button-text" 
+    (click)="toggleCollapse()" *ngIf="!collapsed">RP</button>
+    <div class="logo-text" @fadeInOut @rotate *ngIf="collapsed">Rio Prieto</div>
+    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fal fa-times close-icon"></i>
+    </button>
+
+  
+  </div>
+  <!-- <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of items">
+      <a routerLinkActive="active"
+      [routerLink]="data.routerLink"
+      [routerLinkActiveOptions]="{exact:true}"
+      class="sidenav-nav-link">
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+      </a>
+    </li>
+  </ul> -->
+
+  <div class="scrollwrap scrollwrap_delayed">
+    <ul class="sidenav-nav">
+      <li  class="sidenav-nav-item text-center -mt-3 " >
+        <ng-template [ngIf]="collapsed">
+
+          <img [src]="imagen" title="{{tipoUser}}" 
+          styleClass="mr-2" size="xlarge" shape="circle" 
+          style="width: 100px; ">
+
+        </ng-template>
+        <ng-template [ngIf]="!collapsed">
+          <img [src]="imagen" title="{{tipoUser}}" 
+          styleClass="mr-2" size="xlarge" shape="circle" 
+          style="width: 40px; ">
+        </ng-template>
+        <span class="block text-green-500 font-medium">
+          {{sedeDatos?.nombre | titlecase}}
+        </span>
+        
+
+      </li>
+
+      <li class="sidenav-nav-item -mt-1" *ngFor="let data of items">
+        <a *ngIf="data.items && data.items.length > 0" 
+          (click)="handleClick(data)"
+          [routerLink]="data.routerLink" title="{{data.label}}"
+        class="sidenav-nav-link" [ngClass]="getActivateClass(data)">
+          <i class="sidenav-link-icon" [class]="data.icon"></i>
+          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+         
+          <i *ngIf="data.items && collapsed" 
+          [ngClass]="!data.expanded ? 'pi pi-angle-down' : 'pi pi-angle-up'"
+          class="menu-collapsed-icon"></i>
+        </a>
+  
+        <a routerLinkActive="active" 
+        *ngIf="!data.items || (data.items && data.items.length === 0)"
+        [routerLink]="data.routerLink"
+        (click)="shirhkItems(data)" title="{{data.label}}"
+        [routerLinkActiveOptions]="{exact:true}"
+        class="sidenav-nav-link">
+          <i class="sidenav-link-icon" [class]="data.icon"></i>
+          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+        </a>
+        <div *ngIf="data.items && data.items.length > 0">
+          <app-subnivel-menu 
+          [data]="data"
+          [collapsed]="collapsed" 
+          [multiple]="multiple"
+           [expanded]="data.expanded"
+          ></app-subnivel-menu>
+    </div>
+      </li>
+      <li  class="sidenav-nav-item mb-4" >
+  
+        <a routerLinkActive="active" (click)="Dialog1=true"
+        [routerLinkActiveOptions]="{exact:true}"
+        class="sidenav-nav-link mb-4">
+          <i class="sidenav-link-icon pi pi-sign-out mr-2"></i>
+          <span class="sidenav-link-text" @fadeInOut >Cerrar Sesion</span>
+      </a>
+         
+      </li>
+    </ul>
+    
+  </div>
+
+</div>
+
+<p-dialog [(visible)]="Dialog1" 
+[maximizable]="true" appendTo="body"
+[style]="{'height': 'auto','width': '40%'}"[resizable]="false" zindex="10000"
+ [showHeader]="false" [closeOnEscape]="false" [closable]="false"
+[modal]="true" >
+<br>
+    <div class="flex flex-column mt-3 font-family" style="flex: 1">
+        <div class="text-center">
+          <img [src]="imagen" title="{{tipoUser}}" 
+          styleClass="mr-2" size="xlarge" shape="circle" 
+          style="width: 100px; ">
+            <!-- <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i> -->
+            <h4>¿¿ Esta seguro de Cerrar la Sesion ??</h4>
+            <p>Si para continuar</p>
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer" class="titleCard" >
+      <div style="text-align: center;">
+        <button pButton pRipple label="Si" icon="pi pi-check" 
+        class="p-button-success p-button-raised p-button-rounded font-family" (click)="cerrarSesion()"></button>
+        <button pButton pRipple label="No"  style="color: rgb(31, 45, 64);" 
+        class=" p-button-text font-family" icon="pi pi-times"  (click)="Dialog1 = false"  ></button>
+      </div>
+    </ng-template>
+</p-dialog>
+
+
+
+
+

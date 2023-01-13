@@ -1,0 +1,225 @@
+@media (max-width: 1287px){
+    .sidenav{
+        // height: 100%;
+        overflow-y: auto;
+    }
+}
+.sidenav{
+    // background:#263238;
+    background:white;
+    transition:all 0.2s ease;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 5rem;
+    height: 100%;
+    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+    
+}
+ .logo-container{
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        // width:auto;
+    }
+.logo{
+    background-attachment: #fff;
+    text-align: center;
+    width: 3rem;
+    padding-left: 2px;
+    min-width: 3rem;
+    font-size:30px;
+    font-weight: 900;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-family:"French Script MT V1"!important
+
+}
+.logo-text{
+    margin-left: 0.1rem;
+    // margin-right: 0.1rem;
+    font-size:55px;
+    font-weight: 700;
+    color: #22C55E;
+    font-family:"French Script MT V1"!important
+
+}
+
+.btn-close{
+    margin-left: auto;
+    cursor: pointer;
+    width:1.5rem;
+    height:1.5rem;
+    font-size:20px;
+    border-radius:50%;
+    background-color:transparent;
+    border:none;
+
+    
+}
+
+.fa-times{
+    
+    color: #263238;
+    // color: #fff;
+    font-size:24px;
+}
+.sidenav-collapsed{
+    width: 16.5625rem;
+    // height: 100%;
+}
+.sidenav-nav{
+    list-style: none;
+    padding: 0.938rem;
+    margin: 0;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    // height:calc(100% - 3.65rem);
+
+    cursor: pointer;
+}
+// scrollwaper visible
+.scrollwrap{
+    overflow-y: auto;
+    visibility: hidden;
+    height:calc(100% - 3.65rem);
+
+}
+.sidenav-nav,.scrollwrap:hover,.scrollwrap:focus{
+    visibility: visible;
+
+}
+.scrollwrap_delayed{
+    transition: visibility 0.5s 0.2s;
+}
+.scrollwrap_delayed:hover{
+    transition: visibility 0.2s 0.2s;
+}
+.scrollwrap::-webkit-scrollbar{
+    width:10px
+}
+.scrollwrap::-webkit-scrollbar-track{
+   background:transparent
+}
+.scrollwrap::-webkit-scrollbar-thumb{
+    background-color: #556268;
+    border-radius:20px;
+ }
+ .scrollwrap{
+    scrollbar-width: thin;
+    scrollbar-color: #556268 transparent;
+ }
+ 
+
+// sidenav
+.sidenav-nav-item{
+    width: 100%;
+    margin-bottom: 0.625rem;
+
+  
+}
+.sidenav-nav-link{
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    color: #263238;
+
+    // color:#f3f3f3;
+    text-decoration: none;
+    border-radius: 0.625rem;
+    transition: all .3s ease;
+    
+   
+}
+.sidenav-link-icon{
+    font-size:22px;
+    width:2rem;
+    margin:  0 0.5rem;
+    min-width: 2rem;
+    text-align: center;
+
+    
+}
+.sidenav-nav-item:hover{
+    .sidenav-nav-link{
+    background-color: #898989;
+
+        // background-color: #263238;
+
+        // background-color:#fff;
+        color:#000;
+    }
+    .menu-collapsed-icon{
+        color:#000;
+
+        // color: #263238;
+        // color:#000;
+    }
+}
+
+.sidenav-link-text{
+    margin-left: 1.5rem;
+}
+
+.active{
+    // background-color: #263238;
+    background-color: #898989;
+
+    // background-color: #fff;
+    .menu-collapsed-icon, .sidenav-link-icon, .sidenav-link-text{
+        color:#000
+    }
+}
+
+.active-subnivel{
+    color:#898989;
+    // color: #263238;
+
+    // color: #f3f3f3 !important;
+    // opacity:1 !important;
+}
+.menu-collapsed-icon{
+    font-size: 20px;
+    width:2rem;
+    margin: auto 0.5rem auto auto;
+    text-align: center;
+    color: #263238;
+
+    // color:#f3f3f3;
+}
+.subnivel-nav{
+    list-style: none;
+    margin-left: 5px;
+    .subnivel-nav-item{
+        .subnivel-nav-link{
+            display: flex;
+            align-items: center;
+            height:3rem;
+            color:#898989;
+            text-decoration: none;
+            border-radius:0.625rem;
+            transition:all 0.3s ease;
+
+            .subnivel-nav-icon{
+                font-size:4px;
+                width:1.5rem;
+                min-width: 2rem;
+                margin: 0 0.3rem;
+                text-align: center;
+            }
+            .sidenav-link-text{
+                margin-left: 0.5rem;
+
+            }
+        }
+        .subnivel-nav-link:hover{
+        color:#000
+
+            // color: #f3f3f3;
+
+        }
+    }
+}
+

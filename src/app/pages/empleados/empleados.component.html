@@ -1,0 +1,492 @@
+<ng-template [ngIf]="mostrarDialogo==false">
+  <div style="max-width:150rem" class="ml-2"> 
+    <br>
+      <div class="px-4 py-5 md:px-4 lg:px-4 surface-section">
+          <div class="flex flex-column lg:flex-row lg:align-items-center 
+          lg:justify-content-between relative" 
+          style="top:-20px">
+            <div>
+              <div class=" mr-3 surface-card shadow-2 flex align-items-center justify-content-center p-2" 
+                    style="width: auto; height: auto; max-width:600px; border-radius: 10px;">
+                    <div class="logo-text" @fadeInOut >Registro de Empleados</div>
+                    <!-- <img src="assets/almacenamiento.jpg" alt="Image" width="100" height="70"> -->
+                </div>
+                <div class="text-600 font-medium">
+                </div>
+            </div>
+            <div class="mt-3 lg:mt-0">
+                <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" 
+                (click)="openNew()"
+                class="p-element p-ripple  mr-2 p-button p-component">
+                <span class="p-button-icon p-button-icon-left pi pi-plus-circle" aria-hidden="true"></span>
+                <span class="p-button-label font-family">Registrar Empleado</span>
+                <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
+                </button>
+        
+            </div>
+          </div>
+  
+    
+      <br>
+      <hr> 
+      <br>
+
+      <div class="grid">
+
+        <div class="col-12 sm:col-7 md:col-7">
+            <div style="width:100%" class="mt-3">
+                <span class="p-input-icon-left"  style="width: 100%;"  >
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText placeholder="Buscador..." 
+                    class="font-family" style="min-width: 100%"
+                    (input)="Buscar($event, dt1)"/>
+                </span>
+            </div>
+          </div>
+        <div class="col-12 sm:col-5 md:col-5">
+          <div class="flex align-items-center ">
+            <div class="mb-3 mt-3">
+
+              <button pbutton="" pripple="" icon="pi pi-file"  (click)="dt1.exportCSV()"
+              pTooltip="CSV" tooltipPosition="bottom"
+              class="p-ripple p-element p-button-rounded  mr-2 p-button-info p-button 
+              p-component p-button-icon-only"><span class="p-ink"></span>
+              <span class="p-button-icon pi pi-file" aria-hidden="true"></span>
+              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel()"
+              pTooltip="XLS" tooltipPosition="bottom"
+              class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+              p-component p-button-icon-only"><span class="p-ink"></span>
+              <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
+              pTooltip="PDF" tooltipPosition="bottom"
+              class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+              p-component p-button-icon-only"><span class="p-ink"></span>
+              <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
+              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+              </button>
+              <!-- <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt1.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button> -->
+            </div>
+            <p-splitButton label="Acciones" [model]="items" styleClass="p-button-raised p-button-rounded p-button-outlined 
+              p-button-secondary  mr-2 mb-2">
+            </p-splitButton>
+
+          </div>
+        </div>
+      </div>
+  
+  
+      <p-table #dt1 [value]="empleados" 
+        selectionMode="multiple" [(selection)]="selectedProducts" 
+        id="todo"
+        dataKey="id" styleClass="p-datatable-customers " [rowHover]="true"
+        [rows]="5" [showCurrentPageReport]="true" 
+        [rowsPerPageOptions]="[5,10,25,50]" 
+        [loading]="loading" responsiveLayout="scroll" 
+        [style]="{'width':'100%','display':'grid'}"
+        [paginator]="true" 
+        currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+        [filterDelay]="0" 
+        [columns]="cols"
+
+        [globalFilterFields]="['nombres','apellidos','documento','email','codigo'
+        ,'sede','telefono','status']">
+        <ng-template pTemplate="header">
+            <tr class="font-family">
+                <th pSortableColumn="nombres">
+                    <div class="flex justify-content-between align-items-center">
+                        Nombres
+                        <p-sortIcon field="nombres"></p-sortIcon>
+                    </div>
+                </th>
+                <th pSortableColumn="apellidos">
+                    <div class="flex justify-content-between align-items-center">
+                      Apellidos
+                        <p-sortIcon field="apellidos"></p-sortIcon>
+                    </div>
+                </th>
+                <th pSortableColumn="documento">
+                    <div class="flex justify-content-between align-items-center">
+                      Documento
+                        <p-sortIcon field="documento"></p-sortIcon>
+                    </div>
+                </th>
+                <th pSortableColumn="email">
+                    <div class="flex justify-content-between align-items-center">
+                      Correo
+                        <p-sortIcon field="email"></p-sortIcon>
+                    </div>
+                </th>
+                <th pSortableColumn="codigo">
+                    <div class="flex justify-content-between align-items-center">
+                      Codigo
+                        <p-sortIcon field="codigo"></p-sortIcon>
+                    </div>
+                </th>
+                <th pSortableColumn="telefono">
+                    <div class="flex justify-content-between align-items-center">
+                      Telefono
+                        <p-sortIcon field="telefono"></p-sortIcon>
+                    </div>
+                </th>
+                <!-- Acciones -->
+                <ng-template [ngIf]="Acciones ==1">
+                    <th style="width: 5rem"> Editar</th>
+                </ng-template>
+                <ng-template [ngIf]="Acciones ==2">
+                    <th style="width: 5rem"> Eliminar</th>
+                </ng-template>
+                <ng-template [ngIf]="Acciones ==3">
+                    <th style="width: 5rem" pSortableColumn="status"> Estados</th>
+                </ng-template>
+                <ng-template [ngIf]="Acciones ==4">
+                  <th style="width: 5rem"> Ventas</th>
+              </ng-template>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer  let-rowData let-expanded="expanded">
+            <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                <td>
+                    {{customer.nombres | titlecase}}
+                </td>
+                <td>
+                  {{customer.apellidos | titlecase}}
+              </td>
+                <td>
+                    {{customer.documento }}
+                </td>
+                <td>
+                    {{customer.email | titlecase}}
+                </td>
+                <td>
+                  {{customer.codigo | titlecase}}
+              </td>
+                <td>
+                  {{customer.telefono }}
+              </td>
+              
+                <!-- Acciones -->
+                <ng-template [ngIf]="Acciones ==1">
+                <td style="text-align: center">
+                    <button pButton type="button" (click)="editProduct(customer)"
+                    class=" p-ripple 
+                     p-button-rounded p-button p-button-warning" icon="pi pi-pencil
+                    "></button>
+                </td>
+                </ng-template>
+                <ng-template [ngIf]="Acciones ==4">
+                  <td style="text-align: center">
+                      <button pButton type="button" (click)="AllVentas(customer)"
+                      class=" p-ripple 
+                       p-button-rounded p-button p-button-success" 
+                      icon="pi pi-shopping-bag
+                      "></button>
+                  </td>
+                </ng-template>
+                <ng-template [ngIf]="Acciones ==2">
+                    <td style="text-align: center">
+                        <button pButton type="button" (click)="deleteProduct(customer)"
+                        class=" p-ripple 
+                         p-button-rounded p-button p-button-danger" 
+                        icon="pi pi-trash"></button>
+                    </td>
+                </ng-template>
+                <ng-template [ngIf]="Acciones ==3">
+                    <td style="text-align: center">
+                        <button pButton  class="p-button-rounded p-button-success" disabled *ngIf="customer?.estado == true" 
+                        style="padding:5px;border-radius:2px">
+                        <span [class]="'customer-badge status-' + customer?.estado">
+                          {{customer?.status}}
+                        </span>
+
+                          
+                        </button>
+                        <button pButton  class="p-button-rounded p-button-danger" 
+                        *ngIf="customer?.estado == false" 
+                        
+                        style="padding:5px;border-radius:2px" (click)="activar(customer)">
+                          
+                          <span [class]="'customer-badge status-' + customer?.estado">
+                          {{customer?.status}}
+                            
+                          </span>
+                        </button>
+                        
+                    </td>
+                </ng-template>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" style="text-align: center;">
+            <tr class="font-family">
+                <td colspan="8">No hay registros encontrados</td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </div>
+  
+  </div>
+  
+
+  <p-dialog header="Ventas del Empleado '{{producto.nombres | titlecase}}  Codigo : {{producto.codigo }}'" 
+  [resizable]="false" [modal]="true" 
+  [maximizable]="false" appendTo="body" [(visible)]="Mostrarventas" 
+  [style]="{width: '73%'}" [contentStyle]="{height: '400px'}" >
+
+  <p-table [value]="ventas" [scrollable]="true" scrollHeight="flex">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width:100px">Fecha</th>
+            <th style="min-width:100px">Numero</th>
+            <th style="min-width:100px">Tipo Ventas</th>
+            <th style="min-width:100px">SubTotal</th>
+            <th style="min-width:100px">Total</th>
+            <th style="min-width:100px">Cliente</th>
+            <th style="min-width:100px">Estado de Venta</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer>
+        <tr>
+            <td style="min-width:100px">{{customer.fecha_venta | date}}</td>
+            <td style="min-width:100px">{{customer.numero}}</td>
+            <td style="min-width:100px">{{customer.tipoventas | titlecase}}</td>
+            <td style="min-width:100px">{{customer.subtotal | currency:'':'':'0.2-2'}}</td>
+            <td style="min-width:100px">{{customer.total | currency:'':'':'0.2-2'}}</td>
+            <td style="min-width:100px">{{customer.cliente.documento | titlecase}}</td>
+            <td style="min-width:100px">{{customer.estado_compra | titlecase}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-dialog>
+
+  <p-dialog [(visible)]="productDialog" [style]="{'height': 'auto','width': '70%'}"
+   [resizable]="false" zindex="10000" 
+  [closable]="false" [closeOnEscape]="false" 
+  [maximizable]="true" appendTo="body"
+  [showHeader]="false"
+  [modal]="true" styleClass="p-fluid border-round">
+      <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+          <div class="font-medium text-2xl text-900 font-family">
+              <i class="pi pi-users text-blue-500 text-xl bg-blue-100 border-round p-2" *ngIf="nombre != 'Modificar'"></i>
+              <i class="pi pi-pencil text-orange-500 text-xl bg-blue-100 border-round p-2" *ngIf="nombre == 'Modificar'"></i>
+              {{nombre}} Empleado
+          </div>
+      </div>
+      <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+              <div class="grid font-family">
+                  <div class="col-12 md:col-4 sm:col-4">
+                    <div class="field">
+                      <label for="name"><span style="color:red">( * )</span> Codigo</label>
+                      <input type="text" pInputText id="name" [(ngModel)]="producto.codigo" required autofocus />
+                      <small class="p-error" *ngIf="submitted && !producto.codigo">Codigo is required.</small>
+                  </div>
+                  </div>
+                  <div class="col-12 md:col-4 sm:col-4">
+                    <div class="field">
+                      <label for="name"><span style="color:red">( * )</span> Nombre</label>
+                      <input type="text" pInputText id="name" [(ngModel)]="producto.nombres" required autofocus />
+                      <small class="p-error" *ngIf="submitted && !producto.nombres">Nombre is required.</small>
+                  </div>
+                  </div>
+                  <div class="col-12 md:col-4 sm:col-4">
+                    <div class="field">
+                      <label for="name"><span style="color:red">( * )</span> Apellidos</label>
+                      <input type="text" pInputText id="name" [(ngModel)]="producto.apellidos" required autofocus />
+                      <small class="p-error" *ngIf="submitted && !producto.apellidos">Apellidos is required.</small>
+                  </div>
+                  </div>
+                </div>
+                <div class="grid font-family">
+                  <div class="col-12 md:col-4 sm:col-4">
+                    <div class="field">
+                      <label for="name"><span style="color:red">( * )</span> Identificación</label>
+                      <input type="text" pInputText id="name" [(ngModel)]="producto.documento" required autofocus />
+                      <small class="p-error" *ngIf="submitted && !producto.documento">Identificación is required.</small>
+                  </div>
+                  </div>
+                  <div class="col-12 md:col-4 sm:col-4">
+                    <div class="field">
+                      <label for="name"><span style="color:red">( * )</span> Email</label>
+                      <input type="email" pInputText id="name" [(ngModel)]="producto.email" required autofocus />
+                      <small class="p-error" *ngIf="submitted && !producto.email">Email is required.</small>
+                  </div>
+                  </div>
+                  <div class="col-12 md:col-4 sm:col-4">
+                    <div class="field">
+                      <label for="name"><span style="color:red">( * )</span> Telefono</label>
+                      <input type="text" pInputText id="name" [(ngModel)]="producto.telefono" required autofocus />
+                      <small class="p-error" *ngIf="submitted && !producto.telefono">Telefono is required.</small>
+                  </div>
+                  </div>
+                </div>
+    </div>
+   
+  
+
+
+    <ng-template [ngIf]="motrar == false">
+
+  
+    <div style="text-align: center;display:flex;justify-content:center;margin-top: 10px;" >
+      <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text font-family" 
+      (click)="productDialog = false" style="width: auto;"></button>
+      <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-success font-family" 
+      [disabled]="!producto.codigo || !producto.nombres
+      || !producto.apellidos || !producto.documento|| !producto.email || !producto.telefono
+      " 
+      (click)="Dialog1=true" style="width: auto;"></button>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="motrar == true">
+    <br>
+    <br>
+    <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+    <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+      <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+    <!-- </div> -->
+  
+  </ng-template>
+    
+  </p-dialog>
+  
+  <p-confirmDialog acceptLabel="Si" rejectLabel="No" [transitionOptions]="'3ms'"
+  styleClass="font-family" [closeOnEscape]="false" [closable]="false" appendTo="body"
+  [style]="{'font-family':'Century Gothic'}"
+   acceptButtonStyleClass="p-button-success font-family"
+  rejectButtonStyleClass="p-button-text font-family"
+  ></p-confirmDialog>
+  
+  
+  <!-- <p-toast></p-toast> -->
+  
+  <!-- guardar -->
+  <p-dialog [(visible)]="Dialog1" 
+  [maximizable]="true" appendTo="body"
+  [style]="{'height': 'auto','width': '40%'}"[resizable]="false" zindex="10000"
+   [showHeader]="false" [closeOnEscape]="false" [closable]="false"
+  [modal]="true" >
+  <br>
+      <div class="flex flex-column mt-3 font-family" style="flex: 1">
+          <div class="text-center">
+              <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+              <h4>Esta seguro de Guardar ?</h4>
+              <p>Si para continuar</p>
+          </div>
+      </div>
+  
+      <ng-template pTemplate="footer" class="titleCard" >
+        <ng-template [ngIf]="motrar == false">
+
+        <div style="text-align: center;">
+          <button pButton pRipple label="Si" icon="pi pi-check" 
+          class="p-button-success p-button-raised p-button-rounded font-family" (click)="saveProduct()"></button>
+          <button pButton pRipple label="No"  style="color: rgb(31, 45, 64);" 
+          class=" p-button-text font-family" icon="pi pi-times"  (click)="Dialog1 = false"  ></button>
+        </div>
+      </ng-template>
+
+        <ng-template [ngIf]="motrar == true">
+          <br>
+          <br>
+          <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+          <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+            <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+      
+          <!-- </div> -->
+        
+        </ng-template>
+      </ng-template>
+  </p-dialog>
+  </ng-template>
+  
+  <ng-template [ngIf]="mostrarDialogo==true">
+    <div class="p-fluid">
+  
+      <div class="flex flex-column align-items-center mb-3 mt-4 ng-tns-c38-5 ">
+        <div class="font-medium text-2xl text-900 font-family">
+            <i class="pi pi-users text-blue-500 text-xl bg-blue-100 border-round p-2" *ngIf="nombre != 'Modificar'"></i>
+            <i class="pi pi-pencil text-orange-500 text-xl bg-blue-100 border-round p-2" *ngIf="nombre == 'Modificar'"></i>
+            {{nombre}} Empleado
+        </div>
+    </div>
+    <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+            <div class="grid font-family">
+                <div class="col-12 md:col-4 sm:col-4">
+                  <div class="field">
+                    <label for="name"><span style="color:red">( * )</span> Codigo</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="producto.codigo" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !producto.codigo">Codigo is required.</small>
+                </div>
+                </div>
+                <div class="col-12 md:col-4 sm:col-4">
+                  <div class="field">
+                    <label for="name"><span style="color:red">( * )</span> Nombre</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="producto.nombres" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !producto.nombres">Nombre is required.</small>
+                </div>
+                </div>
+                <div class="col-12 md:col-4 sm:col-4">
+                  <div class="field">
+                    <label for="name"><span style="color:red">( * )</span> Apellidos</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="producto.apellidos" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !producto.apellidos">Apellidos is required.</small>
+                </div>
+                </div>
+              </div>
+              <div class="grid font-family">
+                <div class="col-12 md:col-4 sm:col-4">
+                  <div class="field">
+                    <label for="name"><span style="color:red">( * )</span> Identificación</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="producto.documento" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !producto.documento">Identificación is required.</small>
+                </div>
+                </div>
+                <div class="col-12 md:col-4 sm:col-4">
+                  <div class="field">
+                    <label for="name"><span style="color:red">( * )</span> Email</label>
+                    <input type="email" pInputText id="name" [(ngModel)]="producto.email" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !producto.email">Email is required.</small>
+                </div>
+                </div>
+                <div class="col-12 md:col-4 sm:col-4">
+                  <div class="field">
+                    <label for="name"><span style="color:red">( * )</span> Telefono</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="producto.telefono" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !producto.telefono">Telefono is required.</small>
+                </div>
+                </div>
+              </div>
+  </div>
+ 
+  
+  
+  <br>
+  <ng-template [ngIf]="motrar == false">
+
+  <div style="text-align: center;display:flex;justify-content:center;align-items: center">
+    <button pButton pRipple label="Cancelar" icon="pi pi-times mr-3" class="p-button-text" style="width:auto"
+    (click)="cancelar()"></button>
+  
+  <button pButton pRipple label="Guardar" icon="pi pi-check" class=" p-button-success" style="width:auto"
+  [disabled]="!producto.codigo || !producto.nombres
+  || !producto.apellidos || !producto.documento|| !producto.email || !producto.telefono" (click)="saveProduct()"></button>
+  </div>
+</ng-template>
+
+  <ng-template [ngIf]="motrar == true">
+    <br>
+    <br>
+    <!-- <p-progressBar [value]="cargando"></p-progressBar> -->
+    <!-- <div fxLayout="row" class="titleCard"style="margin-top: 20px;"> -->
+      <p-progressBar mode="indeterminate"  [style]="{'height': '6px'}"></p-progressBar>
+
+    <!-- </div> -->
+  
+  </ng-template>
+  
+    </div>
+  </ng-template>

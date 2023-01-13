@@ -1,0 +1,1666 @@
+
+<ng-template [ngIf]="noestasPermitido">
+    <img [src]="noAutorizado" alt="" srcset="" style="width:100%">
+</ng-template>
+
+<ng-template [ngIf]="!noestasPermitido">
+    <div class="overflow-y-auto mt-3" style="background-color: transparent;">
+        <div class="flex flex-column flex-auto overflow-y-auto">
+        <div class="surface-section p-3" style="border-radius: 10px;">
+            <div class="flex align-items-start flex-column lg:flex-row 
+            lg:justify-content-between">
+                <div class="flex align-items-start flex-column md:flex-row">
+                    <!-- <img src="assets/images/blocks/avatars/circle/avatar-f-1@2x.png"
+                    class="mr-5 mb-3 lg:mb-0" style="width: 90px; height: 90px;"> -->
+                    <div><span class="text-900 font-medium text-3xl">Bienvenido(a) de nuevo, a continuación se se listarán todos los reportes con los datos de  {{DatosSede?.nombre | titlecase}}</span>
+                        <i class="pi pi-star text-2xl ml-4 text-yellow-500"></i>
+                        <!-- <div class="flex align-items-center flex-wrap text-sm">
+                            <div class="mr-5 mt-3">
+                                <span class="font-medium text-500">Clientes</span>
+                                <div class="text-700 mt-2">333</div>
+                            </div>
+                            <div class="mr-5 mt-3">
+                                <span class="font-medium text-500">Empleados</span>
+                                <div class="text-700 mt-2">26</div>
+                            </div>
+                            <div class="mr-5 mt-3">
+                                <span class="font-medium text-500">Proveedores</span>
+                                <div class="text-700 mt-2">17</div>
+                            </div>
+                            <div class="mt-3">
+                                <span class="font-medium text-500">Cajeros</span>
+                                <div class="text-700 mt-2">1</div>
+                            </div>
+                         
+                        </div> -->
+                    </div>
+                </div>
+                <div class="mt-3 lg:mt-0">
+                    <!-- <button pbutton="" pripple="" icon="pi pi-bookmark" 
+                    class="p-ripple p-element p-button-rounded mr-2 p-button 
+                    p-component p-button-icon-only">
+                    <span class="p-ink"></span>
+                    <span class="p-button-icon pi pi-bookmark" aria-hidden="true"></span>
+                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                </button>
+                <button pbutton="" pripple="" icon="pi pi-heart" 
+                class="p-ripple p-element p-button-rounded p-button-success mr-2 
+                p-button p-component p-button-icon-only">
+                    <span class="p-ink"></span>
+                    <span class="p-button-icon pi pi-heart" aria-hidden="true"></span>
+                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                </button>
+            <button pbutton="" pripple="" icon="pi pi-list" 
+            class="p-ripple p-element p-button-rounded p-button-help p-button 
+            p-component p-button-icon-only"><span class="p-ink"></span>
+            <span class="p-button-icon pi pi-list" aria-hidden="true"></span>
+            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+        </button> -->
+                </div>
+            </div>
+        </div>
+        <div class="p-3">
+            <div class="grid">
+    
+                <!-- compras de descuento -->
+    
+                <div class="col-12 xl:col-12">
+                    <div class="p-4 " style="background-color: white;border-radius: 5px;">
+    
+                        <div class="flex justify-content-center align-items-center">
+                            <i class="pi pi-calendar text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                            <span class="block text-900  mb-2 text-xl font-medium mt-1"><b>COMPRAS QUE TIENEN DESCUENTOS</b></span>
+                         </div>
+    
+                        <!-- <div class="text-xl text-900 font-medium mb-5">Productos Agotados</div> -->
+    
+                        <br>
+    
+               
+                        <div class="grid">
+                            <div class="col-12 sm:col-9 md:col-9">
+                                <div style="width:100%" class="mt-3">
+                                    <span class="p-input-icon-left" style="width: 100%;" >
+                                        <i class="pi pi-search"></i>
+                                        <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                        class="font-family" style="min-width: 100%"
+                                        (input)="BuscarDescuentos($event,dt1)"
+                                        
+                                        />
+                                        <!-- (keydown)="Codigo($event)" -->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcelCompra()"
+                                pTooltip="XLS" tooltipPosition="bottom"
+                                class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                p-component p-button-icon-only"><span class="p-ink"></span>
+                                <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                </button>
+                                <!-- <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
+                                pTooltip="PDF" tooltipPosition="bottom"
+                                class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+                                p-component p-button-icon-only"><span class="p-ink"></span>
+                                <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
+                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                </button> -->
+                        </div>
+                    </div>
+    
+                        <p-table #dt1 [value]="comprasDescuentos"
+                        selectionMode="multiple" [(selection)]="selectedProductsC" 
+                        id="todo"
+                        dataKey="id" 
+                        [rows]="5" [showCurrentPageReport]="true" 
+                        [rowsPerPageOptions]="[5,10,25,50]" 
+                    
+                        [loading]="loadingC" 
+                        styleClass="p-datatable-customers" [rowHover]="true"
+                        responsiveLayout="scroll" 
+                        [style]="{'width':'100%','display':'grid'}"
+                        [filterDelay]="0" 
+                    
+                        [paginator]="true" 
+                        currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                        [filterDelay]="0" 
+                        [columns]="cols"
+                        [globalFilterFields]="['fecha_compra','proveedor.nit','proveedor.nombre',
+                        'plazo_descuento','dias_vencerse_traducir']">
+                    
+                        <ng-template pTemplate="header">
+                            <tr class="font-family">
+    
+                                <th pSortableColumn="fecha_compra">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Fecha de Factura
+                                        <p-sortIcon field="fecha_compra"></p-sortIcon>
+                                    </div>
+                                </th>
+    
+                                <th pSortableColumn="proveedor.nombre">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Proveedor
+                                        <p-sortIcon field="proveedor.nombre"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+                                <th pSortableColumn="total">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Valor de Factura
+                                        <p-sortIcon field="total"></p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="suma_abonado">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Suma Abonado
+                                        <p-sortIcon field="suma_abonado"></p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="plazo_descuento">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Fecha de Descuento
+                                        <p-sortIcon field="plazo_descuento"></p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="dias_vencerse_traducir">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Dias de Descuento
+                                        <p-sortIcon field="dias_vencerse_traducir"></p-sortIcon>
+                                    </div>
+                                </th>
+    
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                            <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                <td>
+                                    {{customer?.fecha_compra}}
+                                </td>
+                                <td>
+                                    {{customer?.proveedor.nombre | titlecase}} - Nit : {{customer?.proveedor.nit}}
+                                </td>
+                                <td>
+                                    {{customer?.total | currency:'':'':'0.2-2' }}
+                                </td>
+                               
+                                <td>
+                                    {{customer?.suma_abonado | currency:'':'':'0.2-2' }}
+                                </td>
+                                <td>
+                                    {{customer?.plazo_descuento }}
+                                </td>
+                                <td>
+                                    <ng-template [ngIf]="customer?.dias_vencerse == 0">
+                                       <span class="text-red-500 font-medium">{{customer?.dias_vencerse_traducir }}</span>
+                                    </ng-template>
+    
+                                    <ng-template [ngIf]="customer?.dias_vencerse == 1">
+                                        <span class="text-green-500 font-medium">{{customer?.dias_vencerse_traducir }}</span>
+                                    </ng-template>
+                                    <ng-template [ngIf]="customer?.dias_vencerse > 1">
+                                       {{customer?.dias_vencerse_traducir }}
+                                    </ng-template>
+                                    
+                                    
+                                </td>
+                             
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage" style="text-align: center;">
+                            <tr class="font-family">
+                                <td colspan="9">No hay registros encontrados</td>
+                            </tr>
+                        </ng-template>
+                    
+                        </p-table>
+              
+                    </div>
+                </div>
+     <!-- Reporte de Productos Agotados -->
+                <div class="col-12 xl:col-12" >
+                    <div class="p-4 " style="background-color: white;border-radius: 5px;">
+    
+                        <div class="flex justify-content-center align-items-center">
+                            <i class="pi pi-file-pdf text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                            <span class="block text-900  mb-2 text-xl font-medium mt-1"><b>REPORTE DE TODOS LOS PRODUCTOS AGOTADOS Y POR AGOTARSE</b></span>
+                         </div>
+    
+                        <!-- <div class="text-xl text-900 font-medium mb-5">Productos Agotados</div> -->
+    
+                        <br>
+                        <div class="field  font-family" style="color: black">
+                            <label for="name"><span style="color:red">( * )</span> <b>Seleccione el Tipo de Productos</b></label>
+                                <div style="width:100%">
+                            <p-dropdown class="visorg500-select-filter " 
+                            [options]="tipoProductos" [filter]="true"
+                                name="tipo_producto" [(ngModel)]="tipoSeleccionados"  
+                                appendTo="body"
+                                label="Seleccione el Tipo de Productos" 
+                                [style]="{'width':'100%','margin-bottom':'10px'}"
+                                optionvalue="id"  optionLabel="nombre" filterBy="nombre"
+                                [required]="true" placeholder="Seleccione el Tipo de Productos" 
+                                title="TIPO DE PRODUCTO" class="font-family" (onChange)="getroductosAgotados()"
+                                >
+                                <ng-template let-option pTemplate="item">
+                                <span class="font-family">{{option.nombre | titlecase}} </span>
+                            </ng-template>
+                            </p-dropdown>
+                            </div>
+                     </div>
+                     <br>
+                     <ng-template [ngIf]="MostrarDatos == true">
+                        <div class="grid">
+                            <div class="col-12 sm:col-9 md:col-9">
+                                <div style="width:100%" class="mt-3">
+                                    <span class="p-input-icon-left" style="width: 100%;" >
+                                        <i class="pi pi-search"></i>
+                                        <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                        class="font-family" style="min-width: 100%"
+                                        (input)="Buscar($event,dt1)"
+                                        
+                                        />
+                                        <!-- (keydown)="Codigo($event)" -->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel()"
+                                pTooltip="XLS" tooltipPosition="bottom"
+                                class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                p-component p-button-icon-only"><span class="p-ink"></span>
+                                <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                </button>
+                                <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
+                                pTooltip="PDF" tooltipPosition="bottom"
+                                class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+                                p-component p-button-icon-only"><span class="p-ink"></span>
+                                <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
+                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                </button>
+                        </div>
+                    </div>
+    
+                        <p-table #dt1 [value]="productosAgotados"
+                        selectionMode="multiple" [(selection)]="selectedProducts" 
+                        id="todo"
+                        dataKey="id" 
+                        [rows]="5" [showCurrentPageReport]="true" 
+                        [rowsPerPageOptions]="[5,10,25,50]" 
+                    
+                        [loading]="loading" 
+                        styleClass="p-datatable-customers" [rowHover]="true"
+                        responsiveLayout="scroll" 
+                        [style]="{'width':'100%','display':'grid'}"
+                        [filterDelay]="0" 
+                    
+                        [paginator]="true" 
+            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+            [filterDelay]="0" 
+            [columns]="cols"
+                        [globalFilterFields]="['producto.nombre','producto.codigo_barra','stock','cantidad_minima']">
+                    
+                        <ng-template pTemplate="header">
+                            <tr class="font-family">
+    
+                                <th pSortableColumn="producto.nombre">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Nombre
+                                        <p-sortIcon field="producto.nombre"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+                                <th pSortableColumn="stock">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Stock
+                                        <p-sortIcon field="stock"></p-sortIcon>
+                                    </div>
+                                </th>
+                              
+                                <th pSortableColumn="cantidad_minima">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Cantidad minima
+                                        <p-sortIcon field="cantidad_minima"></p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="producto.codigo_barra">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Codigo Barra
+                                        <p-sortIcon field="producto.codigo_barra"></p-sortIcon>
+                                    </div>
+                                </th>
+    
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                            <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                <td>
+                                    {{customer?.producto?.nombre | titlecase}}
+                                </td>
+                               
+                                <td>
+                                    {{customer?.stock }}
+                                </td>
+                                <td>
+                                    {{customer?.cantidad_minima }}
+                                </td>
+                                <td style="height:50px">
+                    
+                                    <div style="text-align:center;">
+                                        <ngx-barcode6
+                                        [bc-format]="'MSI'"
+                                        [bc-height]="30"
+                                        [bc-width]="1"
+                                        [bc-font-size]="12"
+                    
+                                        [bc-value]="customer?.producto?.codigo_barra"
+                                        [bc-display-value]="true"
+                                        >
+                                        </ngx-barcode6>
+                                    </div>
+                                </td>
+                             
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage" style="text-align: center;">
+                            <tr class="font-family">
+                                <td colspan="8">No hay registros encontrados</td>
+                            </tr>
+                        </ng-template>
+                    
+                    </p-table>
+                     </ng-template>
+                    </div>
+                </div>
+     <!-- Reporte de Tipo de Productos mas Vendidos -->
+    
+                <div class="col-12 xl:col-12">
+                    <div class="surface-card shadow-2 border-round p-4 ">
+                        <div class="p-4 " style="background-color: white;">
+    
+                       
+                        <div class="flex justify-content-center align-items-center">
+                            <i class="pi pi-desktop text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                            <span class="block text-900  mb-2 text-xl font-medium mt-1"><b>REPORTE TOTAL DE VENTAS POR TIPO DE PRODUCTO</b></span>
+                         </div>
+    
+                         <form [formGroup]="form2" novalidate>
+    
+                            <div class=" p-4">
+                                <div class="flex justify-content-center align-items-center">
+                      
+                                        <div class=" p-4">
+                                            <label for="range" class="block mb-4"
+                                            style="font-weight: bold;color: black"><b>Seleccione Rango de Fecha</b></label>
+                                            <p-calendar formControlName="fecha"  [required]="true"
+                                           (click)="mostrarDetalles=false" appendTo="body"
+                                            selectionMode="range" [readonlyInput]="true" 
+                                            inputId="range"></p-calendar>
+                                        </div>
+                    
+                                </div>
+                              
+                                    <div class="flex justify-content-center align-items-center">
+                                
+                                        <span class="block text-900  text-xl font-medium font-family">
+                                            <button pButton pRipple 
+                                                label="Consultar" icon="pi pi-search" style="width: auto;" 
+                                                class="p-button-success font-family mt-2" 
+                                                [disabled]="!form2.valid " 
+                                                (click)="ReporteTipoVendidos()"></button>
+                                        </span>
+                                </div>
+                                
+            
+                             </div>
+                         </form>
+                         <ng-template [ngIf]="mostrarDetalles == true">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                    Resultados del Reporte Tipo de Productos mas vendidos
+                                </ng-template>
+                                <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+                                
+                                    <div class="flex justify-content-center align-items-center" style="cursor: pointer;"
+                                    >
+                                        <i class="pi pi-chart-bar text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                                        <span class="block text-900  mb-2 text-xl font-medium mt-1">Grafica de Barra</span>
+                                        <i class="pi pi-sync text-blue-500 text-xl bg-orange-100 border-round p-2 ml-2" 
+                                        (click)="buscarTiposProductosVendidos()" title="Recargar Grafica de Barra"></i>
+    
+                                       
+                                    </div>
+    
+                                    <div class="flex justify-content-center align-items-center mt-1 p-fluid" >
+                                        <div class="block">
+                                                    <div class="chart-container " style="width: 600px;" [hidden]="!mostrarDetalles">
+                                                        <canvas id="basicOptions1Id"  >{{ basicOptions1 }}</canvas>
+                                                    </div>
+                                        
+                                                    <p-paginator class="block" 
+                                                    [rows]="5" [totalRecords]="tipoProductosVendidos.length" *ngIf="mostrarDetalles"
+                                                    (onPageChange)="paginate1Cost($event,'basicOptions1Id')"></p-paginator>
+                                            </div>
+                                    </div>
+    
+                                    <div class="grid">
+                                        <div class="col-12 md:col-12">
+    
+                                            <div class="grid">
+                                                <div class="col-12 sm:col-9 md:col-9">
+                                                    <div style="width:100%" class="mt-3">
+                                                        <span class="p-input-icon-left" style="width: 100%;" >
+                                                            <i class="pi pi-search"></i>
+                                                            <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                                            class="font-family" style="min-width: 100%"
+                                                            (input)="Buscar1($event,dt2)"
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                                    <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel1()"
+                                                    pTooltip="XLS" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button>
+                                                    <!-- <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
+                                                    pTooltip="PDF" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button> -->
+                                            </div>
+                                        </div>
+    
+                                            <p-table #dt2 [value]="tipoProductosVendidos"
+                                            selectionMode="multiple" [(selection)]="selectedProducts2" 
+                                            id="todo"
+                                            dataKey="id" 
+                                            [rows]="5" [showCurrentPageReport]="true" 
+                                            
+                                            styleClass="p-datatable-customers" [rowHover]="true"
+                                            responsiveLayout="scroll" 
+                                            [style]="{'width':'100%','display':'grid'}"
+                                            [filterDelay]="0" 
+                                        
+                                            [paginator]="true" 
+                                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                            [filterDelay]="0" 
+                                            [columns]="cols"
+                                            [globalFilterFields]="['producto__tipo_producto__nombre','costos_totales']">
+                                        
+                                            <ng-template pTemplate="header">
+                                                <tr class="font-family">
+                        
+                                                    <th pSortableColumn="producto__tipo_producto__nombre">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Nombre
+                                                            <p-sortIcon field="producto__tipo_producto__nombre"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                    <th pSortableColumn="cantidad">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Cantidad
+                                                            <p-sortIcon field="cantidad"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                
+                                                    <th pSortableColumn="costos_totales">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Costos Totales
+                                                            <p-sortIcon field="costos_totales"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                                                <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                                    <td>
+                                                        {{customer?.producto__tipo_producto__nombre | titlecase}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.cantidad }}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.costos_totales | currency:'':'':'0.2-2' }}
+                                                    </td>
+                                                    
+                                                
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td colspan="8">No hay registros encontrados</td>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="footer" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{totalTipoProductos | currency:'':'':'0.2-2'}}</td>
+                                                </tr>
+                                            </ng-template>
+                    
+                                        
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                             </p-panel>
+                         </ng-template>
+                        
+                        </div>
+                    </div>
+    
+                   
+    
+                    <!-- <div class="surface-card shadow-2 border-round p-4">
+                            <div class="flex justify-content-between align-items-center mb-5">
+                                <span class="text-xl text-900 font-medium">Team Members</span>
+                                <div>
+                                    <button pbutton="" pripple="" icon="pi pi-ellipsis-v" 
+                                    class="p-ripple p-element p-button-text p-button-plain p-button-rounded
+                                    p-button p-component p-button-icon-only">
+                                    <span class="p-ink"></span>
+                                    <span class="p-button-icon pi pi-ellipsis-v" 
+                                    aria-hidden="true"></span>
+                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                    </button>
+                           
+                                </div>
+                                </div>
+                                <ul class="list-none p-0 m-0">
+                                    <li class="flex flex-column md:flex-row md:align-items-center 
+                                    md:justify-content-between mb-4">
+                                            <div class="flex">
+                                               
+                                                <div>
+                                                    <span class="block text-900 font-medium mb-1">Janette Hudson</span>
+                                                    <div class="text-600">UI/UX Designer</div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 md:mt-0 flex flex-nowrap">
+                                                <button pbutton="" pripple="" icon="pi pi-twitter" 
+                                                class="p-ripple p-element p-button-text p-button-plain 
+                                                p-button-rounded mr-1 p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span><span class="p-button-icon pi pi-twitter" 
+                                                aria-hidden="true"></span><span aria-hidden="true" 
+                                                class="p-button-label">&nbsp;</span>
+                                            </button>
+                                                <button pbutton="" pripple="" icon="pi pi-github" 
+                                                class="p-ripple p-element p-button-text p-button-plain 
+                                                p-button-rounded mr-1 p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span><span class="p-button-icon pi pi-github" 
+                                                aria-hidden="true"></span><span aria-hidden="true" 
+                                                class="p-button-label">&nbsp;</span>
+                                            </button>
+                                            <button pbutton="" pripple="" icon="pi pi-facebook"
+                                            class="p-ripple p-element p-button-text p-button-plain
+                                            p-button-rounded mr-1 p-button p-component p-button-icon-only">
+                                            <span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-facebook" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+                                        <div class="flex">
+                                            
+                                            <div>
+                                                <span class="block text-900 font-medium mb-1">Theresa Webb Hudson</span>
+                                                <div class="text-600">UI/UX Designer</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 md:mt-0 flex flex-nowrap">
+                                            <button pbutton="" pripple="" icon="pi pi-twitter" 
+                                            class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                            p-button p-component p-button-icon-only">
+                                            <span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-twitter" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                            <button pbutton="" pripple=""
+                                            icon="pi pi-github" class="p-ripple p-element p-button-text p-button-plain 
+                                            p-button-rounded mr-1 p-button p-component p-button-icon-only">
+                                            <span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-github" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                            <button pbutton="" pripple="" icon="pi pi-facebook" 
+                                            class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                            p-button p-component p-button-icon-only">
+                                            <span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-facebook" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                        </button>
+                                        </div>
+                                    </li>
+                                    <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+                                        <div class="flex">
+                                           
+                                            <div>
+                                                <span class="block text-900 font-medium mb-1">Arlene McCoy</span>
+                                                <div class="text-600">UI/UX Designer</div>
+                                            </div>
+                                        </div>
+                                            <div class="mt-2 md:mt-0 flex flex-nowrap">
+                                                <button pbutton="" pripple="" icon="pi pi-twitter" 
+                                                class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                                p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-twitter" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                </button>
+                                                <button pbutton="" pripple="" icon="pi pi-github"
+                                                class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                                p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-github" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                </button>
+                                                <button pbutton="" pripple="" icon="pi pi-facebook" 
+                                                class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                                p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-facebook" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+                                        <div class="flex">
+                                           
+                                            <div>
+                                                <span class="block text-900 font-medium mb-1">Jacob Jones</span>
+                                                <div class="text-600">UI/UX Designer</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 md:mt-0 flex flex-nowrap">
+                                                <button pbutton="" pripple="" icon="pi pi-twitter" 
+                                                class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                                p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-twitter" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                </button>
+                                                <button pbutton="" pripple="" icon="pi pi-github" 
+                                                class="p-ripple p-element p-button-text p-button-plain p-button-rounded 
+                                                mr-1 p-button p-component p-button-icon-only">
+                                                <span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-github" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                </button>
+                                                <button pbutton="" pripple="" icon="pi pi-facebook" 
+                                                class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 p-button 
+                                                p-component p-button-icon-only">
+                                                <span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-facebook" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                </button>
+                                        </div>
+                                    </li>
+                                    <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+                                        <div class="flex">
+                                            
+                                            <div>
+                                                <span class="block text-900 font-medium mb-1">James Cooper</span>
+                                                <div class="text-600">UI/UX Designer</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 md:mt-0 flex flex-nowrap">
+                                            <button pbutton="" pripple="" icon="pi pi-twitter" 
+                                            class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                            p-button p-component p-button-icon-only">
+                                            <span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-twitter" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                            <button pbutton="" pripple="" icon="pi pi-github" 
+                                            class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 
+                                            p-button p-component p-button-icon-only"><span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-github" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                            <button pbutton="" pripple="" icon="pi pi-facebook" 
+                                            class="p-ripple p-element p-button-text p-button-plain p-button-rounded mr-1 p-button 
+                                            p-component p-button-icon-only">
+                                            <span class="p-ink"></span>
+                                            <span class="p-button-icon pi pi-facebook" aria-hidden="true"></span>
+                                            <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                    </div> -->
+                </div>
+     <!-- Reporte de Total de Compras -->
+    
+                <div class="col-12 xl:col-12">
+                    <div class="surface-card shadow-2 border-round p-4 ">
+                        <div class="p-4 " style="background-color: white;">
+    
+                       
+                        <div class="flex justify-content-center align-items-center">
+                            <i class="pi pi-shopping-cart text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                            <span class="block text-900  mb-2 text-xl font-medium mt-1"><b>REPORTE  TOTAL DE COMPRAS</b></span>
+                         </div>
+    
+                         <form [formGroup]="form3" novalidate>
+    
+                            <div class=" p-4">
+                                <div class="flex justify-content-center align-items-center">
+                      
+                                        <div class=" p-4">
+                                            <label for="range" class="block mb-4"
+                                            style="font-weight: bold;color: black"><b>Seleccione Rango de Fecha</b></label>
+                                            <p-calendar formControlName="fecha"  [required]="true"
+                                           (click)="mostrarDetalles2=false" appendTo="body"
+                                            selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                                        </div>
+                    
+                                </div>
+                              
+                                    <div class="flex justify-content-center align-items-center">
+                                
+                                        <span class="block text-900  text-xl font-medium font-family">
+                                            <button pButton pRipple 
+                                                label="Consultar" icon="pi pi-search" style="width: auto;" 
+                                                class="p-button-success font-family mt-2" 
+                                                [disabled]="!form3.valid " 
+                                                (click)="ReporteTotalesCompras()"></button>
+                                        </span>
+                                </div>
+                                
+            
+                             </div>
+                         </form>
+                         <ng-template [ngIf]="mostrarDetalles2 == true">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                    Resultados del Reporte Totales Compras
+                                </ng-template>
+                                <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+                                
+                                    <div class="flex justify-content-center align-items-center" style="cursor: pointer;">
+                                        <i class="pi pi-chart-bar text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                                        <span class="block text-900  mb-2 text-xl font-medium mt-1">Grafica de Barra</span>
+                                        <i class="pi pi-sync text-blue-500 text-xl bg-orange-100 border-round p-2 ml-2" 
+                                        (click)="paginate1Cost({page:0,rows:5,pageCount:TotalCompras.length},'basicOptions2Id')" title="Recargar Grafica de Barra"></i>
+                                    </div>
+    
+                                    <div class="flex justify-content-center align-items-center mt-1 p-fluid" id="pd3">
+                                        <div class="block">
+                                                    <div class="chart-container " style="width: 600px;" [hidden]="!mostrarDetalles2">
+                                                        <canvas id="basicOptions2Id"  >{{ basicOptions2 }}</canvas>
+                                                    </div>
+                                        
+                                                    <p-paginator class="block" style="width: auto;"
+                                                    [rows]="5" [totalRecords]="TotalCompras.length" *ngIf="mostrarDetalles2"
+                                                    (onPageChange)="paginate1Cost($event,'basicOptions2Id')"></p-paginator>
+                                            </div>
+                                    </div>
+    
+                                    <div class="grid">
+                                        <div class="col-12 md:col-12">
+    
+                                            <div class="grid">
+                                                <div class="col-12 sm:col-9 md:col-9">
+                                                    <div style="width:100%" class="mt-3">
+                                                        <span class="p-input-icon-left" style="width: 100%;" >
+                                                            <i class="pi pi-search"></i>
+                                                            <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                                            class="font-family" style="min-width: 100%"
+                                                            (input)="Buscar2($event,dt3)"
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                                    <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel2()"
+                                                    pTooltip="XLS" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button>
+    
+                                            </div>
+                                        </div>
+    
+                                            <p-table #dt3 [value]="TotalCompras"
+                                            selectionMode="multiple" [(selection)]="selectedProducts3" 
+                                            id="todo"
+                                            dataKey="id" 
+                                            [rows]="5" [showCurrentPageReport]="true" 
+                                            
+                                            styleClass="p-datatable-customers" [rowHover]="true"
+                                            responsiveLayout="scroll" 
+                                            [style]="{'width':'100%','display':'grid'}"
+                                            [filterDelay]="0" 
+                                        
+                                            [paginator]="true" 
+                                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                            [filterDelay]="0" 
+                                         
+                                            [globalFilterFields]="['fecha_compra','proveedor__nombre','total']">
+                                        
+                                            <ng-template pTemplate="header">
+                                                <tr class="font-family">
+                        
+                                                    <th pSortableColumn="fecha_compra">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            fecha Compra
+                                                            <p-sortIcon field="fecha_compra"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                    <th pSortableColumn="proveedor__nombre">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Proveedor
+                                                            <p-sortIcon field="proveedor__nombre"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                
+                                                    <th pSortableColumn="total">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Totales
+                                                            <p-sortIcon field="total"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                                                <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                                    <td>
+                                                        {{customer?.fecha_compra | date:'d/M/yy '}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.proveedor__nombre | titlecase }}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.total | currency:'':'':'0.2-2' }}
+                                                    </td>
+                                                    
+                                                
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td colspan="8">No hay registros encontrados</td>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="footer" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{totalTotalCompras | currency:'':'':'0.2-2'}}</td>
+                                                </tr>
+                                            </ng-template>
+                    
+                                        
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                             </p-panel>
+                         </ng-template>
+                        
+                        </div>
+                    </div>
+                </div>
+    <!-- rankin empleados -->
+                <div class="col-12 xl:col-12">
+                    <div class="surface-card shadow-2 border-round p-4 ">
+                        <div class=" p-4 " style="background-color: white;">
+    
+                       
+                        <div class="flex justify-content-center align-items-center">
+                            <i class="pi pi-users text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                            <span class="block text-900  mb-2 text-xl font-medium mt-1"> <b>TOP RANKING DE TOTAL DE VENTAS POR EMPLEADO </b></span>
+                         </div>
+    
+                         <form [formGroup]="form4" novalidate>
+    
+                            <div class=" p-4">
+                                <div class="flex justify-content-center align-items-center">
+                      
+                                        <div class=" p-4">
+                                            <label for="range" class="block mb-4"
+                                            style="font-weight: bold;color: black"><b> Seleccione Rango de Fecha</b></label>
+                                            <p-calendar formControlName="fecha"  [required]="true"
+                                           (click)="mostrarDetalles3=false" appendTo="body"
+                                            selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                                        </div>
+                    
+                                </div>
+                              
+                                    <div class="flex justify-content-center align-items-center">
+                                
+                                        <span class="block text-900  text-xl font-medium font-family">
+                                            <button pButton pRipple 
+                                                label="Consultar" icon="pi pi-search" style="width: auto;" 
+                                                class="p-button-success font-family mt-2" 
+                                                [disabled]="!form4.valid " 
+                                                (click)="ReporteEmpleadosCostosVentas()"></button>
+                                        </span>
+                                </div>
+                                
+            
+                             </div>
+                         </form>
+                         <ng-template [ngIf]="mostrarDetalles3 == true">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                    Resultados del Reporte Ventas y Costos de Empleados
+                                </ng-template>
+                                <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+                                
+                                    <div class="flex justify-content-center align-items-center" style="cursor: pointer;">
+                                        <i class="pi pi-chart-bar text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                                        <span class="block text-900  mb-2 text-xl font-medium mt-1">Grafica de Barra</span>
+                                        <i class="pi pi-sync text-blue-500 text-xl bg-orange-100 border-round p-2 ml-2" 
+                                        (click)="buscargraficas()" title="Recargar Grafica de Barra"></i>
+                                    </div>
+                                  
+                                            <div class="flex justify-content-center align-items-center mt-1 p-fluid" >
+                                                <div class="block">
+                                                            <div class="chart-container " style="width: 600px" [hidden]="!mostrarDetalles3">
+                                                                <canvas id="basicOptions3Id"  >{{ basicOptions3 }}</canvas>
+                                                            </div>
+                                                
+                                                            <p-paginator class="block" 
+                                                            [rows]="5" [totalRecords]="TotalCostosEmpleados.length" *ngIf="mostrarDetalles3"
+                                                            (onPageChange)="paginate1Cost($event,'basicOptions3Id')"></p-paginator>
+                                                    </div>
+                                            </div>
+                                      
+                                            <div class="flex justify-content-center align-items-center mt-1 p-fluid" >
+                                                <div class="block">
+                                                            <div class="chart-container " style="width: 600px" [hidden]="!mostrarDetalles3C">
+                                                                <canvas id="basicOptions3CId"  >{{ basicOptionsC3 }}</canvas>
+                                                            </div>
+                                                
+                                                            <p-paginator class="block" 
+                                                            [rows]="5" [totalRecords]="TotalCantidadEmpleados.length" *ngIf="mostrarDetalles3C"
+                                                            (onPageChange)="paginate1Cant($event,'basicOptions3CId')"></p-paginator>
+                                                    </div>
+                                            </div>
+                                        
+    
+                                   
+    
+                                    <div class="grid">
+                                        <div class="col-12 md:col-12">
+    
+                                            <div class="grid">
+                                                <div class="col-12 sm:col-9 md:col-9">
+                                                    <div style="width:100%" class="mt-3">
+                                                        <span class="p-input-icon-left" style="width: 100%;" >
+                                                            <i class="pi pi-search"></i>
+                                                            <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                                            class="font-family" style="min-width: 100%"
+                                                            (input)="Buscar3($event,dt3)"
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                                    <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel3()"
+                                                    pTooltip="XLS" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button>
+                                                    <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf2()"
+                                                    pTooltip="PDF" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button>
+    
+                                            </div>
+                                        </div>
+    
+                                            <p-table #dt3 [value]="TotalCostosEmpleados"
+                                            selectionMode="multiple" [(selection)]="selectedProducts4" 
+                                            id="todo"
+                                            dataKey="id" 
+                                            [rows]="5" [showCurrentPageReport]="true" 
+                                            
+                                            styleClass="p-datatable-customers" [rowHover]="true"
+                                            responsiveLayout="scroll" 
+                                            [style]="{'width':'100%','display':'grid'}"
+                                            [filterDelay]="0" 
+                                        
+                                            [paginator]="true" 
+                                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                            [filterDelay]="0" 
+                                         
+                                            [globalFilterFields]="['venta__empleado__nombres','venta__empleado__apellidos',
+                                            'venta__empleado__codigo','costos_totales']">
+                                        
+                                            <ng-template pTemplate="header">
+                                                <tr class="font-family">
+                        
+                                                    <th pSortableColumn="venta__empleado__nombres">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Nombre de Empleado
+                                                            <p-sortIcon field="venta__empleado__nombres"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                    <th pSortableColumn="venta__empleado__codigo">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Codigo
+                                                            <p-sortIcon field="venta__empleado__codigo"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    <th pSortableColumn="productos_vendidos">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            No. Productos vendidos
+                                                            <p-sortIcon field="productos_vendidos"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    <th pSortableColumn="costos_totales">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Costos Totales
+                                                            <p-sortIcon field="costos_totales"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                                                <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                                    <td>
+                                                        {{customer?.venta__empleado__nombres | titlecase}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.venta__empleado__codigo | titlecase }}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.productos_vendidos}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.costos_totales | currency:'':'':'0.2-2' }}
+                                                    </td>
+                                                    
+                                                
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td colspan="8">No hay registros encontrados</td>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="footer" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{totalTotalEmpleados | currency:'':'':'0.2-2'}}</td>
+                                                </tr>
+                                            </ng-template>
+                    
+                                        
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                             </p-panel>
+                         </ng-template>
+                        
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- total tipo de ventas -->
+    
+                <div class="col-12 xl:col-12">
+                    <div class="surface-card shadow-2 border-round p-4 ">
+                        <div class=" p-4 "  style="background-color: white;">
+    
+                       
+                        <div class="flex justify-content-center align-items-center">
+                            <i class="pi pi-money-bill text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                            <span class="block text-900  mb-2 text-xl font-medium mt-1"><b>TOTAL DE VENTAS POR FORMA DE PAGO</b></span>
+                         </div>
+    
+                         <form [formGroup]="form5" novalidate>
+    
+                            <div class=" p-4">
+                                <div class="flex justify-content-center align-items-center">
+                      
+                                        <div class=" p-4">
+                                            <label for="range" class="block mb-4"
+                                            style="font-weight: bold;color: black"><b>Seleccione Rango de Fecha</b></label>
+                                            <p-calendar formControlName="fecha"  [required]="true"
+                                           (click)="mostrarDetalles4=false" appendTo="body"
+                                            selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                                        </div>
+                    
+                                </div>
+                              
+                                    <div class="flex justify-content-center align-items-center">
+                                
+                                        <span class="block text-900  text-xl font-medium font-family">
+                                            <button pButton pRipple 
+                                                label="Consultar" icon="pi pi-search" style="width: auto;" 
+                                                class="p-button-success font-family mt-2" 
+                                                [disabled]="!form5.valid " 
+                                                (click)="ReporteTotalesVentasPagos()"></button>
+                                        </span>
+                                </div>
+                                
+            
+                             </div>
+                         </form>
+                         <ng-template [ngIf]="mostrarDetalles4 == true">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                    Resultados del Reporte Ventas por Forma de Pago
+                                </ng-template>
+                                <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+                                
+                                    <div class="flex justify-content-center align-items-center" style="cursor: pointer;">
+                                        <i class="pi pi-chart-bar text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                                        <span class="block text-900  mb-2 text-xl font-medium mt-1">Grafica de Barra</span>
+                                        <i class="pi pi-sync text-blue-500 text-xl bg-orange-100 border-round p-2 ml-2" 
+                                        (click)="buscargraficas2()" title="Recargar Grafica de Barra"></i>
+                                    </div>
+                                  
+                                            <div class="flex justify-content-center align-items-center mt-1 p-fluid" >
+                                                <div class="block">
+                                                            <div class="chart-container " style="width: 700px" [hidden]="!mostrarDetalles4">
+                                                                <canvas id="basicOptions4Id"  >{{ basicOptions4 }}</canvas>
+                                                            </div>
+                                                
+                                                            <p-paginator class="block" 
+                                                            [rows]="5" [totalRecords]="TotalVentadPago.length" *ngIf="mostrarDetalles4"
+                                                            (onPageChange)="paginate1Cost($event,'basicOptions4Id')"></p-paginator>
+                                                    </div>
+                                            </div>
+                                      
+                                        
+    
+                                   
+    
+                                    <div class="grid">
+                                        <div class="col-12 md:col-12">
+    
+                                            <div class="grid">
+                                                <div class="col-12 sm:col-9 md:col-9">
+                                                    <div style="width:100%" class="mt-3">
+                                                        <span class="p-input-icon-left" style="width: 100%;" >
+                                                            <i class="pi pi-search"></i>
+                                                            <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                                            class="font-family" style="min-width: 100%"
+                                                            (input)="Buscar4($event,dt3)"
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                                    <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel4()"
+                                                    pTooltip="XLS" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button>
+    
+                                            </div>
+                                        </div>
+    
+                                            <p-table #dt3 [value]="TotalVentadPago"
+                                            selectionMode="multiple" [(selection)]="selectedProducts5" 
+                                            id="todo"
+                                            dataKey="id" 
+                                            [rows]="5" [showCurrentPageReport]="true" 
+                                            
+                                            styleClass="p-datatable-customers" [rowHover]="true"
+                                            responsiveLayout="scroll" 
+                                            [style]="{'width':'100%','display':'grid'}"
+                                            [filterDelay]="0" 
+                                        
+                                            [paginator]="true" 
+                                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                            [filterDelay]="0" 
+                                         
+                                            [globalFilterFields]="['venta__tipo_pago','productos_vendidos','costos_totales']">
+                                        
+                                            <ng-template pTemplate="header">
+                                                <tr class="font-family">
+                        
+                                                    <th pSortableColumn="venta__tipo_pago">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Forma de Pago
+                                                            <p-sortIcon field="venta__tipo_pago"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                    <th pSortableColumn="productos_vendidos">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            No. Productos vendidos
+                                                            <p-sortIcon field="productos_vendidos"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    <th pSortableColumn="costos_totales">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Costos Totales
+                                                            <p-sortIcon field="costos_totales"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                                                <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                                    <td>
+                                                        {{customer?.venta__tipo_pago | titlecase}}
+                                                    </td>
+    
+                                                    <td>
+                                                        {{customer?.productos_vendidos}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.costos_totales | currency:'':'':'0.2-2' }}
+                                                    </td>
+                                                    
+                                                
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td colspan="8">No hay registros encontrados</td>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="footer" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>{{totalTotalVentadPago | currency:'':'':'0.2-2'}}</td>
+                                                </tr>
+                                            </ng-template>
+                    
+                                        
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                             </p-panel>
+                         </ng-template>
+                        
+                        </div>
+                    </div>
+                </div>
+                <!-- TOTAL DE GASTOS  Y ENTRADAS DE CAJA MENOR Y MAYOR  -->
+    
+                <div class="col-12 xl:col-12">
+                    <div class="surface-card shadow-2 border-round p-4 ">
+                        <div class=" p-4 "  style="background-color: white;">
+    
+                       
+                            <div class="flex justify-content-center align-items-center">
+                                <i class="pi pi-money-bill text-blue-500 text-xl bg-green-100 border-round p-2 mr-2" ></i>
+                                <span class="block text-900  mb-2 text-xl font-medium mt-1"><b>TOTAL DE GASTOS O ENTRADAS, YA SEA DE CAJA MENOR O MAYOR</b></span>
+                             </div>
+    
+                         <form [formGroup]="form6" novalidate>
+    
+                            <div class=" p-4">
+                                <div class="flex justify-content-center align-items-center">
+                      
+                                        <div class=" p-4">
+                                            <label for="range" class="block mb-4"
+                                            style="font-weight: bold;color: black"><b>Seleccione Rango de Fecha </b></label>
+                                            <p-calendar formControlName="fecha"  [required]="true"
+                                           (click)="mostrarDetalles5=false" appendTo="body"
+                                            selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                                        </div>
+                    
+                                </div>
+                                <div class="grid">
+                                    <div class="col-12 md:col-6">
+                                        <div class="field  font-family" style="color: black">
+                                            <label for="name"><span style="color:red">( * )</span> <b>Seleccione Tipo de Movimiento</b></label>
+                                                <div style="width:100%">
+                                            <p-dropdown class="visorg500-select-filter " 
+                                            [options]="tipo_de_movimiento" [filter]="true"
+                                                name="tipo_movimiento" [showClear]="true"
+                                                formControlName="tipo_movimiento" 
+                                                appendTo="body"
+                                                label="Seleccione Tipo de Movimiento" 
+                                                [style]="{'width':'100%','margin-bottom':'10px'}"
+                                                optionvalue="id"  optionLabel="value" filterBy="value"
+                                                [required]="true" placeholder="Seleccione Tipo de Movimiento" 
+                                                title="TIPO DE MOVIMIENTO" class="font-family" 
+                                                (onChange)="mostrarDetalles5=false"
+                                                (onClear)="mostrarDetalles5=false">
+                                                <ng-template let-option pTemplate="item" >
+                                                <span class="font-family">{{option.value | titlecase}} </span>
+                                            </ng-template>
+                                            </p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 md:col-6">
+                                        <div class="field  font-family" style="color: black">
+                                            <label for="name"><span style="color:red">( * )</span> <b>Seleccione La Caja</b></label>
+                                                <div style="width:100%">
+                                            <p-dropdown class="visorg500-select-filter " 
+                                            [options]="cajas" [filter]="true"
+                                                name="Caja" 
+                                                formControlName="Caja" [showClear]="true"
+                                                appendTo="body"
+                                                label="Seleccione La Caja" 
+                                                [style]="{'width':'100%','margin-bottom':'10px'}"
+                                                optionvalue="id"  optionLabel="value" filterBy="value"
+                                                [required]="true" placeholder="Seleccione La Caja" 
+                                                title="La Caja" class="font-family">
+                                                <ng-template let-option pTemplate="item" 
+                                                (onChange)="mostrarDetalles5=false"
+                                                (onClear)="mostrarDetalles5=false">
+                                                <span class="font-family">{{option.value | titlecase}} </span>
+                                            </ng-template>
+                                            </p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                    <div class="flex justify-content-center align-items-center">
+                                
+                                        <span class="block text-900  text-xl font-medium font-family">
+                                            <button pButton pRipple 
+                                                label="Consultar" icon="pi pi-search" style="width: auto;" 
+                                                class="p-button-success font-family mt-2" 
+                                                [disabled]="!form6.valid " 
+                                                (click)="ReporteTotalesGastosCajas()"></button>
+                                        </span>
+                                </div>
+                                
+            
+                             </div>
+                         </form>
+                         <ng-template [ngIf]="mostrarDetalles5 == true">
+                            <p-panel [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                    Resultados del Reporte Total de Gastos y Entradas de Caja Menor y Mayor
+                                </ng-template>
+                                <div style="border:1px solid gray; border-radius:5px;padding: 25px">
+                                    <ng-template [ngIf]="tipoGastosCajaMenor.length > 0 && mostrarDetallesCajaMenor">
+                                                
+                                            <div class="grid">
+                                                <div class="col-12 sm:col-9 md:col-9">
+                                                    <div style="width:100%" class="mt-3">
+                                                        <span class="p-input-icon-left" style="width: 100%;" >
+                                                            <i class="pi pi-search"></i>
+                                                            <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                                            class="font-family" style="min-width: 100%"
+                                                            (input)="Buscar6($event,dt6)"
+                                                            />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                                    <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcelCajaMenor()"
+                                                    pTooltip="XLS" tooltipPosition="bottom"
+                                                    class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                                    p-component p-button-icon-only"><span class="p-ink"></span>
+                                                    <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                    </button>
+    
+                                                </div>
+                                            </div>
+    
+                                            <p-table #dt6 [value]="tipoGastosCajaMenor"
+                                            selectionMode="multiple" [(selection)]="selectedProducts6" 
+                                            id="todo"
+                                            dataKey="id" 
+                                            [rows]="5" [showCurrentPageReport]="true" 
+                                            
+                                            styleClass="p-datatable-customers" [rowHover]="true"
+                                            responsiveLayout="scroll" 
+                                            [style]="{'width':'100%','display':'grid'}"
+                                            [filterDelay]="0" 
+                                        
+                                            [paginator]="true" 
+                                            currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                            [filterDelay]="0" 
+                                         
+                                            [globalFilterFields]="['fecha',
+                                            'usuario.username','tipo_pago','descripcion','valor']">
+                                        
+                                            <ng-template pTemplate="header">
+                                                <tr class="font-family">
+                        
+                                                    <th pSortableColumn="fecha">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Fecha
+                                                            <p-sortIcon field="fecha"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                    <th pSortableColumn="usuario.username">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Usuario
+                                                            <p-sortIcon field="usuario.username"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    <th pSortableColumn="tipo_pago">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Forma de pago
+                                                            <p-sortIcon field="tipo_pago"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                              
+                                                    
+                                                    <th pSortableColumn="descripcion">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Descripción
+                                                            <p-sortIcon field="descripcion"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    <th pSortableColumn="valor">
+                                                        <div class="flex justify-content-between align-items-center">
+                                                            Valor
+                                                            <p-sortIcon field="valor"></p-sortIcon>
+                                                        </div>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                                                <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                                    <td>
+                                                        {{customer?.fecha | date:'d/M/yy, h:mm a'}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.usuario?.username | titlecase}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.tipo_pago | titlecase}}
+                                                    </td>
+                                                    <td>
+                                                        {{customer?.descripcion }}
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        {{customer?.valor | currency:'':'':'0.2-2' }}
+                                                    </td>
+                                                    
+                                                
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td colspan="8">No hay registros encontrados</td>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="footer" style="text-align: center;">
+                                                <tr class="font-family">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>TOTAL DE {{form6.value.tipo_movimiento.value}}S</td>
+                                                    <td>{{totalGastosCajaMenor | currency:'':'':'0.2-2'}}</td>
+                                                </tr>
+                                            </ng-template>
+                    
+                                        
+                                            </p-table>
+                                    </ng-template>
+    
+                                    <ng-template [ngIf]="tipoGastosCajaMayor.length > 0 && mostrarDetallesCajaMayor">
+                                                
+                                        <div class="grid">
+                                            <div class="col-12 sm:col-9 md:col-9">
+                                                <div style="width:100%" class="mt-3">
+                                                    <span class="p-input-icon-left" style="width: 100%;" >
+                                                        <i class="pi pi-search"></i>
+                                                        <input type="text" pInputText placeholder="Buscador..." id="codigo"
+                                                        class="font-family" style="min-width: 100%"
+                                                        (input)="Buscar7($event,dt7)"
+                                                        />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 sm:col-3 md:col-3 mt-3">
+                                                <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcelCajaMayor()"
+                                                pTooltip="XLS" tooltipPosition="bottom"
+                                                class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                                                p-component p-button-icon-only"><span class="p-ink"></span>
+                                                <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
+                                                <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                                                </button>
+    
+                                            </div>
+                                        </div>
+    
+                                        <p-table #dt7 [value]="tipoGastosCajaMayor"
+                                        selectionMode="multiple" [(selection)]="selectedProducts7" 
+                                        id="todo"
+                                        dataKey="id" 
+                                        [rows]="5" [showCurrentPageReport]="true" 
+                                        
+                                        styleClass="p-datatable-customers" [rowHover]="true"
+                                        responsiveLayout="scroll" 
+                                        [style]="{'width':'100%','display':'grid'}"
+                                        [filterDelay]="0" 
+                                    
+                                        [paginator]="true" 
+                                        currentPageReportTemplate="Mostrando  {first} a {last} de {totalRecords} registros"
+                                        [filterDelay]="0" 
+                                     
+                                        [globalFilterFields]="['fecha',
+                                        'usuario.username','tipo_pago','descripcion','valor']">
+                                    
+                                        <ng-template pTemplate="header">
+                                            <tr class="font-family">
+                    
+                                                <th pSortableColumn="fecha">
+                                                    <div class="flex justify-content-between align-items-center">
+                                                        Fecha
+                                                        <p-sortIcon field="fecha"></p-sortIcon>
+                                                    </div>
+                                                </th>
+                                                
+                                                <th pSortableColumn="usuario.username">
+                                                    <div class="flex justify-content-between align-items-center">
+                                                        Usuario
+                                                        <p-sortIcon field="usuario.username"></p-sortIcon>
+                                                    </div>
+                                                </th>
+                                                <th pSortableColumn="tipo_pago">
+                                                    <div class="flex justify-content-between align-items-center">
+                                                        Forma de pago
+                                                        <p-sortIcon field="tipo_pago"></p-sortIcon>
+                                                    </div>
+                                                </th>
+                                          
+                                                
+                                                <th pSortableColumn="descripcion">
+                                                    <div class="flex justify-content-between align-items-center">
+                                                        Descripción
+                                                        <p-sortIcon field="descripcion"></p-sortIcon>
+                                                    </div>
+                                                </th>
+                                                <th pSortableColumn="valor">
+                                                    <div class="flex justify-content-between align-items-center">
+                                                        Valor
+                                                        <p-sortIcon field="valor"></p-sortIcon>
+                                                    </div>
+                                                </th>
+                                                
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-customer let-rowData let-expanded="expanded">
+                                            <tr class="p-selectable-row font-family"  [pSelectableRow]="rowData">
+                                                <td>
+                                                    {{customer?.fecha | date:'d/M/yy, h:mm a'}}
+                                                </td>
+                                                <td>
+                                                    {{customer?.usuario?.username | titlecase}}
+                                                </td>
+                                                <td>
+                                                    {{customer?.tipo_pago | titlecase}}
+                                                </td>
+                                                <td>
+                                                    {{customer?.descripcion }}
+                                                </td>
+                                                
+                                                <td>
+                                                    {{customer?.valor | currency:'':'':'0.2-2' }}
+                                                </td>
+                                                
+                                            
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="emptymessage" style="text-align: center;">
+                                            <tr class="font-family">
+                                                <td colspan="8">No hay registros encontrados</td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="footer" style="text-align: center;">
+                                            <tr class="font-family">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>TOTAL DE {{form6.value.tipo_movimiento.value}}S</td>
+                                                <td>{{totalGastosCajaMayor | currency:'':'':'0.2-2'}}</td>
+                                            </tr>
+                                        </ng-template>
+                
+                                    
+                                        </p-table>
+                                </ng-template>
+                                </div>
+                               
+                             </p-panel>
+                         </ng-template>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    
+        </div>
+    </div>
+</ng-template>
+
