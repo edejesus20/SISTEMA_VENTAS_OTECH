@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
   image2:string='assets/rioprieto.jpeg'
   imageOtech:string='assets/img/hero2.jpg'
   imageOtech2:string='assets/img/logo_nuevo_negro.png'
+  imageOtech3:string='assets/img/logo_nuevo.png'
+  value=0
+  
   image1:string='assets/rioprieto-removebg-preview.png'
  // public sizeDisplay: string = 'phone' || 'web';
  public sizeDisplay: boolean = false;
@@ -45,7 +48,7 @@ export class LoginComponent implements OnInit {
    });
    public clase:string='loader1'
   public cargando:number=50
-  public motrar:boolean = false
+  public motrar:number = 0
   constructor(
     public breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
@@ -94,17 +97,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.motrar=true
+    
     let form :any= this.form.value
     console.log(form)
    if(form.captcha == ''){
     this.messageService.add({severity:'error', summary: 'Error', detail: `Error. Falta dijitar Captcha`});
-
+    this.motrar=0
    }else{
+    this.motrar=1
     this.authService.login(form).subscribe(
       (result) => {
         console.log(result)
-
+        
         let url='/home/'
         var user :string | null= localStorage.getItem('user');
         if( user!=null){
@@ -113,9 +117,6 @@ export class LoginComponent implements OnInit {
             url='/home/caja'
           }
         }
-   
-       
-
         var date = new Date('2020-01-01 00:00:04');
         function padLeft(n:any){ 
           return n ="00".substring(0, "00".length - n.length) + n;
@@ -128,23 +129,34 @@ export class LoginComponent implements OnInit {
           this.cargando= this.cargando + 50
           // console.log('aqui',seconds);
         }
-        if( seconds == '02') {
-          this.messageService.add({severity:'success', summary: 'Bienvenido', detail: `${result.message}`});
+        // if( seconds == '02') {
+        //   this.messageService.add({severity:'success', summary: 'Bienvenido', detail: `${result.message}`});
 
-        }
+        // }
         date = new Date(date.getTime() - 1000);
         if(minutes == '00' && seconds == '01'){
-        this.clase='loader3'
+        // this.clase='loader3'
+        
         }
         if(minutes == '00' && seconds == '00'){
-          this.router.navigateByUrl(url);
+          this.motrar=2
+          setTimeout(() =>{
+            this.router.navigateByUrl(url);
+          },3000)
+
+          // if(this.motrar==2){
+            
+
+          // }
           clearInterval(interval); 
           }
+          this.value=this.value + 20
         
   }, 1000)
         
     },async error => {
-      this.motrar=false
+      this.motrar=0
+      this.value=0
       if(error != undefined) {
         this.form.controls['captcha'].setValue('')
         // let text = await translate(error.error.message, "es");

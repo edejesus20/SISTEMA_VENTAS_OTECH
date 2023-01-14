@@ -5,43 +5,37 @@
 <ng-template [ngIf]="mostrarDialogo ==false">
   <div  style="width:70vw">
     <div>
+        
+      <div class="surface-ground">
 
-      <div class="surface-section p-3" style="border-radius: 10px;">
-        <div class="flex align-items-start flex-column lg:flex-row 
-        lg:justify-content-between">
-            <div class="flex align-items-start flex-column md:flex-row">
-                <!-- <img src="assets/images/blocks/avatars/circle/avatar-f-1@2x.png"
-                class="mr-5 mb-3 lg:mb-0" style="width: 90px; height: 90px;"> -->
-                <div>
-                  <span class="text-900 font-medium " 
-                   style="font-family:'French Script MT V1'!important;font-size: 50px;" >Bienvenido a Rio Prieto</span>
-                    <i class="pi pi-star text-2xl ml-4 text-yellow-500"></i>
+        <div class="mt-4 flex align-items-center justify-content-center">
+            
+                <div style="text-align:center">
+                  <span class="text-900 font-medium" 
+                   style="font-size: 35px;text-align: center;" >ELIGE LA SEDE QUE DESEAS INGRESAR</span>
+                    <!-- <i class="pi pi-star text-2xl ml-4 text-yellow-500"></i> -->
 
                 </div>
-            </div>
-            <div class="mt-3 lg:mt-0">
-              <!-- <button pbutton="" pripple="" icon="pi pi-times"  (click)="cancelar()"
-              class="p-ripple p-element p-button-rounded p-button-success p-button 
-              p-component p-button-icon-only"><span class="p-ink"></span>
-              <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
-              <span aria-hidden="true" class="p-button-label">&nbsp;</span>
-              </button> -->
-            </div>
+          
         </div>
-    </div>
-        
-      <div class="surface-ground p-4 -mb-5">
+
         <div class="grid"  >
-          <div class="col-12 md:col-6 p-5" *ngFor="let sede of Allsedes">
-            <div class="shadow-2 surface-card border-round p-4 flex-1 text-center mb-6 md:mb-0">
+          <div class="col-12 md:col-6 p-5" *ngFor="let sede of Allsedes" >
+            <div class="shadow-2 surface-card border-round p-4 flex-1 text-center mb-6 md:mb-0" style="border: 1px solid #0a1640;">
               <div class="mb-4 font-family">
                 <!-- <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
-                <p-avatar icon="pi pi-building" [style]="{'background-color':'#2196F3', 
+                
+                <img [src]="imageOtech3" alt="Image" class="mt-1" width="50px">
+                
+                <!-- <p-avatar icon="pi pi-building" [style]="{'background-color':'#2196F3', 
                 'color': '#ffffff','font-size':'50px'}"
-                styleClass=" -mt-8" size="xlarge" shape="circle"></p-avatar>
+                styleClass=" -mt-8" size="xlarge" shape="circle"></p-avatar> -->
+
+
                 <!-- <img src="assets/productos.jpg" style="border-radius:50%"
                 width="100" height="100" class="-mt-8"> -->
-                <span class="block text-900 mb-1 text-xl font-bold font-family">{{sede.nombre | titlecase}}</span>
+                <span class="block text-900 mb-1 font-bold font-family mt-3"
+                style="font-size: 30px;">{{sede.nombre | titlecase}}</span>
                 <p class="text-600 m-0 font-medium font-family"><b>Nit : </b> {{sede.nit}}</p>
               </div>
               <div class="flex justify-content-between align-items-center font-family">
@@ -69,10 +63,17 @@
               <br>
             <ng-template [ngIf]="motrar == false">
 
-              <div class="flex justify-content-between align-items-center">
+              <div class="flex justify-content-center align-items-center">
                 <!-- <span class="text-900">250/500</span> -->
 
-                <span class="text-900">
+                <button type="button"  *ngIf="sede.id && MostrarsedeId" (click)="elegirSede(sede.id,$event)"
+                 style="background-color: #041e69;"_ngcontent-kfl-c104=""
+               class="p-element p-button p-component pl-6 pr-6 mt-4" 
+                tabindex="0"><span class="p-button-label">Ingresar</span>
+              </button>
+
+
+                <!-- <span class="text-900">
                   <button pButton  class="p-button-rounded p-button-success"font-family disabled *ngIf="sede?.estado == true" 
                   style="padding:5px;border-radius:2px">
                   <span [class]="'customer-badge status-' + sede?.estado">Disponible</span>
@@ -86,17 +87,17 @@
                     
                     <span [class]="'customer-badge status-' + sede?.estado">No Disponible</span>
                   </button>
-                </span>
-                <span class="text-primary font-medium">
+                </span> -->
+                <!-- <span class="text-primary font-medium">
                 <button _ngcontent-kfl-c104="" pbutton="" pripple="" type="button"
-                 label="Success" *ngIf="sede.id && MostrarsedeId" (click)="elegirSede(sede.id,$event)"
+                 label="Success" 
                  class="p-element p-ripple p-button-raised p-button-success font-family
                  p-button-text p-button p-component">
                  <span class="p-button-label font-family">Elegir</span>
                  <span class="p-ink" 
                  style="height: 87px; width: 87px; top: -12.75px; left: -7.78125px;">
                 </span></button>
-             </span> 
+             </span>  -->
                 
               </div>
             </ng-template>
@@ -135,12 +136,35 @@ contentStyleClass="overflow-x-hidden"
 
         <div>
           <ng-template [ngIf]="noAutorizado == ''">
-            <div class="surface-section p-3" style="border-radius: 10px;">
+
+        
+
+              <div class="mt-4 flex align-items-center justify-content-center">
+                  
+                      <div style="text-align:center">
+                        <span class="text-900 font-medium" 
+                         style="font-size: 25px;text-align: center;" >ELIGE LA SEDE QUE DESEAS INGRESAR</span>
+                          <!-- <i class="pi pi-star text-2xl ml-4 text-yellow-500"></i> -->
+      
+                      </div>
+
+                      <div class="mt-3 ml-3 lg:mt-0">
+                        <button pbutton="" pripple="" icon="pi pi-times"  (click)="cancelar()"
+                        style="font-size:10px"
+                        class="p-ripple p-element p-button-rounded p-button-success p-button 
+                        p-component p-button-icon-only"><span class="p-ink"></span>
+                        <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
+                        <span aria-hidden="true" class="p-button-label">&nbsp;</span>
+                        </button>
+                      </div>
+                
+              </div>
+           
+              <div class="surface-ground mt-3">
+            <!-- <div class="surface-section p-3" style="border-radius: 10px;">
               <div class="flex align-items-start flex-column lg:flex-row 
               lg:justify-content-between">
                   <div class="flex align-items-start flex-column md:flex-row">
-                      <!-- <img src="assets/images/blocks/avatars/circle/avatar-f-1@2x.png"
-                      class="mr-5 mb-3 lg:mb-0" style="width: 90px; height: 90px;"> -->
                       <div>
                         <span class="text-900 font-medium " 
                         style=" font-family:'French Script MT V1'!important;font-size: 50px;" >Bienvenido a Rio Prieto</span>
@@ -148,29 +172,26 @@ contentStyleClass="overflow-x-hidden"
                         
                       </div>
                   </div>
-                  <div class="mt-3 lg:mt-0">
-                    <button pbutton="" pripple="" icon="pi pi-times"  (click)="cancelar()"
-                    class="p-ripple p-element p-button-rounded p-button-success p-button 
-                    p-component p-button-icon-only"><span class="p-ink"></span>
-                    <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
-                    <span aria-hidden="true" class="p-button-label">&nbsp;</span>
-                    </button>
-                  </div>
+                  
               </div>
-          </div>
+          </div> -->
               
-          <div class="surface-ground p-4 -mb-5">
+          <!-- <div class="surface-ground p-4 -mb-5"> -->
             <div class="grid"  >
               <div class="col-12 md:col-6 p-5" *ngFor="let sede of Allsedes">
                 <div class="shadow-2 surface-card border-round p-4 flex-1 text-center mb-6 md:mb-0">
                   <div class="mb-4 font-family">
                     <!-- <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
-                    <p-avatar icon="pi pi-building" [style]="{'background-color':'#2196F3', 
+                    <!-- <p-avatar icon="pi pi-building" [style]="{'background-color':'#2196F3', 
                     'color': '#ffffff','font-size':'50px'}"
-                    styleClass=" -mt-8" size="xlarge" shape="circle"></p-avatar>
+                    styleClass=" -mt-8" size="xlarge" shape="circle"></p-avatar> -->
+
+                    <img [src]="imageOtech3" alt="Image" class="mt-1" width="50px">
+
                     <!-- <img src="assets/productos.jpg" style="border-radius:50%"
                     width="100" height="100" class="-mt-8"> -->
-                    <span class="block text-900 mb-1 text-xl font-bold">{{sede.nombre | titlecase}}</span>
+                    <span class="block text-900 mb-1 font-bold font-family mt-1"
+                style="font-size: 25px;">{{sede.nombre | titlecase}}</span>
                     <p class="text-600 m-0 font-medium"><b>Nit : </b> {{sede.nit}}</p>
                   </div>
                   <div class="flex justify-content-between align-items-center font-family">
@@ -198,9 +219,18 @@ contentStyleClass="overflow-x-hidden"
                   <br>
                 <ng-template [ngIf]="motrar == false">
 
-                  <div class="flex justify-content-between align-items-center">
+
+                  <div class="flex justify-content-center align-items-center">
                     <!-- <span class="text-900">250/500</span> -->
     
+                    <button type="button"  *ngIf="sede.id && MostrarsedeId" (click)="elegirSede(sede.id,$event)"
+                     style="background-color: #041e69;width: 50%;"_ngcontent-kfl-c104=""
+                   class="p-element p-button p-component pl-6 pr-6 mt-4" 
+                    tabindex="0"><span class="p-button-label">Ingresar</span>
+                  </button>
+
+                  </div>
+                  <!-- <div class="flex justify-content-between align-items-center">    
                     <span class="text-900">
                       <button pButton  class="p-button-rounded p-button-success font-family" disabled *ngIf="sede?.estado == true" 
                       style="padding:5px;border-radius:2px">
@@ -227,7 +257,7 @@ contentStyleClass="overflow-x-hidden"
                     </span></button>
                  </span> 
                     
-                  </div>
+                  </div> -->
                 </ng-template>
 
                 <ng-template [ngIf]="motrar == true">

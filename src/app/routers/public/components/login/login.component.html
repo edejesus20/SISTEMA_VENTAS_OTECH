@@ -5,6 +5,7 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
 [closable]="false" [closeOnEscape]="false" [resizable]="false" zindex="10000"   [showHeader]="false"> -->
 
 <!-- modo movil -->
+<ng-template [ngIf]="motrar==0" >
 <ng-template [ngIf]="!sizeDisplay">
 <div class="grid myClass">
   <div class="col-12 md:col-6 p-5 color2">
@@ -463,9 +464,28 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
 
 
 <!-- </p-dialog> -->
+</ng-template>
 </form>
-<ng-template [ngIf]="motrar" >
-  <div class="loader1" [ngClass]="{'loader3 ': clase=='loader3'}" 
+<ng-template [ngIf]="motrar==1" >
+
+  <!-- <div class="flex justify-content-center flex-wrap card-container"> -->
+    <div class="flex align-items-center justify-content-center  h-300rem card-container
+    font-bold text-gray-900 border-round m-2">
+      <div class="block mt-6" @fadeInOut>
+       
+          <img [src]="imageOtech3" alt="Image" class="mt-6" width="500px">
+
+          <div class="mt-5">
+            <p-progressBar [value]="value" [showValue]="false"></p-progressBar>
+          </div>
+          <div class="mt-5 text-center">
+            <h2 style="color: white">Iniciando Sesión</h2>
+          </div>
+          <!-- <h1>INICIO DE SESION</h1> -->
+      </div>
+    </div>
+  <!-- </div> -->
+  <!-- <div class="loader1" [ngClass]="{'loader3 ': clase=='loader3'}" 
   id="loader1">
     <div class="loadingio-spinner-spin-qylm0l60a1 " >
       <div class="ldio-euaoqwc5np6">
@@ -482,8 +502,26 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
           <div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
       </div>
   </div>
-  </div>
+  </div> -->
 </ng-template>
+  <ng-template [ngIf]="motrar==2" >
+    <div class="flex align-items-center justify-content-center  h-300rem card-container
+    font-bold text-gray-900 border-round m-2">
+      <div class="block mt-6" @fadeInOut>
+       
+          <img [src]="imageOtech3" alt="Image" class="mt-6" width="500px">
+
+          <div class="mt-5">
+            <!-- <p-progressBar [value]="value" [showValue]="false"></p-progressBar> -->
+          </div>
+          <div class="mt-6 text-center">
+            <h2 style="color: white">¡Bienvenido al Sistema!</h2>
+          </div>
+          <!-- <h1>INICIO DE SESION</h1> -->
+      </div>
+    </div>
+  </ng-template>
+
 
 <!-- <script>
   window.addEventListener('load', function() {
