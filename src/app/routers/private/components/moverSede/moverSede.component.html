@@ -3,7 +3,7 @@
 
 
 <ng-template [ngIf]="mostrarDialogo ==false">
-  <div  style="width:70vw">
+  <div  style="width:70vw" class="animate__animated animate__fadeInDown ">
     <div>
         
       <div class="surface-ground">
@@ -126,7 +126,7 @@
 
   <p-dialog [(visible)]="MostrarsedeId" [modal]="true"
 [style]="{'width': '80%','border-radius':'15px'}" 
-contentStyleClass="overflow-x-hidden" 
+contentStyleClass="overflow-x-hidden animate__animated animate__fadeInDown" 
 [resizable]="false" zindex="10000" 
   [closable]="false" [closeOnEscape]="false" 
   [maximizable]="true" appendTo="body"
