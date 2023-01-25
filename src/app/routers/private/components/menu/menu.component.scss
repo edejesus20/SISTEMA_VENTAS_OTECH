@@ -98,13 +98,16 @@
     transition: visibility 0.2s 0.2s;
 }
 .scrollwrap::-webkit-scrollbar{
-    width:10px
+    width:6px
 }
 .scrollwrap::-webkit-scrollbar-track{
    background:transparent
 }
 .scrollwrap::-webkit-scrollbar-thumb{
-    background-color: #556268;
+   
+  background: linear-gradient(180deg , #049bdb   0%, #0439cb  100%);
+
+    // background-color: #556268;
     border-radius:20px;
  }
  .scrollwrap{

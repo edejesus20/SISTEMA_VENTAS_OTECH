@@ -367,7 +367,7 @@ border:none;
 }
 
 .p-inputtext.ng-dirty.ng-valid {
-    border-color: #486438;
+    border-color: #0439cb;
 }
 .p-inputtext.ng-dirty.ng-invalid {
     border-color: #e24c4c;
@@ -383,7 +383,7 @@ border:none;
     color: #FFFFFF;
     /* max-width: 220px; */
     /* padding-left: 20px; */
-    background: #486438;
+    background: #0439cb;
     /* width: auto; */
     /* background: rgba(255, 255, 255, 0.05); */
     padding: 0.429rem 0.571rem;
@@ -589,7 +589,9 @@ border:none;
 
 .loader1{
     /* background:black; */
-background: linear-gradient(180deg, rgba(29,110,205,1) 0%, rgba(1,57,205,1) 61%);
+  background: linear-gradient(180deg , #049bdb   0%, #0439cb  100%);
+
+/* background: linear-gradient(180deg, rgba(29,110,205,1) 0%, rgba(1,57,205,1) 61%); */
 
     /* background: linear-gradient(180deg , rgba(106,209,41,0.7959558823529411) 0%, #486438 100%); */
       width: 100%;

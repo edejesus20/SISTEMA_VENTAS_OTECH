@@ -32,7 +32,7 @@ import { fadeInOut } from 'src/app/routers/private/components/menu/datamenu';
 export class LoginComponent implements OnInit {
   image:string='assets/pexels-plann-4549409.jpg'
   image2:string='assets/rioprieto.jpeg'
-  imageOtech:string='assets/img/hero2.jpg'
+  imageOtech:string='assets/img/logo.jpeg'
   imageOtech2:string='assets/img/logo_nuevo_negro.png'
   imageOtech3:string='assets/img/logo_nuevo.png'
   value=0

@@ -106,7 +106,7 @@ imageOtech3:string='assets/img/iconoEmpresa.jpg'
           (data1) => {
         
             if(data1.message){
-              this.messageService.add({severity:'primary', summary: 'Bienvenido', detail: `${data1.message}`});
+              this.messageService.add({severity:'success', summary: 'Bienvenido', detail: `${data1.message}`});
             }
             var date = new Date('2020-01-01 00:00:03');
             function padLeft(n:any){ 

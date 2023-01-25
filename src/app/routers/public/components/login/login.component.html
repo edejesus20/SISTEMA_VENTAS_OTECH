@@ -21,13 +21,13 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
     <div class="capa-exterior1">
       <div class="capa-interior1">
 
-      <span class="p-6">
-        <div class="grid pl-6 mt-4">
-          <div class="col-12 pl-6 pr-6 pt-6 pb-4">
+      <span class="p-6 ml-3">
+        <div class="grid pl-8 mt-4">
+          <div class="col-12 ml-5 pl-8 pt-6 pb-4">
             <h3>Usuario</h3>
             <span class="p-float-label mt-2">
                 <input id="float-input" class="p-inputtext-sm"
-                type="text" pInputText style="width: 90%;"
+                type="text" pInputText style="width: 60%;"
                 pInputText placeholder="Usuario"
                   formControlName="username" 
                   > 
@@ -35,17 +35,17 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
             </span>
           </div>
 
-          <div class="col-12 pl-6 pr-6 pt-2">
+          <div class="col-12 ml-5 pl-8  pt-2">
             <h3>Contraseña</h3>
             <span class="p-float-label mt-2">
                 <input id="float-input" class="p-inputtext-sm"
                 type="password" pInputText placeholder="Contraseña" 
-                  formControlName="password" style="width: 90%;"> 
+                  formControlName="password" style="width: 60%;"> 
                 <!-- <label for="float-input">Username</label> -->
             </span>
           </div>
 
-          <div class="col-12 pl-2 pr-6 pt-2">
+          <div class="col-12 pl-2 pr-7 pt-2">
             <span style="display: flex;justify-content: center;align-items: center;margin-top: 20px;">
               <ngx-recaptcha2
               #captchaElem
@@ -66,8 +66,8 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
           <div class="col-12 pl-2 pr-6 pt-2 text-center">
             <button type="button"  [disabled]="!form.valid" (click)="onSubmit()" 
             *ngIf="!motrar" style="background-color: #041e69;"
-             class="p-element p-button p-component pl-6 pr-6 mt-4" 
-              tabindex="0"><span class="p-button-label">Login</span>
+             class="p-element p-button p-component pl-7 pr-7 mt-4" 
+              tabindex="0"><span class="p-button-label">Ingresar</span>
             </button>
             <!-- <span>Don’t have an account?<a>Sign-up here</a></span> -->
           </div>
@@ -210,7 +210,7 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
               <button type="button"  [disabled]="!form.valid" (click)="onSubmit()" 
               *ngIf="!motrar" style="background-color: #041e69;"
                class="p-element p-button p-component pl-6 pr-6 mt-4" 
-                tabindex="0"><span class="p-button-label">INICIO DE SESION</span>
+                tabindex="0"><span class="p-button-label">Ingresar</span>
               </button>
               <!-- <span>Don’t have an account?<a>Sign-up here</a></span> -->
             </div>
@@ -529,7 +529,7 @@ contentStyleClass="overflow-y-auto lg:overflow-x-hidden xl:overflow-y-hidden xl:
   })
 </script> -->
 
-<p-toast></p-toast>
+<!-- <p-toast></p-toast> -->
 
 
 
