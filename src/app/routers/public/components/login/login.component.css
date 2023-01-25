@@ -10,6 +10,10 @@
   .animate__animated.animate__fadeInDown {
     --animate-duration: 2s;
   }
+  .animate__animated.animate__rubberBand {
+    --animate-duration: 2s;
+  }
+  
 
 /* You can add global styles to this file, and also import other style files */
 .myClass  {

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   imageOtech:string='assets/img/logo.jpeg'
   imageOtech2:string='assets/img/logo_nuevo_negro.png'
   imageOtech3:string='assets/img/logo_nuevo.png'
-  value=0
+  value=20
   
   image1:string='assets/rioprieto-removebg-preview.png'
  // public sizeDisplay: string = 'phone' || 'web';
@@ -117,6 +117,8 @@ export class LoginComponent implements OnInit {
             url='/home/caja'
           }
         }
+
+
         var date = new Date('2020-01-01 00:00:04');
         function padLeft(n:any){ 
           return n ="00".substring(0, "00".length - n.length) + n;
@@ -134,26 +136,35 @@ export class LoginComponent implements OnInit {
 
         // }
         date = new Date(date.getTime() - 1000);
-        if(minutes == '00' && seconds == '01'){
-        // this.clase='loader3'
         
-        }
-        if(minutes == '00' && seconds == '00'){
-          this.motrar=2
-          setTimeout(() =>{
-            this.router.navigateByUrl(url);
-          },3000)
-
-          // if(this.motrar==2){
-            
-
-          // }
-          clearInterval(interval); 
-          }
+        
           this.value=this.value + 20
+
+          if(this.value > 100){
+            // this.motrar=2
+            // if(this.motrar==2){
+            // }
+            if(minutes == '00' && seconds == '00'){
+              // this.clase='loader3'
+              clearInterval(interval); 
+              this.motrar=2
+              setTimeout(() =>{
+                this.router.navigateByUrl(url);
+              },3000)
+              }
+            }
         
   }, 1000)
         
+  if(this.value==100){
+   
+
+    // if(this.motrar==2){
+      
+
+    // }
+    // clearInterval(interval); 
+    }
     },async error => {
       this.motrar=0
       this.value=0
