@@ -36,9 +36,11 @@ export class MenuComponent implements  OnInit {
   screenwidth=0
   items: MenuItemI[]=[];
   public ref1:any;
+  public nombre:string = '';
 
   public tipoUser:string=''
   public imagen:string='assets/icon-5359553_1280.png'
+  imagenLogo:string='assets/img/logo.jpeg'
   Dialog1:boolean=false
   sedeDatos:any
   constructor(
@@ -46,6 +48,7 @@ export class MenuComponent implements  OnInit {
     private authService: AuthService, 
     private sedesService: SedesService,
     public dialogService: DialogService,
+    private userService: UserService,
 
   ) { 
    
@@ -62,10 +65,30 @@ export class MenuComponent implements  OnInit {
     if(user!=null){
       let userObjeto:any = JSON.parse(user); 
       this.tipoUser=userObjeto.type_user
+      this.userService.getOneUser(userObjeto.id).subscribe((data)=>{
+
+      if(data.id && data.username != undefined){
+        this.nombre = data.username
+      }     
+    })
+    
+
       if(userObjeto.type_user == 'CAJERO'){
-        this.imagen='assets/cajero.jpg'
-      }else{
-        this.imagen='assets/icon-5359553_1280.png'
+        this.imagen='assets/img/cajero.png'
+      }
+
+      if(userObjeto.type_user == 'CEO'){
+        this.imagen='assets/img/CEO.png'
+
+      }
+
+      if(userObjeto.type_user == 'ADMINISTRADOR GENERAL'){
+        this.imagen='assets/img/admin_general.png'
+
+      }
+
+      if(userObjeto.type_user == 'ADMINISTRADOR'){
+        this.imagen='assets/img/admin.png'
 
       }
       if(userObjeto.type_user)

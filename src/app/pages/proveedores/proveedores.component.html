@@ -2,9 +2,9 @@
 <ng-template [ngIf]="noestasPermitido == false">
 
 <ng-template [ngIf]="mostrarDialogo==false">
-  <div style="max-width:150rem" class="ml-2"> 
+  <div style="max-width:150rem"> 
     <br>
-      <div class="px-4 py-5 md:px-4 lg:px-4 surface-section">
+      <div class="px-4 py-5 md:px-4 lg:px-4 surface-section min-h-screen" style="border-radius: 7px;">
           <div class="flex flex-column lg:flex-row lg:align-items-center 
           lg:justify-content-between relative" 
           style="top:-20px">
@@ -19,7 +19,7 @@
             </div>
             <div class="mt-3 lg:mt-0">
                 <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" (click)="openNew()"
-                class="p-element p-ripple  mr-2 p-button p-component">
+                class="p-element p-ripple  mr-2 p-button  p-button2 p-component">
                 <span class="p-button-icon p-button-icon-left pi pi-plus-circle" aria-hidden="true"></span>
                 <span class="p-button-label font-family">Registrar Proveedor</span>
                 <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
@@ -83,21 +83,21 @@
         
                 <button pbutton="" pripple="" icon="pi pi-file"  (click)="dt1.exportCSV()"
                 pTooltip="CSV" tooltipPosition="bottom"
-                class="p-ripple p-element p-button-rounded  mr-2 p-button-info p-button 
+                class="p-ripple p-element p-button-rounded  mr-2 p-button2 p-button 
                 p-component p-button-icon-only"><span class="p-ink"></span>
                 <span class="p-button-icon pi pi-file" aria-hidden="true"></span>
                 <span aria-hidden="true" class="p-button-label">&nbsp;</span>
                 </button>
                 <button pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel()"
                 pTooltip="XLS" tooltipPosition="bottom"
-                class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+                class="p-ripple p-element p-button-rounded  mr-2 p-button2 p-button 
                 p-component p-button-icon-only"><span class="p-ink"></span>
                 <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
                 <span aria-hidden="true" class="p-button-label">&nbsp;</span>
                 </button>
                 <button pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
                 pTooltip="PDF" tooltipPosition="bottom"
-                class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+                class="p-ripple p-element p-button-rounded  mr-2 p-button2 p-button 
                 p-component p-button-icon-only"><span class="p-ink"></span>
                 <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
                 <span aria-hidden="true" class="p-button-label">&nbsp;</span>
@@ -199,7 +199,7 @@
                 <td style="text-align: center">
                     <button pButton type="button" (click)="editProduct(customer)"
                     class=" p-ripple 
-                     p-button-rounded p-button p-button-warning" icon="pi pi-pencil
+                     p-button-rounded p-button p-button2" icon="pi pi-pencil
                     "></button>
                 </td>
                 </ng-template>
@@ -207,7 +207,7 @@
                   <td style="text-align: center">
                       <button pButton type="button" (click)="AllCompras(customer)"
                       class=" p-ripple 
-                       p-button-rounded p-button p-button-success" 
+                       p-button-rounded p-button p-button2" 
                       icon="pi pi-shopping-bag
                       "></button>
                   </td>
@@ -216,7 +216,7 @@
                     <td style="text-align: center">
                         <button pButton type="button" (click)="deleteProduct(customer)"
                         class=" p-ripple 
-                         p-button-rounded p-button p-button-danger" 
+                         p-button-rounded p-button p-button2" 
                         icon="pi pi-trash"></button>
                     </td>
                     </ng-template>

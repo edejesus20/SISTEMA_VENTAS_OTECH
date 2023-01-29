@@ -10,7 +10,6 @@ import { UserService } from 'src/app/core/services/auth/user.service';
   styleUrls: ['./menu-horizontal.component.css']
 })
 export class MenuHorizontalComponent implements OnInit {
-
   constructor(
     private authService: AuthService, 
     private formBuilder: FormBuilder,
@@ -19,6 +18,8 @@ export class MenuHorizontalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+   
   }
 
   setLogin(value: boolean): void {

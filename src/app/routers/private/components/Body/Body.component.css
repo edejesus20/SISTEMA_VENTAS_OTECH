@@ -1,13 +1,16 @@
 .body1{
     width: calc(100% - 5rem);
     height: 100%;
-    margin-left: 5rem;
+    /* height: 100vh; */
+    margin-left: 3rem;
     margin-right:0px;
     z-index: 0;
     margin-top: -49px;
     /* display: flex; */
     display: inline-block;
     position:relative;
+    /* border: 1px solid gray; */
+    /* border-radius: 5px; */
     /* top :0; */
     transition: all .5s ease;
     /* background: linear-gradient(180deg , rgba(106,209,41,0.7959558823529411) 0%, #486438 100%);

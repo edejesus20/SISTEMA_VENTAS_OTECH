@@ -1,6 +1,6 @@
-<div style="max-width:160rem" class="ml-1"> 
+<div style="max-width:160rem" > 
     <br>
-    <div class="px-4 py-5 md:px-4 lg:px-4 surface-section">
+    <div class="px-4 py-5 md:px-4 lg:px-4 surface-section min-h-screen" style="border-radius: 7px;">
 
         <div class="overflow-y-auto " style="background-color: transparent;">
 
@@ -13,7 +13,8 @@
                     <div class="flex align-items-start flex-column md:flex-row">
                         <!-- <img src="assets/images/blocks/avatars/circle/avatar-f-1@2x.png"
                         class="mr-5 mb-3 lg:mb-0" style="width: 90px; height: 90px;"> -->
-                        <div><span class="text-900 font-medium text-3xl">Inventarios</span>
+                        <div><span class="font-family text-3xl" 
+                            style="color:#041e69">Inventarios</span>
                             <i class="pi pi-star text-2xl ml-4 text-yellow-500"></i>
                             <div class="flex align-items-center flex-wrap text-sm">
                                 <div class="mr-5 mt-3">
@@ -82,7 +83,7 @@
       
             <button pbutton="" pripple="" icon="pi pi-file"  (click)="dt1.exportCSV()"
             pTooltip="CSV" tooltipPosition="bottom"
-            class="p-ripple p-element p-button-rounded  mr-2 p-button-info p-button 
+            class="p-ripple p-element p-button-rounded  mr-2 p-button2 p-button 
             p-component p-button-icon-only"><span class="p-ink"></span>
             <span class="p-button-icon pi pi-file" aria-hidden="true"></span>
             <span aria-hidden="true" class="p-button-label">&nbsp;</span>
@@ -90,7 +91,7 @@
             <button  *ngIf="productosexcel.length && productosexcel.length > 0"
             pbutton="" pripple="" icon="pi  pi-file-excel"  (click)="exportExcel()"
             pTooltip="XLS" tooltipPosition="bottom"
-            class="p-ripple p-element p-button-rounded  mr-2 p-button-success p-button 
+            class="p-ripple p-element p-button-rounded  mr-2 p-button2 p-button 
             p-component p-button-icon-only"><span class="p-ink"></span>
             <span class="p-button-icon pi pi-file-excel" aria-hidden="true"></span>
             <span aria-hidden="true" class="p-button-label">&nbsp;</span>
@@ -98,7 +99,7 @@
             <button  *ngIf="productosexcel.length && productosexcel.length > 0"
             pbutton="" pripple="" icon="pi  pi pi-file-pdf"  (click)="gerenratePdf()"
             pTooltip="PDF" tooltipPosition="bottom"
-            class="p-ripple p-element p-button-rounded  mr-2 p-button-warning p-button 
+            class="p-ripple p-element p-button-rounded  mr-2 p-button2 p-button 
             p-component p-button-icon-only"><span class="p-ink"></span>
             <span class="p-button-icon pi  pi pi-file-pdf" aria-hidden="true"></span>
             <span aria-hidden="true" class="p-button-label">&nbsp;</span>
@@ -227,7 +228,7 @@
               <ng-template [ngIf]="Acciones ==1">
               <td style="text-align: center">
                   <button pButton type="button"  (click)="editProduct(customer)" class=" p-ripple 
-                   p-button-rounded p-button p-button-warning" icon="pi pi-pencil
+                   p-button-rounded p-button p-button2" icon="pi pi-pencil
                   "></button>
               </td>
               </ng-template>
@@ -243,7 +244,7 @@
                   <td style="text-align: center">
                       <button pButton type="button" (click)="historialdeInvestiario(customer)" 
                       class=" p-ripple 
-                       p-button-rounded p-button p-button-info" icon="pi pi-history"></button>
+                       p-button-rounded p-button p-button2" icon="pi pi-history"></button>
                   </td>
                   </ng-template>
                   <ng-template [ngIf]="Acciones ==3">
@@ -324,7 +325,7 @@ lg:justify-content-between mb-3 mt-4 ng-tns-c38-5 ">
         "></button> -->
         <button pbutton="" pripple="" icon="pi pi-times"  style="font-size:10px"
         (click)="MostrarHistorialInventarios = false"
-        class="p-ripple p-element p-button-rounded p-button-success p-button 
+        class="p-ripple p-element p-button-rounded p-button2 p-button 
         p-component p-button-icon-only mr-2"><span class="p-ink"></span>
         <span class="p-button-icon pi pi-times" aria-hidden="true"></span>
         <span aria-hidden="true" class="p-button-label">&nbsp;</span>

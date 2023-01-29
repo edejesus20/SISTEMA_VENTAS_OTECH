@@ -1,7 +1,7 @@
 <ng-template [ngIf]="mostrarDialogo == false">
-  <div style="max-width: 160rem;" class="ml-1">
+  <div style="max-width: 160rem;" >
     <br />
-    <div class="px-4 py-5 md:px-4 lg:px-4 surface-section">
+    <div class="px-4 py-5 md:px-4 lg:px-4 surface-section min-h-screen" style="border-radius: 7px;">
       <!-- crear nuevo -->
       <div
         class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between relative"
@@ -36,7 +36,7 @@
             || tipo_user == 'CEO' || tipo_user == 'ADMINISTRADOR') && MostrarCrear"
             icon="pi pi-plus-circle"
             (click)="openNew()"
-            class="p-element p-ripple mr-2 p-button p-component"
+            class="p-element p-ripple mr-2 p-button p-component p-button1"
           >
             <span
               class="p-button-icon p-button-icon-left pi pi-plus-circle"
@@ -130,7 +130,7 @@
                 (click)="dt1.exportCSV()"
                 pTooltip="CSV"
                 tooltipPosition="bottom"
-                class="p-ripple p-element p-button-rounded mr-2 p-button-info p-button p-component p-button-icon-only"
+                class="p-ripple p-element p-button-rounded mr-2  p-button p-button2 p-component p-button-icon-only"
               >
                 <span class="p-ink"></span>
                 <span
@@ -147,7 +147,7 @@
                 (click)="exportExcel()"
                 pTooltip="XLS"
                 tooltipPosition="bottom"
-                class="p-ripple p-element p-button-rounded mr-2 p-button-success p-button p-component p-button-icon-only"
+                class="p-ripple p-element p-button-rounded mr-2 p-button2 p-button p-component p-button-icon-only"
               >
                 <span class="p-ink"></span>
                 <span
@@ -164,7 +164,7 @@
                 (click)="gerenratePdf()"
                 pTooltip="PDF"
                 tooltipPosition="bottom"
-                class="p-ripple p-element p-button-rounded mr-2 p-button-warning p-button p-component p-button-icon-only"
+                class="p-ripple p-element p-button-rounded mr-2 p-button2 p-button p-component p-button-icon-only"
               >
                 <span class="p-ink"></span>
                 <span
@@ -371,7 +371,7 @@
                   pButton
                   type="button"
                   (click)="editProduct(customer)"
-                  class="p-ripple p-button-rounded p-button p-button-warning"
+                  class="p-ripple p-button-rounded p-button p-button2"
                   icon="pi pi-pencil
                 "
                 ></button>
@@ -416,7 +416,7 @@
                   pButton
                   type="button"
                   (click)="deleteProduct(customer)"
-                  class="p-ripple p-button-rounded p-button p-button-danger"
+                  class="p-ripple p-button-rounded p-button p-button2"
                   icon="pi pi-trash"
                 ></button>
               </td>

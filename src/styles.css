@@ -16,6 +16,8 @@
   url("./assets/font/@font-face/c2f7638be87032cd75a21eeceffd56bd.svg#French Script MT V1") format("svg"); /* iOS 4.1- */
 }
 
+
+
 .p-dialog-content::-webkit-scrollbar{
   width: 8px;     /* Tamaño del scroll en vertical */
   height: 8px;    /* Tamaño del scroll en horizontal */

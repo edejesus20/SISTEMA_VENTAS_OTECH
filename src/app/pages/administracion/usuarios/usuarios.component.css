@@ -1,12 +1,24 @@
-/* .p-password input {
-  width: 15rem
-} */
+
 .logo-text{
-    /* margin-left: 3rem; */
-    font-size:20px;
-    padding:5px;
-    font-weight: 700;
-    color: #22C55E;
+  /* margin-left: 3rem; */
+  font-size:20px;
+  padding:5px;
+  font-weight: 700;
+  color: #041e69;
+}
+.p-button1{
+font-size: 15px;
+background: #041e69;border: 1px solid #7b96d4
+}
+.p-button2{
+/* font-size: 15px; */
+background: #041e69;border: 1px solid #7b96d4
+}
+.p-button1:hover{
+background: #041e69;border: 1px solid #7b96d4
+}
+.p-button2:hover{
+background: #041e69;border: 1px solid #7b96d4
 }
 
 ngx-barcode6 .barcode svg{

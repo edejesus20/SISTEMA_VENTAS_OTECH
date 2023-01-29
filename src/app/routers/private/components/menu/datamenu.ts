@@ -23,26 +23,28 @@ export let items = ( type_user:string) => {
   if(type_user=='ADMINISTRADOR GENERAL' || type_user=='CEO'){
       let data:MenuItemI[]=  [
         {
-          routerLink:'/home',
-          icon: 'pi pi-home',
-          label:'Escritorio'
-        },
-        {
-          routerLink:'/home/caja',
-          icon: 'pi pi-box',
-          label:'Caja Menor',
-        },
-
-        {
-          label: 'Caja Mayor',
+          label: 'CAJAS',
           routerLink:'/home/cajaM',
-          icon: 'pi pi-inbox', 
-    
+          icon: 'assets/img/iconos/caja.jpg',
+          items: [
+              {
+                routerLink:'/home/caja',
+                icon: 'pi pi-box',
+                label:'Caja Menor',
+              },
+
+              {
+                label: 'Caja Mayor',
+                routerLink:'/home/cajaM',
+                icon: 'pi pi-inbox', 
+          
+              },
+          ]
         },
         {
-          label: 'Operaciones',
+          label: 'OPERACIONES',
           routerLink:'/home/operaciones/ventas',
-          icon: 'pi pi-desktop',
+          icon: 'assets/img/iconos/operaciones.jpg',
           items: [
             {
                 label: 'Compras',
@@ -73,9 +75,9 @@ export let items = ( type_user:string) => {
           
         },
         {
-          label: 'Inventarios',
+          label: 'BODEGA',
           routerLink:'/home/inventarios',
-          icon: 'pi pi-database',
+          icon: 'assets/img/iconos/bodega.jpg',
           items:[
             {
               label: 'Productos',
@@ -91,27 +93,27 @@ export let items = ( type_user:string) => {
         },
         
         {
-          label: 'Clientes',
+          label: 'CLIENTES',
           routerLink:'/home/clientes',
-          icon: 'pi pi-id-card',
+          icon: 'assets/img/iconos/clientes.jpg',
           
         },
         {
-          label: 'Empleados',
+          label: 'EMPLEADOS',
           routerLink:'/home/empleados',
-          icon: 'pi pi-star',
+          icon: 'assets/img/iconos/empleados.jpg',
         },
         {
-          label: 'Proveedores',
+          label: 'PROVEEDORES',
           routerLink:'/home/proveedores',
-          icon: 'pi pi-bolt',
+          icon: 'assets/img/iconos/proveedores.jpg',
          
           
         },
         {
-          label: 'Administracion',
+          label: 'ADMINISTRACIÓN',
           routerLink:'/home/administracion/sedes',
-          icon: 'pi pi-building',
+          icon: 'assets/img/iconos/administracion.jpg',
           items: [
             {
                 label: 'Sedes',
@@ -131,6 +133,11 @@ export let items = ( type_user:string) => {
           ]
          
           
+        },
+        {
+          routerLink:'/home',
+          icon: 'assets/img/iconos/reportes.jpg',
+          label:'REPORTES'
         },
       ];
       return  data

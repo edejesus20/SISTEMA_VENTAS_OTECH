@@ -146,16 +146,17 @@
     
 }
 .sidenav-nav-item:hover{
-    .sidenav-nav-link{
-    background-color: #898989;
-
+    .sidenav-nav-link {
+    // background: linear-gradient(180deg , #049bdb   0%, #0439cb  100%);
+        // border-bottom: 2px solid #0439cb;
+        // border-radius: 0px; 
         // background-color: #263238;
 
         // background-color:#fff;
-        color:#000;
+        color:#0439cb;
     }
     .menu-collapsed-icon{
-        color:#000;
+        color:#0439cb;
 
         // color: #263238;
         // color:#000;
@@ -168,11 +169,13 @@
 
 .active{
     // background-color: #263238;
-    background-color: #898989;
-
+    // background-color: #898989;
+    border-left: 3px solid #0439cb;
+    border-radius: 2px;
+    padding-left: 2px;
     // background-color: #fff;
     .menu-collapsed-icon, .sidenav-link-icon, .sidenav-link-text{
-        color:#000
+        color:#0439cb
     }
 }
 
