@@ -22,14 +22,14 @@
                     <ng-template [ngIf]="estadoCajaM === true">
                         <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" *ngIf="!estadoCaja && mismoCajero"
                         (click)="Dialog1 = true"
-                       class="p-element p-ripple  mr-2 p-button p-component p-button-success">
+                       class="p-element p-ripple  mr-2 p-button p-component p-button1">
                        <span class="p-button-icon p-button-icon-left pi pi-plus-circle " aria-hidden="true"></span>
                        <span class="p-button-label font-family">Abrir Caja</span>
                        <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
                        </button>
                        <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" *ngIf="estadoCaja && mismoCajero"
                        (click)="previaCerrarCaja()"
-                       class="p-element p-ripple  mr-2 p-button p-component p-button-danger">
+                       class="p-element p-ripple  mr-2 p-button p-component p-button1">
                        <span class="p-button-icon p-button-icon-left pi pi-plus-circle " aria-hidden="true"></span>
                        <span class="p-button-label font-family">Cerrar Caja</span>
                        <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
@@ -44,7 +44,7 @@
                        style="background:#898989;border-radius: 5px;
                        box-shadow: 0.063rem 0 1.25rem 0 #8690a3;padding:10px"
                        class="p-element p-ripple ml-2  mr-2 
-                       p-button p-component animate__animated animate__flipInY">
+                       p-button p-button1 p-component animate__animated animate__flipInY">
                        <span class="p-button-icon p-button-icon-left pi pi-dollar " aria-hidden="true"></span>
                        <span class="p-button-label font-family">Registrar Gastos</span>
                        <span class="p-ink" ></span>
@@ -59,7 +59,7 @@
                         <button pbutton="" pripple="" label="Follow" icon="pi pi-inbox" [disabled]="true"
                         style="background:#898989;border-radius: 20px;
                         box-shadow: 0.063rem 0 1.25rem 0 #8690a3;padding:13px"
-                        class="p-element p-ripple  mr-2 p-button p-component animate__animated animate__flipInY">
+                        class="p-element p-ripple  mr-2 p-button p-button1 p-component animate__animated animate__flipInY">
                         <span class="p-button-icon p-button-icon-left pi pi-inbox " aria-hidden="true"></span>
                         <span class="p-button-label font-family">La Caja Mayor esta Cerrada</span>
                         <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
@@ -83,14 +83,14 @@
                     <ng-template [ngIf]="estadoCajaM === true">
                         <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" *ngIf="!estadoCaja"
                         (click)="Dialog1 = true"
-                       class="p-element p-ripple  mr-2 p-button p-component p-button-success">
+                       class="p-element p-ripple  mr-2 p-button p-component p-button1">
                        <span class="p-button-icon p-button-icon-left pi pi-plus-circle " aria-hidden="true"></span>
                        <span class="p-button-label font-family">Abrir Caja</span>
                        <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
                        </button>
                        <button pbutton="" pripple="" label="Follow" icon="pi pi-plus-circle" *ngIf="estadoCaja"
                        (click)="previaCerrarCaja()"
-                       class="p-element p-ripple  mr-2 p-button p-component p-button-danger">
+                       class="p-element p-ripple  mr-2 p-button p-component p-button1">
                        <span class="p-button-icon p-button-icon-left pi pi-plus-circle " aria-hidden="true"></span>
                        <span class="p-button-label font-family">Cerrar Caja</span>
                        <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
@@ -114,7 +114,7 @@
 
                     <button pbutton="" pripple="" label="Follow" icon="pi pi-credit-card " *ngIf="estadoCaja"
                     (click)="nuevoMovimiento()"
-                    class="p-element p-ripple  mr-2 p-button p-component p-button-info">
+                    class="p-element p-ripple  mr-2 p-button p-component p-button1">
                     <span class="p-button-icon p-button-icon-left pi pi-credit-card  " aria-hidden="true"></span>
                     <span class="p-button-label font-family">Registrar Movimientos</span>
                     <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
@@ -124,7 +124,7 @@
                        (click)="CerrarDialogTransferir = true" *ngIf="estadoCaja==true"
                        style="background:#898989;border-radius: 20px;
                        box-shadow: 0.063rem 0 1.25rem 0 #8690a3;padding:10px"
-                       class="p-element p-ripple ml-2  mr-2 p-button p-component animate__animated animate__flipInY">
+                       class="p-element p-ripple ml-2  mr-2 p-button p-button1 p-component animate__animated animate__flipInY">
                        <span class="p-button-icon p-button-icon-left pi pi-dollar " aria-hidden="true"></span>
                        <span class="p-button-label font-family">Transferir a Caja Mayor</span>
                        <span class="p-ink" style="height: 116px; width: 116px; top: -40.5px; left: 20.375px;"></span>
